@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Revola | Fast Business Funding. Smarter Growth.</title>
+  <meta name="description" content="Revola helps small and medium-sized businesses access working capital through a simple application, smart matching, and a trusted funding partner network." />
+  <style>
+    :root {
+      --bg: #061121;
+      --bg-2: #081a31;
+      --card: rgba(255, 255, 255, 0.075);
+      --card-strong: rgba(255, 255, 255, 0.11);
+      --text: #f5f8ff;
+      --muted: #a9b8ca;
+      --line: rgba(255, 255, 255, 0.14);
+      --teal: #16e0d2;
+      --cyan: #0aa4ff;
+      --blue: #1167ff;
+      --success: #32d583;
+      --warning: #fdb022;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --radius: 28px;
+      --radius-sm: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 80% 0%, rgba(22, 224, 210, 0.25), transparent 35%),
+        radial-gradient(circle at 10% 20%, rgba(17, 103, 255, 0.22), transparent 28%),
+        linear-gradient(180deg, #061121 0%, #07172a 42%, #050b16 100%);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: rgba(6, 17, 33, 0.78);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav-inner {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.55rem;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--teal), var(--cyan) 58%, var(--blue));
+      color: white;
+      font-weight: 950;
+      transform: skew(-6deg);
+      box-shadow: 0 14px 36px rgba(10, 164, 255, 0.28);
+    }
+
+    .brand-mark span {
+      transform: skew(6deg);
+      font-size: 1.35rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      color: var(--muted);
+      font-size: 0.94rem;
+      font-weight: 650;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border: 0;
+      cursor: pointer;
+      border-radius: 999px;
+      padding: 13px 19px;
+      color: white;
+      font-weight: 800;
+      transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--cyan) 55%, var(--blue));
+      box-shadow: 0 18px 44px rgba(10, 164, 255, 0.28);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .hero {
+      position: relative;
+      padding: 94px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      align-items: center;
+      gap: 46px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(22, 224, 210, 0.26);
+      background: rgba(22, 224, 210, 0.08);
+      color: #bafdf8;
+      border-radius: 999px;
+      padding: 9px 13px;
+      font-size: 0.86rem;
+      font-weight: 750;
+      margin-bottom: 20px;
+    }
+
+    .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 0 8px rgba(22, 224, 210, 0.12);
+    }
+
+    h1 {
+      max-width: 780px;
+      font-size: clamp(3rem, 7vw, 6.25rem);
+      line-height: 0.93;
+      letter-spacing: -0.075em;
+      margin-bottom: 24px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #e7fbff 42%, var(--teal) 72%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.26rem);
+      line-height: 1.72;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 32px;
+    }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      color: #d8e6f4;
+      font-size: 0.95rem;
+    }
+
+    .trust-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: rgba(50, 213, 131, 0.12);
+      color: var(--success);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 590px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.055));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 28px;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -120px auto auto;
+      width: 360px;
+      height: 360px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(22, 224, 210, 0.38), rgba(10, 164, 255, 0.08) 56%, transparent 70%);
+      filter: blur(4px);
+    }
+
+    .dashboard {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      background: rgba(6, 17, 33, 0.62);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(10px);
+    }
+
+    .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .panel h3 {
+      font-size: 1.02rem;
+      letter-spacing: -0.02em;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      background: rgba(50, 213, 131, 0.11);
+      color: #bff8d8;
+      font-size: 0.78rem;
+      font-weight: 750;
+    }
+
+    .amount {
+      font-size: clamp(2.3rem, 5vw, 4.1rem);
+      line-height: 1;
+      letter-spacing: -0.075em;
+      margin-bottom: 10px;
+    }
+
+    .subtle {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .step {
+      display: grid;
+      grid-template-columns: 38px 1fr auto;
+      align-items: center;
+      gap: 13px;
+      padding: 13px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .step-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, rgba(22, 224, 210, 0.22), rgba(10, 164, 255, 0.12));
+      color: #d7fffb;
+      font-weight: 900;
+    }
+
+    .step strong {
+      display: block;
+      font-size: 0.95rem;
+      margin-bottom: 3px;
+    }
+
+    .step small {
+      color: var(--muted);
+    }
+
+    .tag {
+      color: #aefbf6;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .mini-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mini-card span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.76rem;
+      margin-bottom: 8px;
+    }
+
+    .mini-card strong {
+      font-size: 1.15rem;
+    }
+
+    section {
+      padding: 76px 0;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-kicker {
+      color: var(--teal);
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.3rem);
+      line-height: 1.02;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 1.08rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      background: var(--card);
+      padding: 26px;
+      min-height: 240px;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      background: var(--card-strong);
+      border-color: rgba(22, 224, 210, 0.32);
+    }
+
+    .icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(22, 224, 210, 0.11);
+      border: 1px solid rgba(22, 224, 210, 0.18);
+      color: var(--teal);
+      font-size: 1.45rem;
+      margin-bottom: 20px;
+    }
+
+    .card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .card p {
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 26px;
+      align-items: stretch;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .feature p {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      counter-reset: workflow;
+    }
+
+    .workflow-card {
+      position: relative;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.065);
+      border-radius: 22px;
+      padding: 24px;
+      min-height: 220px;
+      overflow: hidden;
+    }
+
+    .workflow-card::before {
+      counter-increment: workflow;
+      content: counter(workflow);
+      position: absolute;
+      right: 18px;
+      top: 10px;
+      font-size: 5.4rem;
+      font-weight: 900;
+      letter-spacing: -0.08em;
+      color: rgba(255, 255, 255, 0.055);
+    }
+
+    .workflow-card h3 {
+      position: relative;
+      margin-bottom: 12px;
+      font-size: 1.12rem;
+    }
+
+    .workflow-card p {
+      position: relative;
+      color: var(--muted);
+      line-height: 1.62;
+    }
+
+    .portal {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(22, 224, 210, 0.12), rgba(17, 103, 255, 0.08)),
+        rgba(255, 255, 255, 0.055);
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .role-card {
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      border-radius: 24px;
+      padding: 26px;
+      background: rgba(6, 17, 33, 0.54);
+    }
+
+    .role-card ul {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+      margin: 20px 0 0;
+      color: #dce9f7;
+    }
+
+    .role-card li {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      line-height: 1.45;
+    }
+
+    .role-card li::before {
+      content: "✓";
+      color: var(--teal);
+      font-weight: 900;
+    }
+
+    .form-wrap {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      align-items: start;
+    }
+
+    form {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: var(--shadow);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: #d9e6f4;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(5, 11, 22, 0.68);
+      color: var(--text);
+      border-radius: 16px;
+      padding: 13px 14px;
+      outline: none;
+      transition: border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(22, 224, 210, 0.58);
+      box-shadow: 0 0 0 4px rgba(22, 224, 210, 0.1);
+    }
+
+    textarea {
+      min-height: 108px;
+      resize: vertical;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .disclaimer {
+      color: var(--muted);
+      font-size: 0.78rem;
+      line-height: 1.55;
+      margin-top: 14px;
+    }
+
+    .footer {
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-weight: 650;
+    }
+
+    .mobile-toggle {
+      display: none;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      .nav-links, .nav-actions {
+        display: none;
+      }
+
+      .mobile-toggle {
+        display: inline-flex;
+      }
+
+      .mobile-menu {
+        display: none;
+        border-top: 1px solid var(--line);
+        padding: 16px 0 22px;
+      }
+
+      .mobile-menu.open {
+        display: grid;
+        gap: 12px;
+      }
+
+      .mobile-menu a {
+        color: var(--muted);
+        font-weight: 750;
+        padding: 10px 0;
+      }
+
+      .hero-grid, .split, .form-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        min-height: auto;
+      }
+
+      .cards, .workflow, .portal-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .nav-inner {
+        height: 68px;
+      }
+
+      .brand {
+        font-size: 1.25rem;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+      }
+
+      .hero {
+        padding: 62px 0 46px;
+      }
+
+      .hero-actions {
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .cards, .workflow, .portal-grid, .mini-grid, .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .portal, form, .hero-card {
+        padding: 20px;
+        border-radius: 22px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#top" class="brand" aria-label="Revola home">
+          <div class="brand-mark"><span>R</span></div>
+          <span>Revola</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#solutions">Solutions</a>
+          <a href="#partners">Partners</a>
+          <a href="#how">How it works</a>
+          <a href="#apply">Apply</a>
+        </nav>
+
+        <div class="nav-actions">
+          <a class="btn btn-secondary" href="#partners">Become a Partner</a>
+          <a class="btn btn-primary" href="#apply">Check Options</a>
+        </div>
+
+        <button class="btn btn-secondary mobile-toggle" type="button" aria-label="Open menu" onclick="toggleMenu()">Menu</button>
+      </div>
+      <nav id="mobileMenu" class="mobile-menu" aria-label="Mobile navigation">
+        <a href="#solutions" onclick="toggleMenu()">Solutions</a>
+        <a href="#partners" onclick="toggleMenu()">Partners</a>
+        <a href="#how" onclick="toggleMenu()">How it works</a>
+        <a href="#apply" onclick="toggleMenu()">Apply</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> Business funding marketplace for SMEs</div>
+          <h1>Fast Business Funding. <span class="gradient-text">Smarter Growth.</span></h1>
+          <p>
+            Revola helps small and medium-sized businesses access working capital through one simple application, smart matching, and a trusted funding partner network.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#apply">Check Funding Options</a>
+            <a class="btn btn-secondary" href="#partners">Submit a Deal</a>
+          </div>
+          <div class="trust-row">
+            <span class="trust-item"><span class="check">✓</span> Simple application</span>
+            <span class="trust-item"><span class="check">✓</span> Multiple funding options</span>
+            <span class="trust-item"><span class="check">✓</span> Built for merchants and referrers</span>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Revola dashboard preview">
+          <div class="dashboard">
+            <div class="panel">
+              <div class="panel-top">
+                <h3>Funding Snapshot</h3>
+                <span class="status"><span class="pulse"></span> Reviewing</span>
+              </div>
+              <div class="amount">$25k–$250k</div>
+              <p class="subtle">Potential working capital options based on business profile, revenue, and funding partner criteria.</p>
+            </div>
+
+            <div class="panel">
+              <div class="panel-top">
+                <h3>Application Progress</h3>
+                <span class="tag">4 steps</span>
+              </div>
+              <div class="steps">
+                <div class="step">
+                  <div class="step-icon">1</div>
+                  <div><strong>Business profile</strong><small>Industry, revenue, time in business</small></div>
+                  <span class="tag">Done</span>
+                </div>
+                <div class="step">
+                  <div class="step-icon">2</div>
+                  <div><strong>Documents</strong><small>Bank statements and basic details</small></div>
+                  <span class="tag">Next</span>
+                </div>
+                <div class="step">
+                  <div class="step-icon">3</div>
+                  <div><strong>Match</strong><small>Review with funding partners</small></div>
+                  <span class="tag">Soon</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="mini-grid">
+              <div class="mini-card"><span>Portal</span><strong>Merchant</strong></div>
+              <div class="mini-card"><span>Portal</span><strong>Partner</strong></div>
+              <div class="mini-card"><span>Status</span><strong>Tracked</strong></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Solutions</div>
+          <h2>One platform for business capital, referrals, and deal tracking.</h2>
+          <p>Revola is designed to make the funding process easier for merchants, independent reps, referrers, and funding partners.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon">⚡</div>
+            <h3>Fast applications</h3>
+            <p>Merchants can submit basic business information and documents through a simple, guided intake process.</p>
+          </article>
+          <article class="card">
+            <div class="icon">⇄</div>
+            <h3>Smart matching</h3>
+            <p>Business profiles are organized and matched to funding options that may fit revenue, industry, and timing needs.</p>
+          </article>
+          <article class="card">
+            <div class="icon">◷</div>
+            <h3>Transparent status</h3>
+            <p>Partners and merchants can track progress from submission to review, offers, documents, and funding.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="partners">
+      <div class="container split">
+        <div class="section-head">
+          <div class="section-kicker">Partner network</div>
+          <h2>Built for referrers and independent reps.</h2>
+          <p>Give your merchants a cleaner funding experience while keeping every deal organized from first submission to commission payout.</p>
+          <div class="feature-list">
+            <div class="feature">
+              <span class="check">✓</span>
+              <div><strong>Unique referral links</strong><p>Let merchants start directly from your link and keep attribution clean.</p></div>
+            </div>
+            <div class="feature">
+              <span class="check">✓</span>
+              <div><strong>Deal submission dashboard</strong><p>Upload documents, add notes, and view status without messy text threads.</p></div>
+            </div>
+            <div class="feature">
+              <span class="check">✓</span>
+              <div><strong>Commission visibility</strong><p>Track funded deals, pending payouts, and partner performance over time.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal">
+          <div class="portal-grid">
+            <article class="role-card">
+              <div class="icon">🏪</div>
+              <h3>For Merchants</h3>
+              <ul>
+                <li>Apply in minutes</li>
+                <li>Upload documents securely</li>
+                <li>Review potential options</li>
+                <li>Track funding status</li>
+              </ul>
+            </article>
+            <article class="role-card">
+              <div class="icon">🤝</div>
+              <h3>For Partners</h3>
+              <ul>
+                <li>Submit merchant files</li>
+                <li>Track every deal</li>
+                <li>See status updates</li>
+                <li>Get paid on funded deals</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">How it works</div>
+          <h2>Simple, organized, and built around speed.</h2>
+          <p>Revola turns a scattered funding process into a clear workflow for merchants and referral partners.</p>
+        </div>
+        <div class="workflow">
+          <article class="workflow-card">
+            <h3>Apply or submit</h3>
+            <p>Merchants apply directly, or a partner submits the business through a tracked referral flow.</p>
+          </article>
+          <article class="workflow-card">
+            <h3>Review profile</h3>
+            <p>Business details, revenue, documents, funding needs, and existing positions are organized for review.</p>
+          </article>
+          <article class="workflow-card">
+            <h3>Match options</h3>
+            <p>The file is matched with funding partners and options that may fit the business profile.</p>
+          </article>
+          <article class="workflow-card">
+            <h3>Fund and track</h3>
+            <p>Merchants move forward with selected offers while partners can follow status and payout progress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="apply">
+      <div class="container form-wrap">
+        <div class="section-head">
+          <div class="section-kicker">Get started</div>
+          <h2>Check funding options or become a partner.</h2>
+          <p>Use this starter form for your MVP. Later, this can connect to your CRM, email automation, document upload system, and partner portal.</p>
+          <div class="feature-list">
+            <div class="feature">
+              <span class="check">✓</span>
+              <div><strong>No upfront merchant fee</strong><p>Keep friction low and make the first step easy.</p></div>
+            </div>
+            <div class="feature">
+              <span class="check">✓</span>
+              <div><strong>Clean language</strong><p>Avoid guaranteed approvals or misleading rate claims.</p></div>
+            </div>
+          </div>
+        </div>
+
+        <form onsubmit="handleSubmit(event)">
+          <div class="form-grid">
+            <label>
+              I am a
+              <select required>
+                <option value="">Select one</option>
+                <option>Business owner / merchant</option>
+                <option>Referral partner</option>
+                <option>Independent rep / ISO</option>
+                <option>Funding partner</option>
+              </select>
+            </label>
+            <label>
+              Funding need
+              <select required>
+                <option value="">Select amount</option>
+                <option>$10,000 - $25,000</option>
+                <option>$25,000 - $75,000</option>
+                <option>$75,000 - $150,000</option>
+                <option>$150,000+</option>
+              </select>
+            </label>
+            <label>
+              Full name
+              <input type="text" placeholder="Your name" required />
+            </label>
+            <label>
+              Business name
+              <input type="text" placeholder="Company LLC" required />
+            </label>
+            <label>
+              Email
+              <input type="email" placeholder="you@company.com" required />
+            </label>
+            <label>
+              Phone
+              <input type="tel" placeholder="(555) 000-0000" required />
+            </label>
+            <label>
+              Monthly revenue
+              <select>
+                <option value="">Select range</option>
+                <option>Under $20k</option>
+                <option>$20k - $50k</option>
+                <option>$50k - $100k</option>
+                <option>$100k+</option>
+              </select>
+            </label>
+            <label>
+              Time in business
+              <select>
+                <option value="">Select range</option>
+                <option>Less than 6 months</option>
+                <option>6 - 12 months</option>
+                <option>1 - 2 years</option>
+                <option>2+ years</option>
+              </select>
+            </label>
+            <label class="full">
+              What will the capital be used for?
+              <textarea placeholder="Inventory, payroll timing, equipment, marketing, expansion, receivables gap, etc."></textarea>
+            </label>
+          </div>
+          <button class="btn btn-primary full" type="submit" style="margin-top: 16px; width: 100%;">Submit Inquiry</button>
+          <p class="disclaimer">
+            Revola is not a bank. Submission does not guarantee approval or funding. Funding options, terms, and availability depend on business profile, documentation, funding partner criteria, and applicable law. Review all terms before accepting any offer.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#top" class="brand" aria-label="Revola home">
+          <div class="brand-mark"><span>R</span></div>
+          <span>Revola</span>
+        </a>
+        <p class="disclaimer">© 2026 Revola. Fast Business Funding. Smarter Growth.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#solutions">Solutions</a>
+        <a href="#partners">Partners</a>
+        <a href="#how">How it works</a>
+        <a href="#apply">Apply</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('open');
+    }
+
+    function handleSubmit(event) {
+      event.preventDefault();
+      alert('Thanks. This demo form is ready to connect to your CRM or backend.');
+    }
+  </script>
+</body>
+</html>
