@@ -14,12 +14,13 @@
       --sky: #E6F2FF;
       --slate: #667085;
       --slate-dark: #344054;
-      --line: #D9E2EF;
+      --line: #E4EAF3;
       --white: #FFFFFF;
       --soft: #F7FAFF;
       --shadow: 0 24px 80px rgba(11, 29, 58, 0.12);
       --shadow-soft: 0 16px 42px rgba(11, 29, 58, 0.08);
       --radius-xl: 28px;
+      --radius-sm: 12px;
       --radius-lg: 22px;
       --radius-md: 16px;
       --max: 1180px;
@@ -93,18 +94,18 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      font-weight: 830;
-      letter-spacing: -0.04em;
+      gap: 12px;
+      font-weight: 780;
+      letter-spacing: -0.03em;
       color: var(--navy);
-      font-size: 1.45rem;
+      font-size: 2.35rem;
       line-height: 1;
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
-      flex: 0 0 34px;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
       filter: drop-shadow(0 9px 14px rgba(37, 99, 235, 0.18));
     }
 
@@ -112,13 +113,17 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(255, 255, 255, 0.76);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid rgba(217, 226, 239, 0.78);
+      margin: 20px auto 0;
+      width: min(var(--max), calc(100% - 40px));
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(18px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: 0 10px 30px rgba(11, 29, 58, 0.08);
     }
 
     .nav {
-      height: 82px;
+      height: 92px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -128,10 +133,10 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
-      color: var(--slate-dark);
-      font-size: 0.92rem;
-      font-weight: 650;
+      gap: 42px;
+      color: var(--navy);
+      font-size: 1.02rem;
+      font-weight: 600;
     }
 
     .nav-links a {
@@ -164,7 +169,7 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 20px;
     }
 
     .btn {
@@ -172,12 +177,12 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 13px;
+      min-height: 54px;
+      padding: 0 30px;
+      border-radius: 12px;
       border: 1px solid transparent;
-      font-weight: 760;
-      font-size: 0.94rem;
+      font-weight: 700;
+      font-size: 1rem;
       cursor: pointer;
       transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease, border-color 180ms ease;
       white-space: nowrap;
@@ -198,9 +203,12 @@
     }
 
     .btn-secondary {
-      color: var(--blue);
-      background: rgba(255, 255, 255, 0.74);
-      border-color: rgba(37, 99, 235, 0.34);
+      color: var(--navy);
+      background: transparent;
+      border-color: transparent;
+      box-shadow: none;
+      padding: 0 6px;
+      min-height: auto;
     }
 
     .btn-secondary:hover {
@@ -436,7 +444,7 @@
     .metric-row {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 20px;
       padding: 0 26px 26px;
     }
 
@@ -481,7 +489,7 @@
 
     .activity-left {
       display: flex;
-      gap: 12px;
+      gap: 20px;
       align-items: center;
       min-width: 0;
     }
@@ -1399,8 +1407,23 @@
         width: min(100% - 28px, var(--max));
       }
 
+      .topbar {
+        width: min(100% - 28px, var(--max));
+        margin-top: 14px;
+      }
+
       .nav {
-        height: 70px;
+        height: 74px;
+      }
+
+      .brand {
+        font-size: 1.95rem;
+      }
+
+      .brand-mark {
+        width: 36px;
+        height: 36px;
+        flex-basis: 36px;
       }
 
       .hero {
@@ -1529,15 +1552,15 @@
         </a>
 
         <nav class="nav-links" aria-label="Main navigation">
-          <a href="#solutions">Solutions</a>
-          <a href="#process">How it works</a>
-          <a href="#platform">Platform</a>
-          <a href="#results">Results</a>
-          <a href="#contact">Contact</a>
+          <a href="#solutions">Solutions <span aria-hidden="true">⌄</span></a>
+          <a href="#process">How It Works</a>
+          <a href="#platform">Industries <span aria-hidden="true">⌄</span></a>
+          <a href="#results">Resources <span aria-hidden="true">⌄</span></a>
+          <a href="#contact">About</a>
         </nav>
 
         <div class="nav-actions">
-          <a class="btn btn-secondary" href="#process">Learn More</a>
+          <a class="btn btn-secondary" href="#contact">Log In</a>
           <a class="btn btn-primary" href="#contact">Get Started →</a>
         </div>
 
