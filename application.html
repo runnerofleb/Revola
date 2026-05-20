@@ -3,781 +3,1589 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revola | Funding Application</title>
-  <meta name="description" content="Start your Revola funding application and build your Capital Passport." />
+  <title>Revola | Build Your Capital Passport</title>
+  <meta name="description" content="Build your Revola Capital Passport — one secure profile to compare best-fit funding paths. No hard credit pull to start." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <style>
     :root {
-      --navy:#0B1D3A;
-      --deep:#07142A;
-      --blue:#2563EB;
-      --blue2:#0B5CFF;
-      --teal:#00BFA6;
-      --sky:#E6F2FF;
-      --soft:#F7FBFF;
-      --slate:#667085;
-      --ink:#101828;
-      --line:#E6EAF2;
-      --panel:#F7F9FC;
-      --white:#FFFFFF;
-      --success:#009B88;
-      --error:#D92D20;
-      --shadow:0 24px 70px rgba(11,29,58,.10);
+      --navy: #0B1D3A;
+      --deep-navy: #07162E;
+      --blue: #2563EB;
+      --blue-2: #0B5CFF;
+      --teal: #00BFA6;
+      --cyan: #38BDF8;
+      --sky: #E6F2FF;
+      --slate: #667085;
+      --muted: #475467;
+      --ink: #101828;
+      --white: #FFFFFF;
+      --mist: #F8FBFF;
+      --soft: #F6FAFF;
+      --line: rgba(11, 29, 58, 0.08);
+      --line-strong: rgba(11, 29, 58, 0.13);
+      --danger: #B42318;
+      --danger-bg: #FEF3F2;
+
+      --gradient-primary: linear-gradient(135deg, #2563EB 0%, #38BDF8 45%, #00BFA6 100%);
+      --gradient-navy: linear-gradient(135deg, #07162E 0%, #0B1D3A 58%, #155E9F 100%);
+      --gradient-soft: linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 56%, #F4FFFC 100%);
+      --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+
+      --shadow-xs: 0 10px 26px rgba(11, 29, 58, 0.06);
+      --shadow-card: 0 18px 50px rgba(11, 29, 58, 0.08);
+      --shadow-lg: 0 34px 100px rgba(11, 29, 58, 0.14);
+      --shadow-blue: 0 24px 70px rgba(37, 99, 235, 0.22);
+
+      --radius-sm: 16px;
+      --radius-md: 22px;
+      --radius-lg: 30px;
+      --radius-xl: 38px;
+      --max: 1180px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --speed: 220ms;
     }
 
-    * { box-sizing:border-box; }
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      text-size-adjust: 100%;
+    }
+
     body {
-      margin:0;
-      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color:var(--ink);
-      background:#fff;
-      overflow-x:hidden;
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at 84% 10%, rgba(37,99,235,.12), transparent 34%),
+        radial-gradient(circle at 12% 86%, rgba(0,191,166,.08), transparent 30%),
+        linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 48%, #F4FFFC 100%);
+      overflow-x: hidden;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    a { color:inherit; text-decoration:none; }
-    button, input, select, textarea { font:inherit; }
-
-    .app-shell {
-      min-height:100vh;
-      display:grid;
-      grid-template-columns:340px 1fr;
-      background:#fff;
+    body:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(37, 99, 235, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37, 99, 235, 0.04) 1px, transparent 1px);
+      background-size: 52px 52px;
+      mask-image: radial-gradient(circle at 55% 28%, black 0%, transparent 78%);
+      opacity: .52;
     }
 
-    .sidebar {
-      position:sticky;
-      top:0;
-      height:100vh;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      gap:24px;
-      padding:34px 28px;
-      background:linear-gradient(180deg,#F8FBFF 0%,#F3F7FC 100%);
-      border-right:1px solid var(--line);
+    body:after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .045;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button, a, select, input { -webkit-tap-highlight-color: transparent; }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+    }
+
+    .container {
+      width: min(100% - 48px, var(--max));
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 56px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 850;
+      letter-spacing: -.015em;
+      transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease), background var(--speed) var(--ease), color var(--speed) var(--ease), opacity var(--speed) var(--ease);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 4px solid rgba(37,99,235,.16); outline-offset: 2px; }
+
+    .btn-primary {
+      color: #FFFFFF;
+      background: var(--gradient-primary);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .btn-primary:hover { box-shadow: 0 30px 80px rgba(37, 99, 235, 0.28); }
+
+    .btn-primary:disabled {
+      cursor: not-allowed;
+      opacity: .55;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      color: var(--deep-navy);
+      background: rgba(255,255,255,.84);
+      border-color: rgba(11,29,58,.10);
+      box-shadow: var(--shadow-xs);
+      backdrop-filter: blur(14px);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(37,99,235,.22);
+      color: var(--blue);
+      box-shadow: 0 18px 46px rgba(11,29,58,.10);
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(11,29,58,.07);
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
     }
 
     .brand {
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      color:var(--deep);
-      font-size:31px;
-      font-weight:900;
-      letter-spacing:-.055em;
-      white-space:nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      flex: 0 0 auto;
+      color: var(--deep-navy);
+      font-size: 27px;
+      font-weight: 950;
+      letter-spacing: -.055em;
+      white-space: nowrap;
     }
 
-    .brand svg { width:42px; height:42px; display:block; }
-
-    .sidebar-divider {
-      height:1px;
-      background:var(--line);
-      margin:30px 0 26px;
+    .brand svg {
+      width: 40px;
+      height: 40px;
+      display: block;
+      filter: drop-shadow(0 10px 16px rgba(37,99,235,.18));
     }
 
-    .step-nav {
-      display:grid;
-      gap:10px;
+    .nav-help {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 780;
     }
 
-    .step-item {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      min-height:48px;
-      padding:0 12px;
-      border-radius:10px;
-      color:#8A94A6;
-      font-weight:850;
-      transition:.2s ease;
+    .nav-help strong { color: var(--deep-navy); }
+    .nav-help a:not(.btn):hover { color: var(--blue); }
+
+    .mobile-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      color: var(--deep-navy);
+      box-shadow: var(--shadow-xs);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
     }
 
-    .step-item.active {
-      background:#E9EEF5;
-      color:var(--deep);
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity var(--speed) var(--ease), visibility var(--speed) var(--ease);
     }
 
-    .step-item.done {
-      color:#344054;
+    .drawer.open { visibility: visible; opacity: 1; }
+
+    .drawer-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,22,46,.46);
+      backdrop-filter: blur(4px);
     }
 
-    .step-number {
-      width:24px;
-      height:24px;
-      display:grid;
-      place-items:center;
-      flex:0 0 auto;
-      border-radius:999px;
-      border:1.5px solid currentColor;
-      font-size:12px;
-      line-height:1;
-      font-weight:950;
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(82vw, 340px);
+      height: 100%;
+      padding: 92px 24px 24px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+      border-left: 1px solid rgba(11,29,58,.08);
+      box-shadow: -26px 0 80px rgba(7,22,46,.18);
+      transform: translateX(100%);
+      transition: transform 300ms var(--ease);
+      display: grid;
+      align-content: start;
+      gap: 10px;
     }
 
-    .step-item.active .step-number {
-      color:#fff;
-      border-color:var(--deep);
-      background:var(--deep);
+    .drawer.open .drawer-panel { transform: none; }
+
+    .drawer-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 14px;
+      color: var(--navy);
+      font-weight: 850;
     }
 
-    .step-item.done .step-number {
-      color:#fff;
-      border-color:var(--teal);
-      background:var(--teal);
+    .drawer-panel a:hover { background: var(--mist); color: var(--blue); }
+
+    .portal-intro {
+      padding: 44px 0 8px;
     }
 
-    .sidebar-proof {
-      display:grid;
-      gap:14px;
+    .portal-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(11,29,58,.08);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(18px);
     }
 
-    .proof-box {
-      padding:15px;
-      border-radius:18px;
-      background:#fff;
-      border:1px solid var(--line);
-      box-shadow:0 10px 24px rgba(11,29,58,.04);
+    .portal-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
 
-    .proof-box strong {
-      display:block;
-      color:var(--deep);
-      font-size:14px;
-      letter-spacing:-.02em;
-      margin-bottom:6px;
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(0,191,166,.12);
+      flex: 0 0 auto;
     }
 
-    .proof-box span {
-      display:block;
-      color:#667085;
-      font-size:12px;
-      line-height:1.45;
-      font-weight:650;
+    .portal-title {
+      margin: 8px 0 0;
+      color: var(--deep-navy);
+      font-size: clamp(30px, 4.2vw, 48px);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      font-weight: 900;
     }
 
-    .trust-mini {
-      display:flex;
-      align-items:center;
-      gap:8px;
-      color:#344054;
-      font-size:12px;
-      font-weight:800;
+    .portal-copy {
+      margin: 8px 0 0;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 650;
     }
 
-    .trust-dot {
-      width:9px;
-      height:9px;
-      border-radius:999px;
-      background:var(--teal);
-      box-shadow:0 0 0 6px rgba(0,191,166,.12);
+    .portal-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: flex-end;
     }
 
-    .main {
-      min-width:0;
-      min-height:100vh;
-      display:flex;
-      flex-direction:column;
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: #FFFFFF;
+      border: 1px solid rgba(11,29,58,.08);
+      color: #344054;
+      font-size: 12px;
+      font-weight: 850;
+      box-shadow: 0 8px 22px rgba(11,29,58,.05);
+      white-space: nowrap;
     }
 
-    .topbar {
-      height:80px;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:18px;
-      padding:0 34px;
-      color:#44546A;
-      font-size:14px;
-      font-weight:760;
-      border-bottom:1px solid rgba(230,234,242,.58);
+    .app {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 34px;
+      align-items: start;
+      padding: 38px 0 84px;
     }
 
-    .topbar a {
-      color:var(--blue);
-      font-weight:850;
+    .main-column { min-width: 0; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
     }
 
-    .topbar-divider {
-      width:1px;
-      height:26px;
-      background:var(--line);
+    .stepdot {
+      display: grid;
+      gap: 9px;
+      min-width: 0;
     }
 
-    .content-wrap {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding:0 34px;
+    .stepbar {
+      height: 6px;
+      border-radius: 999px;
+      background: #EAF1FB;
+      overflow: hidden;
     }
 
-    .form-area {
-      width:min(700px,100%);
-      margin:0 auto;
-      padding:72px 0 56px;
+    .stepbar span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: var(--gradient-primary);
+      border-radius: 999px;
+      transition: width 360ms var(--ease);
     }
 
-    .kicker {
-      color:#7A869A;
-      font-size:13px;
-      font-weight:850;
-      text-transform:uppercase;
-      letter-spacing:.06em;
-      margin-bottom:22px;
+    .stepdot.done .stepbar span,
+    .stepdot.active .stepbar span { width: 100%; }
+
+    .steplabel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: -.01em;
+    }
+
+    .stepnum {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: #EAF1FB;
+      color: #667085;
+      font-size: 11px;
+      font-weight: 950;
+      transition: background var(--speed) var(--ease), color var(--speed) var(--ease);
+    }
+
+    .stepdot.active .stepnum,
+    .stepdot.done .stepnum {
+      background: var(--gradient-primary);
+      color: #FFFFFF;
+    }
+
+    .steptext {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .form-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+      padding: 40px;
+      border-radius: 34px;
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(11,29,58,.08);
+      box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,.9);
+      backdrop-filter: blur(18px);
+    }
+
+    .form-card:before {
+      content: "";
+      position: absolute;
+      inset: -120px;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(37,99,235,.08), transparent 26%),
+        radial-gradient(circle at 92% 18%, rgba(0,191,166,.08), transparent 28%);
+      pointer-events: none;
+    }
+
+    .form-card > * { position: relative; z-index: 1; }
+
+    .panel-step {
+      display: none;
+      animation: fadeIn 260ms ease both;
+    }
+
+    .panel-step.active { display: block; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 16px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
     }
 
     h1 {
-      margin:0 0 28px;
-      color:#152323;
-      font-size:34px;
-      line-height:1.15;
-      letter-spacing:-.045em;
-      font-weight:900;
+      margin: 0 0 12px;
+      color: var(--deep-navy);
+      font-size: clamp(34px, 4.2vw, 50px);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+      font-weight: 900;
     }
 
-    .subcopy {
-      margin:-14px 0 28px;
-      color:#667085;
-      font-size:15px;
-      line-height:1.6;
-      font-weight:560;
+    .intro {
+      margin: 0 0 30px;
+      max-width: 640px;
+      color: var(--slate);
+      font-size: 16px;
+      line-height: 1.62;
+      font-weight: 650;
     }
 
-    .form-step { display:none; animation:fadeUp .22s ease both; }
-    .form-step.active { display:block; }
-
-    @keyframes fadeUp {
-      from { opacity:0; transform:translateY(8px); }
-      to { opacity:1; transform:translateY(0); }
+    .field {
+      margin-bottom: 20px;
     }
 
-    .field-grid {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:16px;
+    .field label {
+      display: block;
+      margin-bottom: 9px;
+      color: var(--deep-navy);
+      font-size: 13px;
+      font-weight: 850;
     }
 
-    .field { display:grid; gap:8px; }
-    .field.full { grid-column:1/-1; }
+    .req { color: var(--danger); }
 
-    label {
-      color:#344054;
-      font-size:12px;
-      font-weight:950;
-      letter-spacing:.025em;
+    input,
+    select {
+      width: 100%;
+      min-height: 62px;
+      padding: 0 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(11,29,58,.12);
+      background: #FFFFFF;
+      color: var(--deep-navy);
+      outline: none;
+      font-size: 15px;
+      font-weight: 750;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+      transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), background var(--speed) var(--ease);
     }
 
-    select, input, textarea {
-      width:100%;
-      min-height:58px;
-      padding:0 16px;
-      border-radius:6px;
-      border:1px solid #DDE4EF;
-      background:#fff;
-      color:#152323;
-      outline:0;
-      font-size:16px;
-      font-weight:650;
-      transition:border-color .18s ease, box-shadow .18s ease;
+    input:hover,
+    select:hover { border-color: rgba(37,99,235,.24); }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(37,99,235,.46);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.10), 0 12px 32px rgba(37,99,235,.08);
     }
 
-    textarea {
-      min-height:110px;
-      padding-top:14px;
-      resize:vertical;
-      line-height:1.55;
+    input::placeholder { color: #98A2B3; }
+
+    .field.invalid input,
+    .field.invalid select,
+    .field.invalid .choice-card,
+    .field.invalid .industry-card {
+      border-color: rgba(180,35,24,.52);
+      box-shadow: 0 0 0 4px rgba(180,35,24,.08);
     }
 
-    select:focus, input:focus, textarea:focus {
-      border-color:rgba(37,99,235,.60);
-      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    .err {
+      display: none;
+      margin-top: 7px;
+      color: var(--danger);
+      font-size: 12px;
+      font-weight: 750;
     }
 
-    .single-select {
-      width:100%;
-      max-width:660px;
-      min-height:58px;
-      border-radius:6px;
+    .field.invalid .err { display: block; }
+
+    .two {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
     }
 
-    .option-grid {
-      display:grid;
-      grid-template-columns:repeat(2,minmax(0,1fr));
-      gap:12px;
-      margin-top:4px;
+    .industries {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
     }
 
-    .option-card {
-      position:relative;
-      min-height:92px;
-      padding:16px;
-      border-radius:12px;
-      border:1px solid #DDE4EF;
-      background:#fff;
-      cursor:pointer;
-      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    .industry-card,
+    .choice-card {
+      border-radius: 16px;
+      border: 1px solid rgba(11,29,58,.10);
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+      color: var(--navy);
+      cursor: pointer;
+      transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease), background var(--speed) var(--ease), color var(--speed) var(--ease);
     }
 
-    .option-card:hover {
-      transform:translateY(-2px);
-      border-color:rgba(37,99,235,.38);
-      box-shadow:0 12px 28px rgba(11,29,58,.06);
+    .industry-card {
+      min-height: 52px;
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 850;
     }
 
-    .option-card input {
-      position:absolute;
-      opacity:0;
-      pointer-events:none;
+    .industry-card:hover,
+    .choice-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(37,99,235,.26);
+      box-shadow: 0 18px 42px rgba(11,29,58,.08);
     }
 
-    .option-card strong {
-      display:block;
-      color:var(--deep);
-      font-size:15px;
-      letter-spacing:-.02em;
-      margin-bottom:5px;
+    .industry-card.selected,
+    .choice-card.selected {
+      border-color: rgba(37,99,235,.48);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(0,191,166,.12), transparent 34%),
+        linear-gradient(180deg, #FFFFFF 0%, #F4FAFF 100%);
+      color: var(--blue);
+      box-shadow: 0 18px 42px rgba(37,99,235,.12);
     }
 
-    .option-card span {
-      display:block;
-      color:#667085;
-      font-size:12px;
-      line-height:1.45;
-      font-weight:650;
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
 
-    .option-card:has(input:checked) {
-      border-color:rgba(37,99,235,.68);
-      box-shadow:0 0 0 4px rgba(37,99,235,.09);
-      background:linear-gradient(180deg,#fff,#F8FBFF);
+    .choice-card {
+      padding: 18px;
+      min-height: 118px;
     }
 
-    .option-card:has(input:checked)::after {
-      content:"✓";
-      position:absolute;
-      right:13px;
-      top:13px;
-      width:23px;
-      height:23px;
-      display:grid;
-      place-items:center;
-      border-radius:999px;
-      background:var(--blue);
-      color:#fff;
-      font-size:12px;
-      font-weight:950;
+    .choice-card h4 {
+      margin: 0 0 5px;
+      color: var(--deep-navy);
+      font-size: 15px;
+      letter-spacing: -.025em;
+      font-weight: 900;
     }
 
-    .next-row {
-      margin-top:42px;
-      display:grid;
-      gap:12px;
+    .choice-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 650;
     }
 
-    .next-button {
-      width:100%;
-      min-height:58px;
-      border:0;
-      border-radius:999px;
-      color:#fff;
-      background:var(--deep);
-      font-size:16px;
-      font-weight:950;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    .form-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-top: 34px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(11,29,58,.08);
     }
 
-    .next-button:hover {
-      transform:translateY(-2px);
-      box-shadow:0 18px 38px rgba(11,29,58,.18);
-      background:#102449;
+    .form-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--slate);
+      font-size: 13px;
+      font-weight: 750;
+      text-align: center;
     }
 
-    .back-button {
-      width:100%;
-      min-height:48px;
-      border:1px solid var(--line);
-      border-radius:999px;
-      color:#53627C;
-      background:#fff;
-      font-size:14px;
-      font-weight:850;
-      cursor:pointer;
+    .check-dot {
+      width: 20px;
+      height: 20px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(0,191,166,.12);
+      color: #008B7B;
+      font-size: 12px;
+      font-weight: 950;
+      box-shadow: 0 0 0 5px rgba(0,191,166,.06);
+      flex: 0 0 auto;
     }
 
-    .back-button[disabled] {
-      display:none;
+    .review-groups {
+      display: grid;
+      gap: 16px;
     }
-
-    .error-message {
-      display:none;
-      margin-top:14px;
-      color:var(--error);
-      font-size:13px;
-      font-weight:850;
-    }
-
-    .error-message.show { display:block; }
 
     .review-card {
-      padding:22px;
-      border-radius:20px;
-      background:linear-gradient(180deg,#fff,#F8FBFF);
-      border:1px solid var(--line);
-      margin-bottom:16px;
+      overflow: hidden;
+      border-radius: 22px;
+      background: #FFFFFF;
+      border: 1px solid rgba(11,29,58,.08);
+      box-shadow: 0 14px 34px rgba(11,29,58,.05);
     }
 
-    .review-card h3 {
-      margin:0 0 14px;
-      color:var(--deep);
-      font-size:17px;
-      letter-spacing:-.035em;
+    .review-card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      align-items: center;
+      padding: 16px 18px;
+      background: #F8FBFF;
+      border-bottom: 1px solid rgba(11,29,58,.07);
+    }
+
+    .review-card-header h3 {
+      margin: 0;
+      color: var(--deep-navy);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.025em;
+    }
+
+    .edit-link {
+      border: 0;
+      background: transparent;
+      color: var(--blue);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 900;
     }
 
     .review-row {
-      display:flex;
-      align-items:baseline;
-      justify-content:space-between;
-      gap:12px;
-      padding:9px 0;
-      border-top:1px solid rgba(230,234,242,.78);
-      color:#667085;
-      font-size:13px;
-      font-weight:760;
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 16px;
+      padding: 13px 18px;
+      border-bottom: 1px solid rgba(11,29,58,.06);
     }
 
-    .review-row:first-of-type { border-top:0; padding-top:0; }
+    .review-row:last-child { border-bottom: 0; }
+
+    .review-row span {
+      color: var(--slate);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
     .review-row strong {
-      color:var(--deep);
-      text-align:right;
-      font-weight:900;
-      overflow-wrap:anywhere;
+      color: var(--deep-navy);
+      font-size: 13px;
+      font-weight: 850;
+      text-align: right;
     }
 
-    .success-panel {
-      display:none;
-      text-align:left;
-      padding:30px;
-      border-radius:24px;
-      background:linear-gradient(180deg,#fff,#F7FFFD);
-      border:1px solid rgba(0,191,166,.20);
-      box-shadow:var(--shadow);
+    .success {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 430px;
+      padding: 20px 0;
     }
 
-    .success-panel.active { display:block; }
+    .success-inner { max-width: 560px; }
 
     .success-icon {
-      width:62px;
-      height:62px;
-      display:grid;
-      place-items:center;
-      border-radius:20px;
-      color:var(--success);
-      background:rgba(0,191,166,.13);
-      font-size:28px;
-      font-weight:950;
-      margin-bottom:18px;
+      width: 78px;
+      height: 78px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 24px;
+      border-radius: 28px;
+      background: rgba(0,191,166,.12);
+      color: #008B7B;
+      font-size: 38px;
+      font-weight: 950;
+      box-shadow: 0 0 0 12px rgba(0,191,166,.06);
+      animation: pop .5s cubic-bezier(.2,1.4,.4,1);
     }
 
-    .success-panel h2 {
-      margin:0 0 12px;
-      color:var(--deep);
-      font-size:34px;
-      letter-spacing:-.055em;
-      line-height:1.05;
+    @keyframes pop {
+      from { transform: scale(.72); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .success-panel p {
-      margin:0 0 20px;
-      color:#667085;
-      font-size:15px;
-      line-height:1.6;
-      font-weight:560;
+    .success h2 {
+      margin: 0 0 14px;
+      color: var(--deep-navy);
+      font-size: clamp(36px, 5vw, 58px);
+      line-height: 1;
+      letter-spacing: -.055em;
+      font-weight: 900;
     }
 
-    .bottom-legal {
-      width:min(880px,100%);
-      margin:0 auto;
-      padding:24px 0 22px;
-      border-top:1px solid var(--line);
-      color:#667085;
-      font-size:12px;
-      line-height:1.45;
-      font-weight:560;
+    .success p {
+      margin: 0 auto 26px;
+      color: var(--slate);
+      font-size: 16px;
+      line-height: 1.65;
+      font-weight: 650;
     }
 
-    .bottom-legal strong { color:#344054; }
+    .side {
+      position: sticky;
+      top: 104px;
+      display: grid;
+      gap: 16px;
+    }
 
-    @media (max-width:980px) {
-      .app-shell { grid-template-columns:1fr; }
-      .sidebar {
-        position:relative;
-        height:auto;
-        padding:22px 20px;
+    .passport-card {
+      position: relative;
+      overflow: hidden;
+      padding: 28px;
+      border-radius: 34px;
+      color: #FFFFFF;
+      background: var(--gradient-navy);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 34px 110px rgba(7,22,46,.24), inset 0 1px 0 rgba(255,255,255,.10);
+    }
+
+    .passport-card:before {
+      content: "";
+      position: absolute;
+      inset: -80px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(0,191,166,.22), transparent 34%),
+        radial-gradient(circle at 16% 92%, rgba(37,99,235,.25), transparent 38%);
+      pointer-events: none;
+    }
+
+    .passport-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 45%, black, transparent 78%);
+      opacity: .28;
+      pointer-events: none;
+    }
+
+    .passport-card > * { position: relative; z-index: 1; }
+
+    .passport-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .passport-label {
+      color: rgba(255,255,255,.68);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .passport-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(0,191,166,.15);
+      border: 1px solid rgba(0,191,166,.20);
+      color: #C8FFF6;
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .passport-badge:before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 5px rgba(0,191,166,.10);
+    }
+
+    .passport-card h2 {
+      margin: 0 0 4px;
+      color: #FFFFFF;
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      font-weight: 900;
+    }
+
+    .passport-sub {
+      margin: 0 0 20px;
+      color: rgba(255,255,255,.68);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .passport-rows {
+      display: grid;
+      gap: 1px;
+      overflow: hidden;
+      border-radius: 18px;
+      background: rgba(255,255,255,.12);
+      margin-bottom: 20px;
+    }
+
+    .passport-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 13px 15px;
+      background: rgba(7,22,46,.54);
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .passport-row strong {
+      color: #FFFFFF;
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .passport-row strong.pending {
+      color: rgba(255,255,255,.42);
+      font-weight: 700;
+    }
+
+    .meter-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 9px;
+      color: rgba(255,255,255,.78);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .meter-track {
+      height: 9px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.13);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      width: 8%;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--gradient-primary);
+      box-shadow: 0 0 18px rgba(0,191,166,.32);
+      transition: width 450ms var(--ease);
+    }
+
+    .side-note {
+      padding: 20px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid rgba(11,29,58,.08);
+      box-shadow: var(--shadow-card);
+      backdrop-filter: blur(16px);
+    }
+
+    .side-note h3 {
+      margin: 0 0 12px;
+      color: var(--deep-navy);
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: -.02em;
+    }
+
+    .side-note-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .side-note-list div {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      color: var(--slate);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      padding: 34px 0;
+      border-top: 1px solid rgba(11,29,58,.08);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(14px);
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.65;
+      font-weight: 650;
+    }
+
+    footer strong { color: var(--deep-navy); }
+
+    @media (max-width: 1040px) {
+      .app { grid-template-columns: 1fr; }
+      .side { position: relative; top: auto; order: -1; }
+      .passport-card { max-width: 680px; }
+      .industries { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 760px) {
+      .container { width: min(100% - 36px, var(--max)); }
+      .nav-help { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .portal-intro { padding-top: 28px; }
+      .portal-bar { display: block; }
+      .portal-meta { justify-content: flex-start; margin-top: 18px; }
+      .app { padding-top: 26px; }
+      .form-card { padding: 26px 20px; border-radius: 28px; }
+      .steps { gap: 7px; }
+      .steptext { display: none; }
+      .industries { grid-template-columns: repeat(2, 1fr); }
+      .two, .choice-grid { grid-template-columns: 1fr; }
+      .form-foot { display: grid; grid-template-columns: 1fr; }
+      .form-note { order: -1; justify-content: center; }
+      .review-row { grid-template-columns: 1fr; gap: 4px; }
+      .review-row strong { text-align: left; }
+      .btn { width: 100%; }
+    }
+
+    @media (max-width: 480px) {
+      .brand { font-size: 24px; }
+      .brand svg { width: 36px; height: 36px; }
+      .portal-title { font-size: 32px; }
+      .portal-copy { font-size: 14px; }
+      h1 { font-size: 32px; }
+      .industry-card { font-size: 11px; }
+      .passport-card { padding: 22px; border-radius: 28px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
       }
-      .sidebar-divider { margin:18px 0; }
-      .step-nav { grid-template-columns:repeat(4,1fr); gap:8px; }
-      .step-item { justify-content:center; padding:10px 8px; min-height:44px; }
-      .step-item span:last-child { display:none; }
-      .sidebar-proof { display:none; }
-      .topbar { justify-content:center; height:auto; min-height:56px; padding:12px 20px; flex-wrap:wrap; }
-      .form-area { padding:44px 0 42px; }
-      .content-wrap { padding:0 20px; }
-    }
-
-    @media (max-width:640px) {
-      .brand { font-size:26px; }
-      .brand svg { width:38px; height:38px; }
-      .step-nav { grid-template-columns:repeat(4,1fr); }
-      .field-grid, .option-grid { grid-template-columns:1fr; }
-      h1 { font-size:30px; }
-      .topbar { font-size:12px; gap:10px; }
-      .topbar-divider { display:none; }
-      select, input, textarea { font-size:15px; }
     }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div>
-        <a href="index.html" class="brand" aria-label="Revola home">
-          <svg viewBox="0 0 64 64" aria-hidden="true">
-            <defs>
-              <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse"><stop stop-color="#07142A"/><stop offset=".28" stop-color="#0B5CFF"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
-              <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#00BFA6"/><stop offset="1" stop-color="#09D6BF"/></linearGradient>
-            </defs>
-            <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
-            <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
-            <path d="M43.8 26.5 28.4 31.8 42.3 36l-4.5 16c8-3.1 15.9-9.5 18.5-18.3 1.3-4.6-5.3-9.4-12.5-7.2Z" fill="#0B5CFF" opacity=".72"/>
-          </svg>
-          Revola
-        </a>
-        <div class="sidebar-divider"></div>
-        <nav class="step-nav" aria-label="Application progress">
-          <div class="step-item active" data-side-step="0"><span class="step-number">1</span><span>Basic info</span></div>
-          <div class="step-item" data-side-step="1"><span class="step-number">2</span><span>Business info</span></div>
-          <div class="step-item" data-side-step="2"><span class="step-number">3</span><span>Owner info</span></div>
-          <div class="step-item" data-side-step="3"><span class="step-number">4</span><span>Review</span></div>
+  <div class="page">
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav" aria-label="Application navigation">
+          <a href="index.html" class="brand" aria-label="Revola home">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <defs>
+                <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#07142A"/>
+                  <stop offset=".28" stop-color="#0B5CFF"/>
+                  <stop offset="1" stop-color="#2563EB"/>
+                </linearGradient>
+                <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00BFA6"/>
+                  <stop offset="1" stop-color="#09D6BF"/>
+                </linearGradient>
+              </defs>
+              <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
+              <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
+              <path d="M43.8 26.5 28.4 31.8 42.3 36l-4.5 16c8-3.1 15.9-9.5 18.5-18.3 1.3-4.6-5.3-9.4-12.5-7.2Z" fill="#0B5CFF" opacity=".72"/>
+            </svg>
+            Revola
+          </a>
+
+          <div class="nav-help">
+            <span>Need help? <a href="tel:5550000000"><strong>(555) 000-0000</strong></a></span>
+            <a href="mailto:hello@revola.com" class="btn btn-secondary">Talk to an expert</a>
+          </div>
+
+          <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
         </nav>
       </div>
+    </header>
 
-      <div class="sidebar-proof">
-        <div class="proof-box">
-          <strong>Revola Capital Passport</strong>
-          <span>One profile to organize your business funding need, readiness signals, and next steps.</span>
-        </div>
-        <div class="trust-mini"><span class="trust-dot"></span>No hard credit pull to start</div>
-        <div class="trust-mini"><span class="trust-dot"></span>Advisor-supported review</div>
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-scrim" data-close></div>
+      <div class="drawer-panel" role="dialog" aria-label="Mobile menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#capital-passport">Capital Passport</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="tel:5550000000">Call (555) 000-0000</a>
+        <a href="mailto:hello@revola.com">Talk to an expert</a>
       </div>
-    </aside>
+    </div>
 
-    <main class="main">
-      <header class="topbar">
-        <span>Need help? Call (555) 000-0000</span>
-        <span class="topbar-divider"></span>
-        <a href="index.html">Sign In</a>
-      </header>
+    <section class="portal-intro">
+      <div class="container">
+        <div class="portal-bar">
+          <div>
+            <div class="portal-kicker"><span class="dot"></span>Secure Revola portal</div>
+            <h1 class="portal-title">Build your Capital Passport.</h1>
+            <p class="portal-copy">One secure profile to compare best-fit funding paths. No hard credit pull to start.</p>
+          </div>
+          <div class="portal-meta" aria-label="Portal trust points">
+            <span class="meta-chip"><span class="dot"></span>Free for businesses</span>
+            <span class="meta-chip"><span class="dot"></span>Advisor-supported</span>
+            <span class="meta-chip"><span class="dot"></span>Saved on this device</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <div class="content-wrap">
-        <section class="form-area">
-          <form id="applicationForm" novalidate>
-            <div class="form-step active" data-step="0">
-              <div class="kicker">Basic info</div>
-              <h1>Let’s get to know you.</h1>
-              <p class="subcopy">Start with your business industry and funding goal so Revola can route your profile correctly.</p>
-              <div class="field full">
-                <select class="single-select" id="industry" name="industry" required aria-label="Business industry">
-                  <option value="">What’s your business’s industry?</option>
-                  <option>Retail</option>
-                  <option>Restaurant / Food Service</option>
-                  <option>Healthcare</option>
-                  <option>Dental Practice</option>
-                  <option>Construction</option>
-                  <option>Contracting / Trades</option>
-                  <option>Manufacturing</option>
-                  <option>Transportation / Logistics</option>
-                  <option>E-commerce</option>
-                  <option>Wholesale / Distribution</option>
-                  <option>Franchise</option>
-                  <option>Hospitality</option>
-                  <option>Automotive</option>
-                  <option>Professional Services</option>
-                  <option>Local Services</option>
-                  <option>Other</option>
+    <main class="container app">
+      <div class="main-column">
+        <div class="steps" id="progress" aria-label="Application progress">
+          <div class="stepdot active"><div class="stepbar"><span></span></div><div class="steplabel"><span class="stepnum">1</span><span class="steptext">Basics</span></div></div>
+          <div class="stepdot"><div class="stepbar"><span></span></div><div class="steplabel"><span class="stepnum">2</span><span class="steptext">Business</span></div></div>
+          <div class="stepdot"><div class="stepbar"><span></span></div><div class="steplabel"><span class="stepnum">3</span><span class="steptext">Contact</span></div></div>
+          <div class="stepdot"><div class="stepbar"><span></span></div><div class="steplabel"><span class="stepnum">4</span><span class="steptext">Review</span></div></div>
+        </div>
+
+        <section class="form-card" aria-label="Capital Passport application form">
+          <form id="passportForm" novalidate>
+            <div class="panel-step active" data-step="0">
+              <div class="eyebrow"><span class="dot"></span>Step 1 · Basics</div>
+              <h1>Let's get to know you.</h1>
+              <p class="intro">Start with your industry and funding goal so Revola can route your Capital Passport to the right partners.</p>
+
+              <div class="field" id="industryField">
+                <label>What's your industry? <span class="req">*</span></label>
+                <div class="industries" id="industries"></div>
+                <div class="err">Please select an industry.</div>
+              </div>
+
+              <div class="field" id="amountField">
+                <label for="amount">How much funding do you need? <span class="req">*</span></label>
+                <select id="amount" data-key="amount">
+                  <option value="">Select amount</option>
+                  <option value="$10,000 – $25,000">$10,000 – $25,000</option>
+                  <option value="$25,000 – $50,000">$25,000 – $50,000</option>
+                  <option value="$50,000 – $100,000">$50,000 – $100,000</option>
+                  <option value="$100,000 – $250,000">$100,000 – $250,000</option>
+                  <option value="$250,000 – $500,000">$250,000 – $500,000</option>
+                  <option value="$500,000+">$500,000+</option>
                 </select>
+                <div class="err">Please select a funding amount.</div>
               </div>
             </div>
 
-            <div class="form-step" data-step="1">
-              <div class="kicker">Business info</div>
+            <div class="panel-step" data-step="1">
+              <div class="eyebrow"><span class="dot"></span>Step 2 · Business</div>
               <h1>Tell us about the business.</h1>
-              <p class="subcopy">A few details help Revola understand your likely funding paths and readiness.</p>
-              <div class="field-grid">
-                <div class="field full"><label for="businessName">Business name *</label><input id="businessName" name="businessName" placeholder="Company LLC" required /></div>
-                <div class="field"><label for="fundingAmount">Funding amount *</label><select id="fundingAmount" name="fundingAmount" required><option value="">Select amount</option><option>$10,000 – $25,000</option><option>$25,000 – $50,000</option><option>$50,000 – $100,000</option><option>$100,000 – $250,000</option><option>$250,000 – $500,000</option><option>$500,000+</option></select></div>
-                <div class="field"><label for="monthlyRevenue">Monthly revenue *</label><select id="monthlyRevenue" name="monthlyRevenue" required><option value="">Select revenue</option><option>Under $10,000</option><option>$10,000 – $25,000</option><option>$25,000 – $50,000</option><option>$50,000 – $100,000</option><option>$100,000 – $250,000</option><option>$250,000+</option></select></div>
-                <div class="field"><label for="timeBusiness">Time in business *</label><select id="timeBusiness" name="timeBusiness" required><option value="">Select range</option><option>Less than 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option></select></div>
-                <div class="field"><label for="creditRange">Credit range *</label><select id="creditRange" name="creditRange" required><option value="">Select range</option><option>720+</option><option>680–719</option><option>640–679</option><option>600–639</option><option>550–599</option><option>Below 550</option><option>Not sure</option></select></div>
-                <div class="field full"><label>Funding purpose *</label><div class="option-grid"><label class="option-card"><input type="radio" name="purpose" value="Working capital" required><strong>Working capital</strong><span>Payroll, inventory, cash flow, or operating needs.</span></label><label class="option-card"><input type="radio" name="purpose" value="Equipment financing"><strong>Equipment</strong><span>Vehicles, tools, machines, or systems.</span></label><label class="option-card"><input type="radio" name="purpose" value="Expansion"><strong>Expansion</strong><span>Hiring, growth, new location, or larger contracts.</span></label><label class="option-card"><input type="radio" name="purpose" value="Debt consolidation"><strong>Debt consolidation</strong><span>Review options to simplify obligations.</span></label></div></div>
+              <p class="intro">A few details help Revola understand your likely funding paths and readiness.</p>
+
+              <div class="field" id="biznameField">
+                <label for="bizname">Business name <span class="req">*</span></label>
+                <input id="bizname" data-key="bizname" type="text" placeholder="Acme Co." autocomplete="organization" />
+                <div class="err">Please enter your business name.</div>
+              </div>
+
+              <div class="two">
+                <div class="field" id="revenueField">
+                  <label for="revenue">Monthly revenue <span class="req">*</span></label>
+                  <select id="revenue" data-key="revenue">
+                    <option value="">Select revenue</option>
+                    <option>Under $10,000</option>
+                    <option>$10,000 – $25,000</option>
+                    <option>$25,000 – $50,000</option>
+                    <option>$50,000 – $100,000</option>
+                    <option>$100,000 – $250,000</option>
+                    <option>$250,000+</option>
+                  </select>
+                  <div class="err">Please select monthly revenue.</div>
+                </div>
+
+                <div class="field" id="tibField">
+                  <label for="tib">Time in business <span class="req">*</span></label>
+                  <select id="tib" data-key="tib">
+                    <option value="">Select range</option>
+                    <option>Less than 6 months</option>
+                    <option>6–12 months</option>
+                    <option>1–2 years</option>
+                    <option>2–5 years</option>
+                    <option>5+ years</option>
+                  </select>
+                  <div class="err">Please select time in business.</div>
+                </div>
+              </div>
+
+              <div class="field" id="creditField">
+                <label for="credit">Estimated credit range <span class="req">*</span></label>
+                <select id="credit" data-key="credit">
+                  <option value="">Select range</option>
+                  <option>720+</option>
+                  <option>680–719</option>
+                  <option>640–679</option>
+                  <option>600–639</option>
+                  <option>550–599</option>
+                  <option>Below 550</option>
+                  <option>Not sure</option>
+                </select>
+                <div class="err">Please select a credit range.</div>
+              </div>
+
+              <div class="field" id="purposeField">
+                <label>What's the funding for? <span class="req">*</span></label>
+                <div class="choice-grid" id="purpose">
+                  <div class="choice-card" data-val="Working capital"><h4>Working capital</h4><p>Payroll, inventory, cash flow.</p></div>
+                  <div class="choice-card" data-val="Equipment"><h4>Equipment</h4><p>Vehicles, tools, machines, systems.</p></div>
+                  <div class="choice-card" data-val="Expansion"><h4>Expansion</h4><p>Hiring, growth, new location.</p></div>
+                  <div class="choice-card" data-val="Debt consolidation"><h4>Debt consolidation</h4><p>Simplify existing obligations.</p></div>
+                </div>
+                <div class="err">Please choose a funding purpose.</div>
               </div>
             </div>
 
-            <div class="form-step" data-step="2">
-              <div class="kicker">Owner info</div>
+            <div class="panel-step" data-step="2">
+              <div class="eyebrow"><span class="dot"></span>Step 3 · Contact</div>
               <h1>Who should we contact?</h1>
-              <p class="subcopy">This helps a Revola advisor follow up with the right person after your profile is submitted.</p>
-              <div class="field-grid">
-                <div class="field"><label for="firstName">First name *</label><input id="firstName" name="firstName" placeholder="Chris" required /></div>
-                <div class="field"><label for="lastName">Last name *</label><input id="lastName" name="lastName" placeholder="Khoury" required /></div>
-                <div class="field"><label for="email">Email *</label><input id="email" name="email" type="email" placeholder="you@company.com" required /></div>
-                <div class="field"><label for="phone">Phone *</label><input id="phone" name="phone" placeholder="(555) 000-0000" required /></div>
+              <p class="intro">This helps a Revola advisor follow up with the right person after your Passport is submitted.</p>
+
+              <div class="two">
+                <div class="field" id="fnameField">
+                  <label for="fname">First name <span class="req">*</span></label>
+                  <input id="fname" data-key="fname" type="text" autocomplete="given-name" />
+                  <div class="err">Please enter your first name.</div>
+                </div>
+
+                <div class="field" id="lnameField">
+                  <label for="lname">Last name <span class="req">*</span></label>
+                  <input id="lname" data-key="lname" type="text" autocomplete="family-name" />
+                  <div class="err">Please enter your last name.</div>
+                </div>
+              </div>
+
+              <div class="field" id="emailField">
+                <label for="email">Email <span class="req">*</span></label>
+                <input id="email" data-key="email" type="email" placeholder="you@business.com" autocomplete="email" />
+                <div class="err">Please enter a valid email.</div>
+              </div>
+
+              <div class="field" id="phoneField">
+                <label for="phone">Phone <span class="req">*</span></label>
+                <input id="phone" data-key="phone" type="tel" placeholder="(555) 000-0000" autocomplete="tel" />
+                <div class="err">Please enter a valid phone number.</div>
               </div>
             </div>
 
-            <div class="form-step" data-step="3">
-              <div class="kicker">Review</div>
-              <h1>Review your Revola profile.</h1>
-              <p class="subcopy">Confirm your information before submitting your Capital Passport for review.</p>
-              <div id="reviewContent"></div>
+            <div class="panel-step" data-step="3">
+              <div class="eyebrow"><span class="dot"></span>Step 4 · Review</div>
+              <h1>Review your Capital Passport.</h1>
+              <p class="intro">Confirm your details before submitting. You are never charged, and submitting does not trigger a hard credit pull.</p>
+              <div class="review-groups" id="reviewGroups"></div>
             </div>
 
-            <div class="error-message" id="errorMessage">Please complete the required field before continuing.</div>
+            <div class="panel-step" data-step="4">
+              <div class="success">
+                <div class="success-inner">
+                  <div class="success-icon">✓</div>
+                  <h2>Your Capital Passport is in.</h2>
+                  <p>A Revola advisor will review your profile and follow up shortly with your best-fit funding paths. No hard credit pull has been made.</p>
+                  <a href="index.html" class="btn btn-primary">Return home</a>
+                </div>
+              </div>
+            </div>
 
-            <div class="next-row" id="buttonRow">
-              <button class="next-button" type="button" id="nextButton">Next <span>→</span></button>
-              <button class="back-button" type="button" id="backButton" disabled>← Back</button>
+            <div class="form-foot" id="formFoot">
+              <button class="btn btn-secondary" id="backBtn" type="button" style="visibility:hidden">← Back</button>
+              <div class="form-note"><span class="check-dot">✓</span>No hard credit pull to start</div>
+              <button class="btn btn-primary" id="nextBtn" type="button">Continue →</button>
             </div>
           </form>
-
-          <div class="success-panel" id="successPanel">
-            <div class="success-icon">✓</div>
-            <h2>Your Revola profile has been received.</h2>
-            <p>In production, this submission should route into your backend CRM, trigger advisor follow-up, and send the borrower to a confirmation page.</p>
-            <a href="index.html" class="next-button" style="text-decoration:none;">Return home</a>
-          </div>
         </section>
-
-        <footer class="bottom-legal">
-          <strong>© 2026 Revola.</strong> Business funding, without the runaround. Revola helps facilitate business funding conversations and is not a commitment to lend. No hard credit pull is required to start the Revola application experience. Specific lender reviews may have their own requirements later in the process.
-        </footer>
       </div>
+
+      <aside class="side" aria-label="Live Capital Passport preview">
+        <div class="passport-card">
+          <div class="passport-top">
+            <span class="passport-label">Capital Passport™</span>
+            <span class="passport-badge" id="passBadge">Building</span>
+          </div>
+          <h2 id="passName">Your funding profile</h2>
+          <p class="passport-sub">Encrypted · reusable · yours</p>
+
+          <div class="passport-rows">
+            <div class="passport-row"><span>Industry</span><strong id="pIndustry" class="pending">—</strong></div>
+            <div class="passport-row"><span>Funding goal</span><strong id="pAmount" class="pending">—</strong></div>
+            <div class="passport-row"><span>Monthly revenue</span><strong id="pRevenue" class="pending">—</strong></div>
+            <div class="passport-row"><span>Time in business</span><strong id="pTib" class="pending">—</strong></div>
+            <div class="passport-row"><span>Purpose</span><strong id="pPurpose" class="pending">—</strong></div>
+          </div>
+
+          <div class="meter-label"><span>Profile completeness</span><strong id="pPct">8%</strong></div>
+          <div class="meter-track"><div class="meter-fill" id="pFill"></div></div>
+        </div>
+
+        <div class="side-note">
+          <h3>What to know</h3>
+          <div class="side-note-list">
+            <div><span class="check-dot">✓</span><span>Revola is a marketplace, not a lender.</span></div>
+            <div><span class="check-dot">✓</span><span>Free for businesses — funding partners pay us.</span></div>
+            <div><span class="check-dot">✓</span><span>You choose the path before anything moves.</span></div>
+          </div>
+        </div>
+      </aside>
     </main>
+
+    <footer>
+      <div class="container">
+        <strong>© 2026 Revola.</strong> One profile, every funding path. Revola is a funding marketplace and is not a lender; it does not make credit decisions or guarantee funding, and is compensated by funding partners. No hard credit pull is required to start — that means a soft inquiry that does not affect your credit score. A hard inquiry may occur later, only with your consent, if you proceed with a partner. Funding timing and availability depend on eligibility and partner requirements.
+      </div>
+    </footer>
   </div>
 
   <script>
-    const steps = Array.from(document.querySelectorAll('.form-step'));
-    const sideSteps = Array.from(document.querySelectorAll('.step-item'));
-    const nextButton = document.getElementById('nextButton');
-    const backButton = document.getElementById('backButton');
-    const errorMessage = document.getElementById('errorMessage');
-    const reviewContent = document.getElementById('reviewContent');
-    const form = document.getElementById('applicationForm');
-    const successPanel = document.getElementById('successPanel');
-    const buttonRow = document.getElementById('buttonRow');
-    let currentStep = 0;
+    (function () {
+      const drawer = document.getElementById('drawer');
+      const mobileToggle = document.getElementById('mobileToggle');
 
-    function getData() {
-      const selectedPurpose = document.querySelector('input[name="purpose"]:checked');
-      return {
-        'Industry': document.getElementById('industry').value,
-        'First name': document.getElementById('firstName').value,
-        'Last name': document.getElementById('lastName').value,
-        'Email': document.getElementById('email').value,
-        'Phone': document.getElementById('phone').value,
-        'Business name': document.getElementById('businessName').value,
-        'Funding amount': document.getElementById('fundingAmount').value,
-        'Monthly revenue': document.getElementById('monthlyRevenue').value,
-        'Time in business': document.getElementById('timeBusiness').value,
-        'Credit range': document.getElementById('creditRange').value,
-        'Funding purpose': selectedPurpose ? selectedPurpose.value : ''
-      };
-    }
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.textContent = '☰';
+      }
 
-    function renderReview() {
-      const data = getData();
-      const groups = [
-        ['Basic info', ['Industry']],
-        ['Business info', ['Business name', 'Funding amount', 'Monthly revenue', 'Time in business', 'Credit range', 'Funding purpose']],
-        ['Owner info', ['First name', 'Last name', 'Email', 'Phone']]
+      if (drawer && mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          const open = !drawer.classList.contains('open');
+          drawer.classList.toggle('open', open);
+          drawer.setAttribute('aria-hidden', String(!open));
+          mobileToggle.setAttribute('aria-expanded', String(open));
+          mobileToggle.textContent = open ? '×' : '☰';
+        });
+
+        drawer.querySelectorAll('[data-close], a').forEach((el) => {
+          el.addEventListener('click', closeDrawer);
+        });
+      }
+
+      const data = {};
+      let step = 0;
+
+      const panels = Array.from(document.querySelectorAll('.panel-step'));
+      const dots = Array.from(document.querySelectorAll('#progress .stepdot'));
+      const nextBtn = document.getElementById('nextBtn');
+      const backBtn = document.getElementById('backBtn');
+      const formFoot = document.getElementById('formFoot');
+      const reviewGroups = document.getElementById('reviewGroups');
+
+      const industries = [
+        'Retail', 'Restaurant', 'Healthcare', 'Dental',
+        'Construction', 'Trades', 'Manufacturing', 'Transportation',
+        'E-commerce', 'Wholesale', 'Franchise', 'Hospitality',
+        'Automotive', 'Professional Services', 'Local Services', 'Other'
       ];
-      reviewContent.innerHTML = groups.map(([title, fields]) => `
-        <div class="review-card">
-          <h3>${title}</h3>
-          ${fields.map(field => `<div class="review-row"><span>${field}</span><strong>${data[field] || 'Not provided'}</strong></div>`).join('')}
-        </div>
-      `).join('');
-    }
 
-    function validateStep() {
-      const current = steps[currentStep];
-      const required = Array.from(current.querySelectorAll('[required]'));
-      let valid = true;
-      required.forEach((input) => {
-        if (input.type === 'radio') {
-          const checked = document.querySelector(`input[name="${input.name}"]:checked`);
-          if (!checked) valid = false;
-        } else if (!input.value || !input.checkValidity()) {
-          valid = false;
+      const industryWrap = document.getElementById('industries');
+      industries.forEach((name) => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'industry-card';
+        card.textContent = name;
+        card.dataset.val = name;
+        card.addEventListener('click', () => {
+          industryWrap.querySelectorAll('.industry-card').forEach((el) => el.classList.remove('selected'));
+          card.classList.add('selected');
+          data.industry = name;
+          clearError(document.getElementById('industryField'));
+          syncPassport();
+          saveDraft();
+        });
+        industryWrap.appendChild(card);
+      });
+
+      document.querySelectorAll('#purpose .choice-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          document.querySelectorAll('#purpose .choice-card').forEach((el) => el.classList.remove('selected'));
+          card.classList.add('selected');
+          data.purpose = card.dataset.val;
+          clearError(document.getElementById('purposeField'));
+          syncPassport();
+          saveDraft();
+        });
+      });
+
+      document.querySelectorAll('[data-key]').forEach((field) => {
+        field.addEventListener('input', () => {
+          data[field.dataset.key] = field.value;
+          clearError(field.closest('.field'));
+          syncPassport();
+          saveDraft();
+        });
+        field.addEventListener('change', () => {
+          data[field.dataset.key] = field.value;
+          clearError(field.closest('.field'));
+          syncPassport();
+          saveDraft();
+        });
+      });
+
+      function clearError(field) {
+        if (field) field.classList.remove('invalid');
+      }
+
+      function fail(field) {
+        if (field) field.classList.add('invalid');
+        return false;
+      }
+
+      function validate(currentStep) {
+        let valid = true;
+
+        if (currentStep === 0) {
+          if (!data.industry) valid = fail(document.getElementById('industryField'));
+          if (!data.amount) valid = fail(document.getElementById('amountField'));
+        }
+
+        if (currentStep === 1) {
+          if (!data.bizname || !data.bizname.trim()) valid = fail(document.getElementById('biznameField'));
+          if (!data.revenue) valid = fail(document.getElementById('revenueField'));
+          if (!data.tib) valid = fail(document.getElementById('tibField'));
+          if (!data.credit) valid = fail(document.getElementById('creditField'));
+          if (!data.purpose) valid = fail(document.getElementById('purposeField'));
+        }
+
+        if (currentStep === 2) {
+          if (!data.fname || !data.fname.trim()) valid = fail(document.getElementById('fnameField'));
+          if (!data.lname || !data.lname.trim()) valid = fail(document.getElementById('lnameField'));
+          if (!data.email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)) valid = fail(document.getElementById('emailField'));
+          if (!data.phone || data.phone.replace(/\D/g, '').length < 10) valid = fail(document.getElementById('phoneField'));
+        }
+
+        return valid;
+      }
+
+      function show(nextStep) {
+        step = nextStep;
+
+        panels.forEach((panel) => {
+          panel.classList.toggle('active', Number(panel.dataset.step) === step);
+        });
+
+        dots.forEach((dot, index) => {
+          dot.classList.toggle('active', index === step);
+          dot.classList.toggle('done', index < step || step === 4);
+        });
+
+        backBtn.style.visibility = step > 0 && step < 4 ? 'visible' : 'hidden';
+        nextBtn.textContent = step === 3 ? 'Submit Passport →' : 'Continue →';
+
+        if (step === 3) buildReview();
+
+        if (step === 4) {
+          formFoot.style.display = 'none';
+          localStorage.setItem('revola_capital_passport_submitted', JSON.stringify({ ...data, submittedAt: new Date().toISOString() }));
+        } else {
+          formFoot.style.display = 'flex';
+        }
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function buildReview() {
+        const groups = [
+          {
+            title: 'Funding need',
+            edit: 0,
+            rows: [
+              ['Industry', data.industry],
+              ['Funding goal', data.amount]
+            ]
+          },
+          {
+            title: 'Business profile',
+            edit: 1,
+            rows: [
+              ['Business name', data.bizname],
+              ['Monthly revenue', data.revenue],
+              ['Time in business', data.tib],
+              ['Credit range', data.credit],
+              ['Funding purpose', data.purpose]
+            ]
+          },
+          {
+            title: 'Contact',
+            edit: 2,
+            rows: [
+              ['Name', `${data.fname || ''} ${data.lname || ''}`.trim()],
+              ['Email', data.email],
+              ['Phone', data.phone]
+            ]
+          }
+        ];
+
+        reviewGroups.innerHTML = groups.map((group) => `
+          <div class="review-card">
+            <div class="review-card-header">
+              <h3>${group.title}</h3>
+              <button type="button" class="edit-link" data-edit-step="${group.edit}">Edit</button>
+            </div>
+            ${group.rows.map(([label, value]) => `
+              <div class="review-row">
+                <span>${label}</span>
+                <strong>${value || '—'}</strong>
+              </div>
+            `).join('')}
+          </div>
+        `).join('');
+
+        reviewGroups.querySelectorAll('[data-edit-step]').forEach((button) => {
+          button.addEventListener('click', () => show(Number(button.dataset.editStep)));
+        });
+      }
+
+      nextBtn.addEventListener('click', () => {
+        if (step <= 2) {
+          if (!validate(step)) return;
+          show(step + 1);
+          return;
+        }
+
+        if (step === 3) {
+          show(4);
         }
       });
-      errorMessage.classList.toggle('show', !valid);
-      return valid;
-    }
 
-    function updateUI() {
-      steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
-      sideSteps.forEach((step, index) => {
-        step.classList.toggle('active', index === currentStep);
-        step.classList.toggle('done', index < currentStep);
-        step.querySelector('.step-number').textContent = index < currentStep ? '✓' : index + 1;
+      backBtn.addEventListener('click', () => {
+        if (step > 0) show(step - 1);
       });
-      backButton.disabled = currentStep === 0;
-      nextButton.innerHTML = currentStep === steps.length - 1 ? 'Submit profile <span>→</span>' : 'Next <span>→</span>';
-      errorMessage.classList.remove('show');
-      if (currentStep === steps.length - 1) renderReview();
-    }
 
-    nextButton.addEventListener('click', () => {
-      if (currentStep < steps.length - 1) {
-        if (!validateStep()) return;
-        currentStep += 1;
-        updateUI();
-        return;
+      function syncPassport() {
+        const map = {
+          pIndustry: 'industry',
+          pAmount: 'amount',
+          pRevenue: 'revenue',
+          pTib: 'tib',
+          pPurpose: 'purpose'
+        };
+
+        Object.entries(map).forEach(([id, key]) => {
+          const el = document.getElementById(id);
+          const value = data[key];
+          if (value) {
+            el.textContent = value;
+            el.classList.remove('pending');
+          } else {
+            el.textContent = '—';
+            el.classList.add('pending');
+          }
+        });
+
+        document.getElementById('passName').textContent = data.bizname ? data.bizname : 'Your funding profile';
+
+        const tracked = ['industry', 'amount', 'bizname', 'revenue', 'tib', 'credit', 'purpose', 'fname', 'lname', 'email', 'phone'];
+        const filled = tracked.filter((key) => data[key] && String(data[key]).trim()).length;
+        const pct = Math.max(8, Math.round((filled / tracked.length) * 100));
+
+        document.getElementById('pFill').style.width = `${pct}%`;
+        document.getElementById('pPct').textContent = `${pct}%`;
+        document.getElementById('passBadge').textContent = pct >= 100 ? 'Ready' : 'Building';
       }
-      form.style.display = 'none';
-      buttonRow.style.display = 'none';
-      successPanel.classList.add('active');
-      sideSteps.forEach((step) => step.classList.add('done'));
-    });
 
-    backButton.addEventListener('click', () => {
-      if (currentStep > 0) {
-        currentStep -= 1;
-        updateUI();
+      function saveDraft() {
+        localStorage.setItem('revola_capital_passport_draft', JSON.stringify(data));
       }
-    });
 
-    const params = new URLSearchParams(window.location.search);
-    const fundingParam = params.get('funding');
-    if (fundingParam) {
-      const select = document.getElementById('fundingAmount');
-      const map = {
-        '10000-25000':'$10,000 – $25,000',
-        '25000-50000':'$25,000 – $50,000',
-        '50000-100000':'$50,000 – $100,000',
-        '100000-250000':'$100,000 – $250,000',
-        '250000-500000':'$250,000 – $500,000',
-        '500000-plus':'$500,000+'
-      };
-      if (map[fundingParam]) select.value = map[fundingParam];
-    }
+      function loadDraft() {
+        const params = new URLSearchParams(window.location.search);
+        const prefillFunding = params.get('funding');
+        const fundingMap = {
+          '10000-25000': '$10,000 – $25,000',
+          '25000-50000': '$25,000 – $50,000',
+          '50000-100000': '$50,000 – $100,000',
+          '100000-250000': '$100,000 – $250,000',
+          '250000-500000': '$250,000 – $500,000',
+          '500000-plus': '$500,000+'
+        };
 
-    updateUI();
+        try {
+          const saved = JSON.parse(localStorage.getItem('revola_capital_passport_draft') || '{}');
+          Object.assign(data, saved);
+        } catch (error) {
+          // Ignore invalid local draft data.
+        }
+
+        if (prefillFunding && fundingMap[prefillFunding]) {
+          data.amount = fundingMap[prefillFunding];
+        }
+
+        Object.entries(data).forEach(([key, value]) => {
+          const field = document.querySelector(`[data-key="${key}"]`);
+          if (field) field.value = value;
+        });
+
+        if (data.industry) {
+          const selectedIndustry = Array.from(document.querySelectorAll('.industry-card')).find((card) => card.dataset.val === data.industry);
+          if (selectedIndustry) selectedIndustry.classList.add('selected');
+        }
+
+        if (data.purpose) {
+          const selectedPurpose = Array.from(document.querySelectorAll('#purpose .choice-card')).find((card) => card.dataset.val === data.purpose);
+          if (selectedPurpose) selectedPurpose.classList.add('selected');
+        }
+
+        syncPassport();
+      }
+
+      loadDraft();
+      show(0);
+    })();
   </script>
 </body>
 </html>
