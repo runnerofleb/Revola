@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Revola turns one secure profile — your Capital Passport — into best-fit funding offers from a network of partners. No runaround, no surprise products, no fee to you.">
+<title>Revola | One profile. Every funding path.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0d1b1a;
+    --ink-soft:#3a4a48;
+    --paper:#f4f0e8;
+    --paper-2:#ece6da;
+    --card:#ffffff;
+    --green:#0f4d3f;
+    --green-bright:#1a7a5e;
+    --lime:#c8f25a;
+    --amber:#e8a13c;
+    --line:#d8d0c0;
+    --line-ink:rgba(13,27,26,.1);
+    --shadow:0 1px 2px rgba(13,27,26,.04),0 8px 30px rgba(13,27,26,.06);
+    --shadow-lg:0 2px 8px rgba(13,27,26,.06),0 24px 60px rgba(13,27,26,.12);
+    --r:18px;
+    --display:"Fraunces",Georgia,serif;
+    --body:"Archivo",-apple-system,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--body);
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  .wrap{max-width:1200px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.05;letter-spacing:-.02em}
+  .eyebrow{
+    font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--green);display:inline-flex;align-items:center;gap:.5em;
+  }
+  .eyebrow::before{content:"";width:22px;height:1.5px;background:var(--green)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.5em;font-family:var(--body);
+    font-weight:600;font-size:.95rem;padding:.85em 1.5em;border-radius:100px;
+    border:1.5px solid transparent;cursor:pointer;transition:.25s ease;white-space:nowrap;
+  }
+  .btn-primary{background:var(--ink);color:var(--paper)}
+  .btn-primary:hover{background:var(--green);transform:translateY(-2px)}
+  .btn-ghost{background:transparent;border-color:var(--line-ink);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+  .btn-lime{background:var(--lime);color:var(--green)}
+  .btn-lime:hover{transform:translateY(-2px);box-shadow:0 12px 28px rgba(200,242,90,.4)}
+
+  /* NAV */
+  header{position:sticky;top:0;z-index:100;background:rgba(244,240,232,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .logo{font-family:var(--display);font-weight:600;font-size:1.5rem;letter-spacing:-.03em;display:flex;align-items:center;gap:.4em}
+  .logo .mark{width:30px;height:30px;background:var(--green);border-radius:9px;display:grid;place-items:center;color:var(--lime);font-size:1rem;font-weight:600}
+  .nav-links{display:flex;gap:1.8rem;font-size:.92rem;font-weight:500}
+  .nav-links a{color:var(--ink-soft);transition:.2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{display:flex;align-items:center;gap:.75rem}
+  .menu-btn{display:none;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink)}
+  @media(max-width:920px){
+    .nav-links,.nav-cta .btn-ghost{display:none}
+    .menu-btn{display:block}
+  }
+
+  /* HERO */
+  .hero{position:relative;padding:72px 0 90px;overflow:hidden}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero h1{font-size:clamp(2.6rem,5.5vw,4.3rem);margin:.35em 0 .55em}
+  .hero h1 em{font-style:italic;color:var(--green)}
+  .hero p.lead{font-size:1.18rem;color:var(--ink-soft);max-width:34ch;margin-bottom:1.8em}
+  .hero-actions{display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1.8rem}
+  .trust-row{display:flex;gap:1.4rem;flex-wrap:wrap;font-size:.85rem;color:var(--ink-soft);font-weight:500}
+  .trust-row span{display:flex;align-items:center;gap:.4em}
+  .trust-row .tick{color:var(--green);font-weight:700}
+  .hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+  .hero-bg::before{content:"";position:absolute;top:-15%;right:-8%;width:48vw;height:48vw;max-width:620px;max-height:620px;background:radial-gradient(circle at 30% 30%,rgba(26,122,94,.16),transparent 62%);border-radius:50%}
+  .grain{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.4;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E")}
+
+  /* PASSPORT CARD (hero visual) */
+  .passport{
+    background:var(--green);color:var(--paper);border-radius:24px;padding:30px;
+    box-shadow:var(--shadow-lg);position:relative;overflow:hidden;
+  }
+  .passport::after{content:"";position:absolute;bottom:-40%;right:-20%;width:80%;height:80%;background:radial-gradient(circle,rgba(200,242,90,.18),transparent 65%);border-radius:50%}
+  .passport-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;position:relative}
+  .passport-top .pl{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;opacity:.75;font-weight:600}
+  .passport-top .badge{font-size:.7rem;background:rgba(200,242,90,.16);color:var(--lime);padding:.35em .8em;border-radius:100px;font-weight:600;display:flex;align-items:center;gap:.4em}
+  .passport-top .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--lime)}
+  .passport h3{color:var(--paper);font-size:1.5rem;margin-bottom:4px}
+  .passport .sub{font-size:.88rem;opacity:.7;margin-bottom:22px}
+  .passport-rows{display:grid;gap:1px;background:rgba(244,240,232,.12);border-radius:12px;overflow:hidden;margin-bottom:18px}
+  .prow{display:flex;justify-content:space-between;padding:13px 16px;background:var(--green);font-size:.9rem}
+  .prow span:first-child{opacity:.72}
+  .prow span:last-child{font-weight:600}
+  .prow .ok{color:var(--lime)}
+  .meter{position:relative}
+  .meter-label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:8px;opacity:.85}
+  .meter-bar{height:8px;background:rgba(244,240,232,.15);border-radius:100px;overflow:hidden}
+  .meter-fill{height:100%;width:0;background:var(--lime);border-radius:100px;animation:fill 1.6s .5s cubic-bezier(.2,.8,.2,1) forwards}
+  @keyframes fill{to{width:92%}}
+
+  /* MARQUEE / partners */
+  .partners{padding:36px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+  .partners .lab{text-align:center;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:20px}
+  .logos{display:flex;justify-content:center;flex-wrap:wrap;gap:14px 40px;align-items:center;opacity:.7}
+  .logos span{font-family:var(--display);font-size:1.15rem;font-weight:600;color:var(--ink-soft)}
+
+  /* SECTION SHARED */
+  section{padding:90px 0}
+  .sec-head{max-width:60ch;margin-bottom:52px}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);margin:.4em 0 .4em}
+  .sec-head p{font-size:1.12rem;color:var(--ink-soft)}
+
+  /* TRANSPARENCY STRIP */
+  .truth{background:var(--ink);color:var(--paper)}
+  .truth .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .truth h2{color:var(--paper);font-size:1.9rem;grid-column:1/-1;max-width:24ch;margin-bottom:8px}
+  .truth .tcard{padding-top:22px;border-top:2px solid var(--lime)}
+  .truth .tcard h3{color:var(--lime);font-size:1.05rem;font-family:var(--body);font-weight:700;margin-bottom:.5em}
+  .truth .tcard p{color:rgba(244,240,232,.78);font-size:.96rem}
+  @media(max-width:780px){.truth .wrap{grid-template-columns:1fr}}
+
+  /* HOW / steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;position:relative;transition:.3s}
+  .step:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+  .step .num{font-family:var(--display);font-size:2.6rem;color:var(--line);font-weight:600;line-height:1}
+  .step h3{font-size:1.25rem;margin:.5em 0 .4em}
+  .step p{color:var(--ink-soft);font-size:.96rem}
+  @media(max-width:780px){.steps{grid-template-columns:1fr}}
+
+  /* SOLUTIONS */
+  .solutions{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+  .sol{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px;display:flex;gap:20px;transition:.3s}
+  .sol:hover{border-color:var(--green);box-shadow:var(--shadow)}
+  .sol .ic{flex:none;width:52px;height:52px;border-radius:14px;background:var(--paper-2);display:grid;place-items:center;color:var(--green)}
+  .sol .ic svg{width:26px;height:26px}
+  .sol h3{font-size:1.3rem;margin-bottom:.3em}
+  .sol p{color:var(--ink-soft);font-size:.95rem;margin-bottom:.7em}
+  .sol .best{font-size:.85rem;color:var(--green);font-weight:600}
+  @media(max-width:680px){.solutions{grid-template-columns:1fr}}
+
+  /* STATS honest */
+  .stats{background:var(--paper-2)}
+  .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
+  .stat .big{font-family:var(--display);font-size:3rem;color:var(--green);font-weight:600;line-height:1}
+  .stat p{color:var(--ink-soft);font-size:.95rem;margin-top:.5em}
+  .stat .src{font-size:.78rem;color:var(--ink-soft);opacity:.7;margin-top:.4em}
+  @media(max-width:680px){.stat-grid{grid-template-columns:1fr;gap:32px}}
+
+  /* INDUSTRIES */
+  .ind-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .ind{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.25s}
+  .ind:hover{background:var(--green);color:var(--paper);transform:translateY(-3px)}
+  .ind:hover h3,.ind:hover p{color:var(--paper)}
+  .ind h3{font-size:1.05rem;font-family:var(--body);font-weight:700;margin-bottom:.2em}
+  .ind p{font-size:.85rem;color:var(--ink-soft)}
+  @media(max-width:780px){.ind-grid{grid-template-columns:repeat(2,1fr)}}
+
+  /* CTA */
+  .cta{background:var(--green);color:var(--paper);text-align:center;border-radius:32px;margin:0 28px 80px;padding:80px 28px;position:relative;overflow:hidden}
+  .cta::before{content:"";position:absolute;top:-30%;left:-10%;width:50%;height:120%;background:radial-gradient(circle,rgba(200,242,90,.16),transparent 60%)}
+  .cta h2{color:var(--paper);font-size:clamp(2rem,4vw,3.2rem);max-width:18ch;margin:0 auto .5em;position:relative}
+  .cta p{color:rgba(244,240,232,.82);max-width:50ch;margin:0 auto 2em;position:relative;font-size:1.1rem}
+  .cta .hero-actions{justify-content:center;position:relative}
+  .cta .fine{font-size:.8rem;opacity:.7;margin-top:1.5em}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:rgba(244,240,232,.7);padding:64px 0 36px}
+  .foot-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:36px;margin-bottom:48px}
+  footer .logo{color:var(--paper);margin-bottom:1em}
+  .foot-grid p{font-size:.92rem;max-width:30ch}
+  footer h4{color:var(--paper);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:1.1em;font-weight:700}
+  footer ul{list-style:none;display:grid;gap:.7em}
+  footer ul a{font-size:.92rem;transition:.2s}
+  footer ul a:hover{color:var(--lime)}
+  .foot-legal{border-top:1px solid rgba(244,240,232,.12);padding-top:24px;font-size:.8rem;line-height:1.7;opacity:.6}
+  @media(max-width:780px){.foot-grid{grid-template-columns:1fr 1fr;gap:32px}}
+
+  @media(max-width:880px){.hero-grid{grid-template-columns:1fr;gap:44px}.hero p.lead{max-width:none}}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.8,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="logo"><span class="mark">R</span>Revola</a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#passport">Capital Passport</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#industries">Industries</a>
+      <a href="#truth">Why us</a>
+    </div>
+    <div class="nav-cta">
+      <a href="mailto:hello@revola.com" class="btn btn-ghost">Talk to an expert</a>
+      <a href="application.html" class="btn btn-primary">Check eligibility</a>
+    </div>
+    <button class="menu-btn" aria-label="Menu">☰</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Capital marketplace for modern businesses</span>
+      <h1>One profile.<br><em>Every</em> funding path.</h1>
+      <p class="lead">Build your Capital Passport once. Revola matches it to best-fit offers from our funding network — so you stop re-applying and start comparing.</p>
+      <div class="hero-actions">
+        <a href="application.html" class="btn btn-primary">Build your Capital Passport →</a>
+        <a href="mailto:hello@revola.com" class="btn btn-ghost">Talk to a funding expert</a>
+      </div>
+      <div class="trust-row">
+        <span><span class="tick">✓</span> No hard credit pull to start</span>
+        <span><span class="tick">✓</span> Free for businesses</span>
+        <span><span class="tick">✓</span> Advisor-supported</span>
+      </div>
+    </div>
+
+    <!-- Passport visual -->
+    <div class="passport">
+      <div class="passport-top">
+        <span class="pl">Capital Passport™</span>
+        <span class="badge">Active</span>
+      </div>
+      <h3>Your funding profile</h3>
+      <p class="sub">Lender-ready · encrypted · reusable</p>
+      <div class="passport-rows">
+        <div class="prow"><span>Business</span><span class="ok">Verified</span></div>
+        <div class="prow"><span>Revenue</span><span class="ok">Connected</span></div>
+        <div class="prow"><span>Funding goal</span><span>$250,000</span></div>
+        <div class="prow"><span>Documents</span><span class="ok">3 ready</span></div>
+        <div class="prow"><span>Best-fit path</span><span>Line of credit</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-label"><span>Lender-ready score</span><span>92%</span></div>
+        <div class="meter-bar"><div class="meter-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<div class="partners">
+  <div class="wrap">
+    <p class="lab">Routed to a growing network of funding partners</p>
+    <div class="logos">
+      <span>Meridian Capital</span><span>Northbridge</span><span>Keystone Lending</span>
+      <span>Vantage Finance</span><span>Cedar&nbsp;&amp;&nbsp;Co.</span><span>BlueRiver</span>
+    </div>
+  </div>
+</div>
+
+<!-- WHY / TRANSPARENCY (the wedge) -->
+<section class="truth" id="truth">
+  <div class="wrap">
+    <h2>Funding shouldn't feel like a runaround. So we made the rules plain.</h2>
+    <div class="tcard">
+      <h3>We're not a lender.</h3>
+      <p>Revola is a marketplace. We help organize your profile and route it to funding partners who compete for your business — we never lend to you directly.</p>
+    </div>
+    <div class="tcard">
+      <h3>You don't pay us.</h3>
+      <p>Revola is paid by funding partners when a match works out, never by you. No application fees, no charge to build or keep your Capital Passport.</p>
+    </div>
+    <div class="tcard">
+      <h3>No surprise products.</h3>
+      <p>You see the path before you commit, and you choose it. We won't quietly steer you into a product you didn't ask for. Your data, your decision.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. One application. Done.</h2>
+      <p>Build it once, compare everywhere. Eligible businesses can move forward with funding in as little as 24 hours.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3>Build your Passport</h3>
+        <p>Tell us about your business, revenue, goal, and timing. About two minutes — no hard credit pull to start.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3>See your best-fit offers</h3>
+        <p>Revola routes your Passport to partners and surfaces the paths that actually fit — with clarity on speed and structure.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3>Choose &amp; move forward</h3>
+        <p>Compare options side by side with advisor support, then continue with the strongest fit. You stay in control the whole way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPITAL PASSPORT deep dive -->
+<section id="passport" style="background:var(--paper-2)">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center">
+    <div>
+      <span class="eyebrow">Capital Passport™</span>
+      <h2 style="font-size:clamp(2rem,4vw,3rem);margin:.4em 0">Reusable. Owned by you. Ready for any lender.</h2>
+      <p style="color:var(--ink-soft);font-size:1.08rem;margin-bottom:1.4em">Most marketplaces make you start from zero every time. Your Capital Passport is a lender-ready profile you build once and keep — your business details, revenue signals, funding goal, documents, and readiness in one organized place.</p>
+      <ul style="list-style:none;display:grid;gap:.9em">
+        <li style="display:flex;gap:.7em"><span style="color:var(--green);font-weight:700">→</span> Reuse it across funding paths instead of re-keying applications.</li>
+        <li style="display:flex;gap:.7em"><span style="color:var(--green);font-weight:700">→</span> See a live readiness score so you know exactly where you stand.</li>
+        <li style="display:flex;gap:.7em"><span style="color:var(--green);font-weight:700">→</span> Share on your terms — you decide when and with whom to move forward.</li>
+      </ul>
+      <a href="application.html" class="btn btn-primary" style="margin-top:1.8em">Start your Passport →</a>
+    </div>
+    <div class="passport" style="background:var(--ink)">
+      <div class="passport-top">
+        <span class="pl">Funding readiness</span>
+        <span class="badge">90% match</span>
+      </div>
+      <h3 style="color:var(--paper)">Line of credit</h3>
+      <p class="sub">Strongest fit for your profile</p>
+      <div class="passport-rows" style="background:rgba(244,240,232,.1)">
+        <div class="prow" style="background:var(--ink)"><span>Estimated line</span><span>$250,000</span></div>
+        <div class="prow" style="background:var(--ink)"><span>Approval fit</span><span class="ok">High</span></div>
+        <div class="prow" style="background:var(--ink)"><span>Review speed</span><span class="ok">Fast</span></div>
+        <div class="prow" style="background:var(--ink)"><span>Access</span><span>Flexible</span></div>
+      </div>
+      <div class="meter">
+        <div class="meter-label"><span>Funding readiness</span><span>90%</span></div>
+        <div class="meter-bar"><div class="meter-fill" style="animation-name:fill;width:90%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section id="solutions">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Funding solutions</span>
+      <h2>Find the right kind of capital — not just any offer.</h2>
+      <p>Working capital, equipment, receivables, or a structured loan: Revola organizes your Passport around the options that actually make sense for your business.</p>
+    </div>
+    <div class="solutions">
+      <div class="sol">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg></div>
+        <div><h3>Line of Credit</h3><p>Flexible access to capital for inventory, payroll, cash flow, and growth.</p><p class="best">Best for: inventory, payroll, short-term needs</p></div>
+      </div>
+      <div class="sol">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 10h18"/></svg></div>
+        <div><h3>Term Loans</h3><p>A lump sum of capital with a clear, structured repayment plan.</p><p class="best">Best for: expansion, hiring, major investments</p></div>
+      </div>
+      <div class="sol">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+        <div><h3>Equipment Financing</h3><p>Funding for vehicles, machinery, tools, or business equipment.</p><p class="best">Best for: buying equipment without draining reserves</p></div>
+      </div>
+      <div class="sol">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <div><h3>Invoice Financing</h3><p>Unlock cash tied up in unpaid invoices and receivables.</p><p class="best">Best for: B2B companies waiting on payments</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS (honest) -->
+<section class="stats">
+  <div class="wrap">
+    <div class="stat-grid">
+      <div class="stat reveal">
+        <div class="big">2 min</div>
+        <p>To build your Capital Passport and see best-fit paths.</p>
+      </div>
+      <div class="stat reveal">
+        <div class="big">24 hrs</div>
+        <p>Funding possible for eligible businesses, once matched.</p>
+        <p class="src">Timing depends on partner and eligibility.</p>
+      </div>
+      <div class="stat reveal">
+        <div class="big">$0</div>
+        <p>What businesses pay Revola. We're paid by funding partners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Industries</span>
+      <h2>Built around how your business actually works.</h2>
+      <p>A restaurant doesn't need capital the way a construction firm does. Revola shapes your Passport around your model.</p>
+    </div>
+    <div class="ind-grid">
+      <div class="ind"><h3>Retail</h3><p>Inventory, seasonality, cash flow.</p></div>
+      <div class="ind"><h3>Construction</h3><p>Equipment, payroll, project timing.</p></div>
+      <div class="ind"><h3>Healthcare</h3><p>Expansion, receivables, operations.</p></div>
+      <div class="ind"><h3>Manufacturing</h3><p>Machinery, materials, working capital.</p></div>
+      <div class="ind"><h3>Services</h3><p>Growth, hiring, operating runway.</p></div>
+      <div class="ind"><h3>Restaurants</h3><p>Equipment, buildout, inventory.</p></div>
+      <div class="ind"><h3>Transportation</h3><p>Vehicles, repairs, route expansion.</p></div>
+      <div class="ind"><h3>+ More</h3><p>Funding paths across major industries.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta">
+  <h2>Get a clearer path to funding today.</h2>
+  <p>Build your Capital Passport, compare best-fit offers, and move forward with the strongest path — no fee, no runaround.</p>
+  <div class="hero-actions">
+    <a href="application.html" class="btn btn-lime">Build your Capital Passport →</a>
+    <a href="mailto:hello@revola.com" class="btn btn-ghost" style="border-color:rgba(244,240,232,.3);color:var(--paper)">Talk to an expert</a>
+  </div>
+  <p class="fine">No hard credit pull to start · Free for businesses · Advisor-supported</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a href="#" class="logo"><span class="mark">R</span>Revola</a>
+        <p>One profile, every funding path. Build your Capital Passport, compare your best options, and move forward with confidence.</p>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <ul>
+          <li><a href="#solutions">Line of Credit</a></li>
+          <li><a href="#solutions">Term Loans</a></li>
+          <li><a href="#solutions">Equipment Financing</a></li>
+          <li><a href="#solutions">Invoice Financing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#truth">Why Revola</a></li>
+          <li><a href="#industries">Industries</a></li>
+          <li><a href="mailto:partners@revola.com">Partner with us</a></li>
+          <li><a href="mailto:hello@revola.com">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Get started</h4>
+        <ul>
+          <li><a href="application.html">Check eligibility</a></li>
+          <li><a href="#passport">Capital Passport</a></li>
+          <li><a href="#how">How it works</a></li>
+          <li><a href="#">Privacy &amp; data</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      © 2026 Revola. All rights reserved. Revola is a funding marketplace, not a lender, and does not make credit decisions or guarantee funding. Revola is compensated by funding partners. Funding timing, amounts, and availability depend on eligibility and partner requirements. "No hard credit pull to start" means a soft inquiry that does not affect your credit score; a hard inquiry may occur later with your consent if you proceed with a partner.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // mobile menu (simple jump-to nav)
+  document.querySelector('.menu-btn').addEventListener('click',()=>{
+    document.querySelector('.nav-links').scrollIntoView();
+    location.hash='#how';
+  });
+  // scroll reveal
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
