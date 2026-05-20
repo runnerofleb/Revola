@@ -3,49 +3,238 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revola Partners | Embedded Funding & Referral Network</title>
-  <meta name="description" content="Partner with Revola to offer business funding access to your clients, users, members, or borrowers through a premium Capital Passport experience." />
+  <title>Revola | Partner With Us</title>
+  <meta name="description" content="Partner with Revola. Refer businesses into a cleaner funding experience and earn on funded deals — without becoming the lender." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
   <style>
     :root {
       --navy: #0B1D3A;
-      --deep: #07142A;
+      --deep-navy: #07162E;
       --blue: #2563EB;
-      --blue2: #0B5CFF;
+      --blue-2: #0B5CFF;
       --teal: #00BFA6;
-      --teal2: #09D6BF;
+      --cyan: #38BDF8;
       --sky: #E6F2FF;
-      --soft: #F7FBFF;
       --slate: #667085;
+      --muted: #475467;
       --ink: #101828;
-      --line: #E6EAF2;
       --white: #FFFFFF;
-      --success: #009B88;
-      --shadow: 0 24px 70px rgba(11, 29, 58, 0.10);
-      --shadow-soft: 0 14px 38px rgba(11, 29, 58, 0.07);
-      --max: 1180px;
+      --mist: #F8FBFF;
+      --soft: #F6FAFF;
+      --line: rgba(11, 29, 58, 0.08);
+      --line-strong: rgba(11, 29, 58, 0.13);
+      --danger: #B42318;
+
+      --gradient-primary: linear-gradient(135deg, #2563EB 0%, #38BDF8 45%, #00BFA6 100%);
+      --gradient-navy: linear-gradient(135deg, #07162E 0%, #0B1D3A 58%, #155E9F 100%);
+      --gradient-soft: linear-gradient(135deg, #FFFFFF 0%, #F6FAFF 56%, #F4FFFC 100%);
+      --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+
+      --shadow-xs: 0 10px 26px rgba(11, 29, 58, 0.06);
+      --shadow-card: 0 18px 50px rgba(11, 29, 58, 0.08);
+      --shadow-lg: 0 34px 100px rgba(11, 29, 58, 0.14);
+      --shadow-blue: 0 24px 70px rgba(37, 99, 235, 0.22);
+
+      --radius-sm: 16px;
+      --radius-md: 22px;
+      --radius-lg: 30px;
+      --radius-xl: 38px;
+      --max: 1200px;
+      --ease: cubic-bezier(.2,.8,.2,1);
+      --speed: 220ms;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+
+    html {
+      scroll-behavior: smooth;
+      text-size-adjust: 100%;
+    }
+
     body {
       margin: 0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--navy);
       background: #FFFFFF;
       overflow-x: hidden;
+      text-rendering: geometricPrecision;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
     a { color: inherit; text-decoration: none; }
-    button, select, input, textarea { font: inherit; }
-    .container { width: min(var(--max), calc(100% - 48px)); margin: 0 auto; }
+    button, input, select { font: inherit; }
+    button, a, select, input { -webkit-tap-highlight-color: transparent; }
 
-    .nav-shell {
+    .page {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 84% 6%, rgba(37,99,235,.07), transparent 32%),
+        radial-gradient(circle at 8% 44%, rgba(0,191,166,.05), transparent 28%),
+        linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 45%, #FFFFFF 100%);
+    }
+
+    .page:before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: .04;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='130' height='130'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+    }
+
+    .container {
+      width: min(100% - 48px, var(--max));
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .section {
+      position: relative;
+      padding: 112px 0;
+      overflow: hidden;
+    }
+
+    .section-tight { padding: 82px 0; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--teal);
+      box-shadow: 0 0 0 6px rgba(0,191,166,.12);
+      flex: 0 0 auto;
+    }
+
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    .section-head {
+      max-width: 820px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+
+    .section-head.left {
+      margin-left: 0;
+      text-align: left;
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--deep-navy);
+      font-size: clamp(40px, 5vw, 68px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 900;
+    }
+
+    .section-copy {
+      margin: 18px auto 0;
+      max-width: 760px;
+      color: var(--slate);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 620;
+    }
+
+    .section-head.left .section-copy { margin-left: 0; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 56px;
+      padding: 0 24px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 850;
+      letter-spacing: -.015em;
+      transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease), background var(--speed) var(--ease), color var(--speed) var(--ease), opacity var(--speed) var(--ease);
+    }
+
+    .btn:hover { transform: translateY(-2px); }
+    .btn:focus-visible { outline: 4px solid rgba(37,99,235,.16); outline-offset: 2px; }
+
+    .btn-primary {
+      color: #FFFFFF;
+      background: var(--gradient-primary);
+      box-shadow: var(--shadow-blue);
+    }
+
+    .btn-primary:hover { box-shadow: 0 30px 80px rgba(37,99,235,.28); }
+
+    .btn-secondary {
+      color: var(--deep-navy);
+      background: rgba(255,255,255,.84);
+      border-color: rgba(11,29,58,.10);
+      box-shadow: var(--shadow-xs);
+      backdrop-filter: blur(14px);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(37,99,235,.22);
+      color: var(--blue);
+      box-shadow: 0 18px 46px rgba(11,29,58,.10);
+    }
+
+    .btn-glass {
+      color: #FFFFFF;
+      background: rgba(255,255,255,.10);
+      border-color: rgba(255,255,255,.18);
+    }
+
+    .btn-glass:hover { background: rgba(255,255,255,.16); }
+
+    .premium-card {
+      background: var(--gradient-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-card), inset 0 1px 0 rgba(255,255,255,.9);
+      transition: transform var(--speed) var(--ease), box-shadow var(--speed) var(--ease), border-color var(--speed) var(--ease);
+    }
+
+    .premium-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 80px rgba(11,29,58,.13), inset 0 1px 0 rgba(255,255,255,.95);
+      border-color: rgba(37,99,235,.16);
+    }
+
+    .site-header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(255, 255, 255, 0.88);
+      border-bottom: 1px solid rgba(11,29,58,.065);
+      background: rgba(255,255,255,.86);
       backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(230, 234, 242, 0.88);
     }
 
     .nav {
@@ -53,775 +242,1332 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 28px;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      color: var(--deep);
-      font-size: 31px;
-      font-weight: 900;
-      letter-spacing: -0.055em;
+      gap: 11px;
+      flex: 0 0 auto;
+      color: var(--deep-navy);
+      font-size: 28px;
+      font-weight: 950;
+      letter-spacing: -.055em;
       white-space: nowrap;
     }
 
-    .brand svg { width: 42px; height: 42px; display: block; }
+    .brand svg {
+      width: 40px;
+      height: 40px;
+      display: block;
+      filter: drop-shadow(0 10px 16px rgba(37,99,235,.18));
+    }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 28px;
       color: #344054;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 750;
+      letter-spacing: -.01em;
     }
 
-    .nav-links a { transition: color .2s ease; }
-    .nav-links a:hover, .nav-links a.active { color: var(--blue); }
+    .nav-links a {
+      position: relative;
+      transition: color var(--speed) var(--ease);
+    }
+
+    .nav-links a:after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -8px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gradient-primary);
+      opacity: 0;
+      transform: scaleX(.45);
+      transition: opacity var(--speed) var(--ease), transform var(--speed) var(--ease);
+    }
+
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover:after { opacity: 1; transform: scaleX(1); }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 20px;
-      color: #344054;
-      font-size: 14px;
-      font-weight: 800;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 24px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-size: 14px;
-      font-weight: 900;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease, border-color .2s ease;
-      white-space: nowrap;
-    }
-
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
-      box-shadow: 0 18px 38px rgba(37, 99, 235, 0.24);
-    }
-    .btn-primary:hover { box-shadow: 0 24px 48px rgba(37, 99, 235, 0.31); }
-    .btn-secondary {
-      color: var(--blue);
-      background: #fff;
-      border-color: rgba(37, 99, 235, 0.22);
-      box-shadow: 0 10px 24px rgba(11, 29, 58, 0.04);
-    }
-    .btn-dark {
-      color: #fff;
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.18);
+      gap: 14px;
+      flex: 0 0 auto;
     }
 
     .mobile-toggle {
       display: none;
       width: 44px;
       height: 44px;
-      border-radius: 13px;
+      border-radius: 999px;
       border: 1px solid var(--line);
-      background: #fff;
-      color: var(--navy);
+      background: #FFFFFF;
+      color: var(--deep-navy);
+      box-shadow: var(--shadow-xs);
       cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
     }
 
-    .mobile-menu { display: none; padding: 0 0 18px; }
-    .mobile-menu.open { display: block; }
-    .mobile-menu-inner { display: grid; gap: 10px; padding-top: 14px; border-top: 1px solid var(--line); }
-    .mobile-menu a { padding: 14px 16px; border-radius: 16px; background: #fff; border: 1px solid var(--line); font-weight: 850; }
+    .drawer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      visibility: hidden;
+      opacity: 0;
+      transition: opacity var(--speed) var(--ease), visibility var(--speed) var(--ease);
+    }
+
+    .drawer.open { visibility: visible; opacity: 1; }
+
+    .drawer-scrim {
+      position: absolute;
+      inset: 0;
+      background: rgba(7,22,46,.46);
+      backdrop-filter: blur(4px);
+    }
+
+    .drawer-panel {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: min(82vw, 340px);
+      height: 100%;
+      padding: 92px 24px 24px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+      border-left: 1px solid rgba(11,29,58,.08);
+      box-shadow: -26px 0 80px rgba(7,22,46,.18);
+      transform: translateX(100%);
+      transition: transform 300ms var(--ease);
+      display: grid;
+      align-content: start;
+      gap: 10px;
+    }
+
+    .drawer.open .drawer-panel { transform: none; }
+
+    .drawer-panel a {
+      display: flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 14px;
+      color: var(--navy);
+      font-weight: 850;
+    }
+
+    .drawer-panel a:hover { background: var(--mist); color: var(--blue); }
 
     .hero {
       position: relative;
-      min-height: calc(100vh - 82px);
-      display: grid;
-      align-items: center;
-      padding: 76px 0 96px;
       overflow: hidden;
+      padding: 92px 0 98px;
       background:
-        radial-gradient(circle at 78% 12%, rgba(37, 99, 235, 0.12), transparent 34%),
-        radial-gradient(circle at 92% 60%, rgba(0, 191, 166, 0.10), transparent 32%),
-        linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
-      border-bottom: 1px solid rgba(230, 234, 242, 0.88);
+        radial-gradient(circle at 12% 18%, rgba(37,99,235,.20), transparent 34%),
+        radial-gradient(circle at 84% 10%, rgba(0,191,166,.16), transparent 32%),
+        radial-gradient(circle at 70% 78%, rgba(56,189,248,.10), transparent 34%),
+        linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 54%, #F6FAFF 100%);
     }
 
     .hero:before {
       content: "";
       position: absolute;
-      width: 760px;
-      height: 760px;
-      right: -410px;
-      top: 70px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(0, 191, 166, 0.16));
+      inset: 0;
       pointer-events: none;
+      background-image:
+        linear-gradient(rgba(37,99,235,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 54% 30%, black 0%, transparent 74%);
+      opacity: .45;
     }
 
     .hero:after {
       content: "";
       position: absolute;
-      width: 680px;
-      height: 680px;
-      left: -400px;
-      bottom: -430px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.09), transparent 65%);
+      width: 820px;
+      height: 190px;
+      right: -160px;
+      top: 92px;
+      background: linear-gradient(90deg, transparent, rgba(0,191,166,.18), transparent);
+      transform: rotate(-24deg);
+      filter: blur(10px);
+      opacity: .52;
       pointer-events: none;
     }
 
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      max-width: 1040px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .proof-row {
-      display: inline-flex;
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(420px, .96fr);
+      gap: 52px;
       align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 32px;
-      padding: 9px 13px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(230, 234, 242, 0.90);
-      box-shadow: 0 10px 28px rgba(11, 29, 58, 0.04);
-      color: #344054;
-      font-size: 14px;
-      font-weight: 850;
     }
 
-    .proof-mark {
-      display: inline-grid;
-      place-items: center;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      color: #fff;
-      background: linear-gradient(135deg, var(--teal), var(--blue));
-      font-size: 13px;
-      font-weight: 950;
-    }
-
-    h1 {
+    .hero-title {
       margin: 0 0 22px;
-      color: var(--deep);
-      font-size: clamp(52px, 6.7vw, 98px);
-      line-height: .94;
-      letter-spacing: -0.085em;
+      max-width: 740px;
+      color: var(--deep-navy);
+      font-size: clamp(56px, 7vw, 104px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      word-spacing: .035em;
       font-weight: 900;
     }
 
-    .headline-accent {
-      background: linear-gradient(90deg, var(--teal), var(--blue));
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      white-space: nowrap;
-    }
+    .hero-title span { display: block; }
 
-    .hero-subtitle {
-      max-width: 800px;
-      margin: 0 auto 42px;
-      color: #44546A;
-      font-size: clamp(21px, 1.95vw, 30px);
-      line-height: 1.34;
-      letter-spacing: -0.035em;
+    .hero-copy {
+      max-width: 660px;
+      margin: 0;
+      color: #465A72;
+      font-size: 19px;
+      line-height: 1.65;
       font-weight: 650;
     }
 
-    .partner-fit-card {
+    .hero-copy strong { color: var(--deep-navy); font-weight: 850; }
+
+    .hero-actions {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: min(820px, 100%);
-      margin: 0 auto;
-      padding: 8px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.82);
-      border: 1px solid rgba(230, 234, 242, 0.96);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(14px);
-    }
-
-    .partner-select-wrap {
-      position: relative;
-      flex: 1;
-      min-width: 280px;
-    }
-
-    .partner-select {
-      width: 100%;
-      min-height: 62px;
-      padding: 0 58px 0 24px;
-      border-radius: 999px;
-      border: 0;
-      background: transparent;
-      color: var(--navy);
-      font-size: 17px;
-      font-weight: 760;
-      outline: 0;
-      appearance: none;
-    }
-
-    .select-chevron {
-      position: absolute;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--navy);
-      pointer-events: none;
-    }
-
-    .partner-fit-card .btn { min-height: 62px; padding: 0 38px; border-radius: 999px; font-size: 16px; }
-
-    .under-form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 22px;
-      color: #53627C;
-      font-size: 14px;
-      font-weight: 780;
+      margin-top: 34px;
     }
 
-    .pill {
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 16px;
+      margin-top: 24px;
+      color: #344054;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .trust-row span {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.72);
-      border: 1px solid rgba(230, 234, 242, 0.90);
+      gap: 7px;
     }
 
-    .check {
-      width: 18px;
-      height: 18px;
+    .check-dot {
+      width: 20px;
+      height: 20px;
       display: inline-grid;
       place-items: center;
       border-radius: 999px;
-      background: rgba(0, 191, 166, 0.13);
-      color: #009B88;
+      background: rgba(0,191,166,.12);
+      color: #008B7B;
       font-size: 12px;
       font-weight: 950;
+      box-shadow: 0 0 0 5px rgba(0,191,166,.06);
       flex: 0 0 auto;
     }
 
-    .stats-strip { background: #fff; border-bottom: 1px solid rgba(230, 234, 242, 0.88); }
-    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border-left: 1px solid var(--line); border-right: 1px solid var(--line); }
-    .stat { background: #fff; padding: 26px 24px; text-align: center; }
-    .stat strong { display: block; color: var(--deep); font-size: 30px; letter-spacing: -0.06em; margin-bottom: 5px; }
-    .stat span { display: block; color: var(--slate); font-size: 13px; font-weight: 760; line-height: 1.4; }
-
-    section { padding: 100px 0; background: #fff; }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 42px;
-      margin-bottom: 40px;
-    }
-
-    .section-kicker {
-      color: var(--blue);
-      font-size: 13px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-weight: 950;
-      margin-bottom: 13px;
-    }
-
-    h2 {
-      margin: 0;
-      color: var(--deep);
-      font-size: clamp(38px, 4.5vw, 64px);
-      line-height: 1.02;
-      letter-spacing: -0.072em;
-      font-weight: 900;
-    }
-
-    .section-copy {
-      max-width: 540px;
-      margin: 0;
-      color: #60708A;
-      font-size: 17px;
-      line-height: 1.65;
-      font-weight: 560;
-    }
-
-    .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-
     .partner-card {
       position: relative;
-      min-height: 282px;
-      padding: 30px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, #fff, #F8FBFF);
-      border: 1px solid rgba(230, 234, 242, .92);
-      box-shadow: 0 16px 38px rgba(11, 29, 58, .05);
       overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease;
+      padding: 32px;
+      border-radius: 34px;
+      color: #FFFFFF;
+      background: var(--gradient-navy);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 40px 120px rgba(7,22,46,.24), inset 0 1px 0 rgba(255,255,255,.10);
     }
 
-    .partner-card:hover { transform: translateY(-6px); box-shadow: 0 28px 62px rgba(11, 29, 58, .09); }
+    .partner-card:before {
+      content: "";
+      position: absolute;
+      inset: -80px;
+      background:
+        radial-gradient(circle at 84% 14%, rgba(0,191,166,.24), transparent 34%),
+        radial-gradient(circle at 14% 86%, rgba(37,99,235,.26), transparent 38%);
+      pointer-events: none;
+    }
 
-    .icon {
+    .partner-card:after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 45%, black, transparent 78%);
+      opacity: .32;
+    }
+
+    .partner-card > * { position: relative; z-index: 1; }
+
+    .partner-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #7DD3FC;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .partner-stat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .partner-stat {
+      min-height: 152px;
+      padding: 18px;
+      border-radius: 22px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.13);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .partner-stat strong {
+      display: block;
+      margin-bottom: 10px;
+      color: #FFFFFF;
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: .94;
+      letter-spacing: -.055em;
+      font-weight: 950;
+    }
+
+    .partner-stat p {
+      margin: 0;
+      color: rgba(255,255,255,.72);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 650;
+    }
+
+    .benefits-section {
+      background:
+        radial-gradient(circle at 50% 36%, rgba(37,99,235,.08), transparent 34%),
+        linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 48%, #FFFFFF 100%);
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .benefit-card {
+      padding: 28px;
+      min-height: 300px;
+    }
+
+    .benefit-icon {
       width: 54px;
       height: 54px;
       display: grid;
       place-items: center;
-      border-radius: 18px;
       margin-bottom: 22px;
+      border-radius: 18px;
+      background: rgba(37,99,235,.10);
       color: var(--blue);
-      background: var(--sky);
-      font-weight: 950;
       font-size: 22px;
+      font-weight: 950;
+      box-shadow: 0 0 0 8px rgba(37,99,235,.035);
     }
 
-    .partner-card h3 { margin: 0 0 10px; color: var(--deep); font-size: 22px; letter-spacing: -0.04em; }
-    .partner-card p { margin: 0 0 22px; color: var(--slate); line-height: 1.62; font-weight: 540; }
+    .benefit-card h3 {
+      margin: 0 0 12px;
+      color: var(--deep-navy);
+      font-size: 24px;
+      line-height: 1.05;
+      letter-spacing: -.045em;
+      font-weight: 900;
+    }
 
-    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tag { padding: 7px 10px; border-radius: 999px; background: #F5FAFF; color: #42526D; border: 1px solid rgba(230, 234, 242, .9); font-size: 12px; font-weight: 820; }
+    .benefit-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 620;
+    }
 
-    .how-section { background: linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%); border-top: 1px solid rgba(230, 234, 242, .88); border-bottom: 1px solid rgba(230, 234, 242, .88); }
-    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .step { min-height: 252px; padding: 28px; border-radius: 30px; background: #fff; border: 1px solid rgba(230, 234, 242, .92); box-shadow: 0 14px 36px rgba(11, 29, 58, .045); }
-    .step-number { display: inline-flex; width: 38px; height: 38px; align-items: center; justify-content: center; border-radius: 14px; background: var(--blue); color: #fff; font-size: 13px; font-weight: 950; margin-bottom: 30px; }
-    .step h3 { margin: 0 0 10px; font-size: 21px; letter-spacing: -0.04em; color: var(--deep); }
-    .step p { margin: 0; color: var(--slate); line-height: 1.6; font-weight: 540; }
+    .how-section {
+      background:
+        radial-gradient(circle at 18% 22%, rgba(0,191,166,.08), transparent 28%),
+        linear-gradient(135deg, #F6FAFF 0%, #FFFFFF 55%, #F4FFFC 100%);
+    }
 
-    .portal-card {
-      display: grid;
-      grid-template-columns: .88fr 1.12fr;
-      gap: 42px;
-      align-items: center;
-      padding: 44px;
-      border-radius: 40px;
-      background: radial-gradient(circle at 100% 0%, rgba(37,99,235,.17), transparent 36%), linear-gradient(135deg, #07142A, #0B1D3A 54%, #0D3470);
-      color: #fff;
-      box-shadow: var(--shadow);
-      overflow: hidden;
+    .steps-wrap {
       position: relative;
     }
 
-    .portal-card:before { content: ""; position: absolute; right: -220px; bottom: -300px; width: 560px; height: 560px; border-radius: 50%; background: linear-gradient(135deg, rgba(37,99,235,.42), rgba(0,191,166,.38)); }
-    .portal-card > * { position: relative; z-index: 1; }
-    .portal-card .section-kicker { color: #72D8FF; }
-    .portal-card h2 { color: #fff; }
-    .portal-card p { color: rgba(255,255,255,.76); }
-
-    .portal-list { display: grid; gap: 12px; margin-top: 28px; }
-    .portal-item { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 16px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.10); color: rgba(255,255,255,.88); font-weight: 760; }
-
-    .dashboard { border-radius: 30px; background: rgba(255,255,255,.94); color: var(--navy); padding: 22px; box-shadow: 0 30px 70px rgba(0,0,0,.17); }
-    .dash-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--line); margin-bottom: 18px; }
-    .dash-top h3 { margin: 0 0 5px; font-size: 19px; letter-spacing: -0.035em; color: var(--deep); }
-    .dash-top p { margin: 0; color: var(--slate); font-size: 13px; font-weight: 720; }
-    .score { width: 78px; height: 78px; border-radius: 24px; display: grid; place-items: center; background: conic-gradient(var(--teal) 0 82%, #E6EAF2 82% 100%); position: relative; flex: 0 0 auto; }
-    .score:after { content: ""; width: 58px; height: 58px; border-radius: 19px; background: #fff; position: absolute; }
-    .score span { position: relative; z-index: 1; font-weight: 950; letter-spacing: -0.04em; font-size: 20px; }
-    .dash-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-    .dash-tile { padding: 16px; border-radius: 20px; background: linear-gradient(180deg, #fff, #F8FBFF); border: 1px solid var(--line); }
-    .dash-tile span { display: block; color: var(--slate); font-size: 12px; font-weight: 800; margin-bottom: 8px; }
-    .dash-tile strong { display: block; font-size: 19px; color: var(--deep); letter-spacing: -0.04em; }
-
-    .ecosystem-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
-    .ecosystem-item { min-height: 98px; display: grid; place-items: center; padding: 20px 16px; border-radius: 24px; background: #fff; border: 1px solid rgba(230, 234, 242, .92); box-shadow: 0 12px 28px rgba(11, 29, 58, .04); text-align: center; color: var(--navy); font-weight: 850; }
-
-    .apply-section { background: linear-gradient(180deg, #F8FBFF 0%, #FFFFFF 100%); border-top: 1px solid rgba(230, 234, 242, .88); border-bottom: 1px solid rgba(230, 234, 242, .88); }
-    .apply-card { display: grid; grid-template-columns: .82fr 1.18fr; gap: 32px; padding: 38px; border-radius: 38px; background: #fff; border: 1px solid rgba(230, 234, 242, .96); box-shadow: var(--shadow); }
-    .form-card { display: grid; gap: 14px; }
-    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-    .field { display: grid; gap: 7px; }
-    .field.full { grid-column: 1 / -1; }
-    label { color: #344054; font-size: 12px; font-weight: 900; letter-spacing: .025em; }
-    input, select, textarea { width: 100%; min-height: 52px; border-radius: 15px; border: 1px solid #DDE4EF; background: #fff; color: var(--navy); outline: none; padding: 0 14px; font-weight: 650; transition: border-color .2s ease, box-shadow .2s ease; }
-    textarea { padding-top: 14px; min-height: 112px; resize: vertical; line-height: 1.55; }
-    input:focus, select:focus, textarea:focus { border-color: rgba(37,99,235,.55); box-shadow: 0 0 0 4px rgba(37,99,235,.10); }
-    .fine-print { color: var(--slate); font-size: 12px; line-height: 1.5; font-weight: 600; margin: 0; }
-    .form-footer { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 6px; }
-    .status-message { display: none; margin-top: 12px; padding: 14px 16px; border-radius: 18px; background: rgba(0,191,166,.10); border: 1px solid rgba(0,191,166,.22); color: #007E70; font-size: 13px; font-weight: 800; line-height: 1.5; }
-    .status-message.show { display: block; }
-
-    .faq-wrap { display: grid; grid-template-columns: .8fr 1.2fr; gap: 46px; align-items: start; }
-    .faq-list { display: grid; gap: 12px; }
-    details { border: 1px solid rgba(230, 234, 242, .96); border-radius: 22px; background: #fff; box-shadow: 0 10px 26px rgba(11,29,58,.04); overflow: hidden; }
-    summary { padding: 20px 22px; cursor: pointer; font-weight: 900; letter-spacing: -0.025em; display: flex; align-items: center; justify-content: space-between; gap: 20px; list-style: none; }
-    summary::-webkit-details-marker { display: none; }
-    summary:after { content: "+"; color: var(--blue); font-size: 22px; }
-    details[open] summary:after { content: "–"; }
-    details p { margin: 0; padding: 0 22px 22px; color: var(--slate); line-height: 1.62; font-weight: 540; }
-
-    .cta-box { padding: 60px; border-radius: 42px; background: radial-gradient(circle at 95% 15%, rgba(0,191,166,.34), transparent 32%), radial-gradient(circle at 0% 100%, rgba(37,99,235,.35), transparent 34%), linear-gradient(135deg, #07142A, #0B1D3A 58%, #0D3470); color: #fff; box-shadow: var(--shadow); }
-    .cta-box h2 { color: #fff; max-width: 780px; margin-bottom: 16px; }
-    .cta-box p { max-width: 700px; margin: 0 0 28px; color: rgba(255,255,255,.76); font-size: 18px; line-height: 1.65; font-weight: 540; }
-    .cta-actions { display: flex; flex-wrap: wrap; gap: 14px; }
-
-    .footer { background: #fff; border-top: 1px solid rgba(230, 234, 242, .88); padding: 34px 0; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--slate); font-size: 13px; font-weight: 720; }
-    .footer-links { display: flex; flex-wrap: wrap; gap: 20px; }
-
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 980px) {
-      .container { width: min(var(--max), calc(100% - 36px)); }
-      .nav-links, .nav-actions { display: none; }
-      .mobile-toggle { display: inline-grid; place-items: center; }
-      .hero { min-height: auto; padding: 62px 0 76px; }
-      .partner-fit-card { flex-direction: column; border-radius: 28px; padding: 12px; }
-      .partner-select-wrap, .partner-fit-card .btn { width: 100%; }
-      .stats-grid, .steps { grid-template-columns: repeat(2, 1fr); }
-      .partner-grid { grid-template-columns: 1fr 1fr; }
-      .portal-card, .apply-card, .faq-wrap { grid-template-columns: 1fr; }
-      .ecosystem-grid { grid-template-columns: repeat(3, 1fr); }
-      .section-head { align-items: start; flex-direction: column; gap: 16px; }
+    .steps-wrap:before {
+      content: "";
+      position: absolute;
+      top: 68px;
+      left: 7%;
+      right: 7%;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--gradient-primary);
+      opacity: .55;
+      z-index: 0;
     }
 
-    @media (max-width: 640px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      .nav { height: 72px; }
-      .brand { font-size: 26px; }
-      .brand svg { width: 38px; height: 38px; }
-      .proof-row { flex-wrap: wrap; margin-bottom: 24px; }
-      h1 { font-size: clamp(43px, 12vw, 66px); }
-      .hero-subtitle { font-size: 20px; }
-      .partner-select, .partner-fit-card .btn { min-height: 58px; font-size: 16px; }
-      .stats-grid, .partner-grid, .steps, .dash-grid, .ecosystem-grid, .form-grid { grid-template-columns: 1fr; }
-      section { padding: 72px 0; }
-      .portal-card, .apply-card, .cta-box { padding: 26px; border-radius: 30px; }
-      .form-footer { align-items: stretch; flex-direction: column; }
-      .form-footer .btn { width: 100%; }
-      .cta-actions .btn { width: 100%; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
+    .steps-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .step-card {
+      padding: 24px;
+      min-height: 290px;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-number {
+      width: 54px;
+      height: 54px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 18px;
+      background: var(--gradient-primary);
+      color: #FFFFFF;
+      font-size: 14px;
+      font-weight: 950;
+      box-shadow: 0 18px 40px rgba(37,99,235,.18);
+    }
+
+    .step-card h3 {
+      margin: 0 0 10px;
+      color: var(--deep-navy);
+      font-size: 21px;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      font-weight: 900;
+    }
+
+    .step-card p {
+      margin: 0;
+      color: var(--slate);
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 620;
+    }
+
+    .who-section {
+      background:
+        radial-gradient(circle at 82% 32%, rgba(37,99,235,.07), transparent 32%),
+        linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+    }
+
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .who-card {
+      padding: 34px;
+      min-height: 430px;
+    }
+
+    .who-card.dark {
+      position: relative;
+      overflow: hidden;
+      color: #FFFFFF;
+      background: var(--gradient-navy);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 34px 100px rgba(7,22,46,.22);
+    }
+
+    .who-card.dark:before {
+      content: "";
+      position: absolute;
+      inset: -70px;
+      background:
+        radial-gradient(circle at 80% 12%, rgba(0,191,166,.22), transparent 34%),
+        radial-gradient(circle at 10% 90%, rgba(37,99,235,.24), transparent 38%);
+      pointer-events: none;
+    }
+
+    .who-card.dark > * { position: relative; z-index: 1; }
+
+    .card-label {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(37,99,235,.09);
+      color: var(--blue);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .who-card.dark .card-label {
+      background: rgba(0,191,166,.14);
+      color: #C8FFF6;
+    }
+
+    .who-card h3 {
+      margin: 0 0 20px;
+      color: var(--deep-navy);
+      font-size: 32px;
+      line-height: 1.02;
+      letter-spacing: -.05em;
+      font-weight: 900;
+    }
+
+    .who-card.dark h3 { color: #FFFFFF; }
+
+    .who-list {
+      display: grid;
+      gap: 13px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .who-list li {
+      display: flex;
+      gap: 10px;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .who-card.dark .who-list li { color: rgba(255,255,255,.80); }
+
+    .who-list li:before {
+      content: "→";
+      color: var(--blue);
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+
+    .who-card.dark .who-list li:before { color: #C8FFF6; }
+
+    .who-card .btn { margin-top: 28px; }
+
+    .apply-section {
+      color: #FFFFFF;
+      background:
+        radial-gradient(circle at 12% 84%, rgba(0,191,166,.22), transparent 32%),
+        radial-gradient(circle at 88% 18%, rgba(37,99,235,.24), transparent 34%),
+        linear-gradient(135deg, #07162E 0%, #0B1D3A 52%, #123C7C 100%);
+    }
+
+    .apply-section:before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 50% 45%, black, transparent 78%);
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .apply-grid {
+      display: grid;
+      grid-template-columns: minmax(0, .92fr) minmax(420px, 1.08fr);
+      gap: 54px;
+      align-items: start;
+    }
+
+    .apply-section .eyebrow { color: #7DD3FC; }
+    .apply-section .section-title { color: #FFFFFF; }
+    .apply-section .section-copy { color: rgba(255,255,255,.76); }
+
+    .apply-list {
+      display: grid;
+      gap: 13px;
+      margin: 28px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .apply-list li {
+      display: flex;
+      gap: 10px;
+      color: rgba(255,255,255,.82);
+      font-size: 15px;
+      line-height: 1.5;
+      font-weight: 650;
+    }
+
+    .form-card {
+      padding: 34px;
+      border-radius: 34px;
+      background: rgba(255,255,255,.94);
+      border: 1px solid rgba(255,255,255,.18);
+      box-shadow: 0 34px 110px rgba(0,0,0,.28), inset 0 1px 0 rgba(255,255,255,.90);
+      color: var(--navy);
+      backdrop-filter: blur(18px);
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field { margin-bottom: 18px; }
+
+    .field label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--deep-navy);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    .req { color: var(--danger); }
+
+    input,
+    select {
+      width: 100%;
+      min-height: 60px;
+      padding: 0 17px;
+      border-radius: 18px;
+      border: 1px solid rgba(11,29,58,.12);
+      background: #FFFFFF;
+      color: var(--deep-navy);
+      outline: none;
+      font-size: 15px;
+      font-weight: 750;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.9);
+      transition: border-color var(--speed) var(--ease), box-shadow var(--speed) var(--ease), background var(--speed) var(--ease);
+    }
+
+    input:hover,
+    select:hover { border-color: rgba(37,99,235,.24); }
+
+    input:focus,
+    select:focus {
+      border-color: rgba(37,99,235,.46);
+      box-shadow: 0 0 0 4px rgba(37,99,235,.10), 0 12px 32px rgba(37,99,235,.08);
+    }
+
+    .field.invalid input,
+    .field.invalid select {
+      border-color: rgba(180,35,24,.52);
+      box-shadow: 0 0 0 4px rgba(180,35,24,.08);
+    }
+
+    .err {
+      display: none;
+      margin-top: 7px;
+      color: var(--danger);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .field.invalid .err { display: block; }
+
+    .form-note {
+      margin: 14px 0 0;
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.5;
+      font-weight: 650;
+      text-align: center;
+    }
+
+    .form-success {
+      display: none;
+      padding: 42px 16px;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 22px;
+      border-radius: 24px;
+      background: rgba(0,191,166,.12);
+      color: #008B7B;
+      font-size: 34px;
+      font-weight: 950;
+      box-shadow: 0 0 0 12px rgba(0,191,166,.06);
+    }
+
+    .form-success h3 {
+      margin: 0 0 10px;
+      color: var(--deep-navy);
+      font-size: 32px;
+      line-height: 1.04;
+      letter-spacing: -.05em;
+      font-weight: 900;
+    }
+
+    .form-success p {
+      margin: 0 auto;
+      max-width: 440px;
+      color: var(--slate);
+      font-size: 15px;
+      line-height: 1.6;
+      font-weight: 650;
+    }
+
+    .cta-section {
+      padding: 94px 0;
+      background: #FFFFFF;
+    }
+
+    .cta-panel {
+      position: relative;
+      overflow: hidden;
+      padding: 62px;
+      border-radius: 42px;
+      color: #FFFFFF;
+      text-align: center;
+      background: var(--gradient-navy);
+      box-shadow: 0 40px 120px rgba(7,22,46,.24);
+    }
+
+    .cta-panel:before {
+      content: "";
+      position: absolute;
+      inset: -100px;
+      background:
+        radial-gradient(circle at 70% 40%, rgba(0,191,166,.22), transparent 34%),
+        radial-gradient(circle at 25% 60%, rgba(37,99,235,.22), transparent 38%);
+      filter: blur(16px);
+      pointer-events: none;
+    }
+
+    .cta-content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .cta-panel h2 {
+      margin: 0;
+      color: #FFFFFF;
+      font-size: clamp(44px, 5.8vw, 76px);
+      line-height: .98;
+      letter-spacing: -.055em;
+      font-weight: 900;
+    }
+
+    .cta-panel p {
+      margin: 20px auto 0;
+      max-width: 650px;
+      color: rgba(255,255,255,.78);
+      font-size: 18px;
+      line-height: 1.65;
+      font-weight: 600;
+    }
+
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .site-footer {
+      padding: 64px 0 34px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FBFF 100%);
+      border-top: 1px solid rgba(11,29,58,.08);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 34px;
+    }
+
+    .footer-brand p {
+      margin: 16px 0 0;
+      max-width: 340px;
+      color: var(--slate);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 620;
+    }
+
+    .footer-col h4 {
+      margin: 0 0 16px;
+      color: var(--deep-navy);
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: .10em;
+    }
+
+    .footer-col a {
+      display: block;
+      margin: 11px 0;
+      color: var(--slate);
+      font-size: 14px;
+      font-weight: 650;
+      transition: color var(--speed) var(--ease), transform var(--speed) var(--ease);
+    }
+
+    .footer-col a:hover {
+      color: var(--blue);
+      transform: translateX(3px);
+    }
+
+    .footer-bottom {
+      padding-top: 32px;
+      margin-top: 44px;
+      border-top: 1px solid rgba(11,29,58,.08);
+      color: var(--slate);
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms var(--ease), transform 700ms var(--ease);
+    }
+
+    .reveal.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1180px) {
+      .nav-links { display: none; }
+      .mobile-toggle { display: inline-flex; }
+      .hero-grid, .apply-grid { grid-template-columns: 1fr; }
+      .partner-card { max-width: 760px; }
+      .benefit-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+    }
+
+    @media (max-width: 820px) {
+      .container { width: min(100% - 36px, var(--max)); }
+      .section { padding: 84px 0; }
+      .hero { padding: 68px 0 76px; }
+      .hero-title { font-size: clamp(48px, 13vw, 72px); line-height: 1; }
+      .hero-copy { font-size: 17px; }
+      .nav-actions .btn-secondary { display: none; }
+      .benefit-grid, .steps-grid, .who-grid, .footer-grid { grid-template-columns: 1fr; }
+      .steps-wrap:before { display: none; }
+      .two { grid-template-columns: 1fr; }
+      .form-card { padding: 26px; border-radius: 28px; }
+      .cta-panel { padding: 38px 24px; border-radius: 32px; }
+    }
+
+    @media (max-width: 560px) {
+      .nav { height: 74px; }
+      .brand { font-size: 25px; }
+      .brand svg { width: 36px; height: 36px; }
+      .nav-actions .btn-primary { display: none; }
+      .hero-actions, .cta-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .partner-stat-grid { grid-template-columns: 1fr; }
+      .section-title { font-size: clamp(36px, 11vw, 52px); }
+      .benefit-card, .step-card, .who-card { min-height: auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *:before, *:after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .001ms !important;
+      }
     }
   </style>
 </head>
 <body>
-  <header class="nav-shell">
-    <div class="container nav">
-      <a href="index.html" class="brand" aria-label="Revola home">
-        <svg viewBox="0 0 64 64" aria-hidden="true">
-          <defs>
-            <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse"><stop stop-color="#07142A"/><stop offset=".28" stop-color="#0B5CFF"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
-            <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#00BFA6"/><stop offset="1" stop-color="#09D6BF"/></linearGradient>
-          </defs>
-          <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
-          <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
-          <path d="M43.8 26.5 28.4 31.8 42.3 36l-4.5 16c8-3.1 15.9-9.5 18.5-18.3 1.3-4.6-5.3-9.4-12.5-7.2Z" fill="#0B5CFF" opacity=".72"/>
-        </svg>
-        Revola
-      </a>
-
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="index.html">Small business funding</a>
-        <a href="#models">Embedded Funding</a>
-        <a href="#portal">Partner Network</a>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="index.html">Sign in</a>
-        <a href="#faq">Support</a>
-        <a href="#partner-apply" class="btn btn-primary">Become a partner</a>
-      </div>
-
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-    </div>
-
-    <div class="container mobile-menu" id="mobileMenu">
-      <div class="mobile-menu-inner">
-        <a href="index.html">Small business funding</a>
-        <a href="#models">Embedded Funding</a>
-        <a href="#portal">Partner Network</a>
-        <a href="#faq">Support</a>
-        <a href="#partner-apply">Become a partner</a>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-inner reveal">
-        <div class="proof-row">
-          <span class="proof-mark">R</span>
-          <span>Business funding infrastructure for trusted partners.</span>
-        </div>
-
-        <h1>Offer business funding <span class="headline-accent">without becoming the lender.</span></h1>
-        <p class="hero-subtitle">Give your clients, users, members, or borrowers a cleaner way to access capital through Revola’s Capital Passport experience.</p>
-
-        <div class="partner-fit-card" role="group" aria-label="Check partner fit">
-          <div class="partner-select-wrap">
-            <select class="partner-select" id="partnerType" aria-label="What type of partner are you?">
-              <option value="">What type of partner are you?</option>
-              <option value="accountant">Accountant / Bookkeeper</option>
-              <option value="consultant">Business Consultant</option>
-              <option value="platform">SaaS Platform / Marketplace</option>
-              <option value="equipment">Equipment Dealer</option>
-              <option value="franchise">Franchise / Multi-location Operator</option>
-              <option value="lender">Lender / Broker / Capital Provider</option>
-              <option value="agency">Agency / Growth Firm</option>
-              <option value="community">Community / Association</option>
-            </select>
-            <svg class="select-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
-          </div>
-          <button class="btn btn-primary" id="partnerFitButton" type="button">Check partner fit</button>
-        </div>
-
-        <div class="under-form">
-          <span class="pill"><span class="check">✓</span> Referral partnerships</span>
-          <span class="pill"><span class="check">✓</span> Embedded funding</span>
-          <span class="pill"><span class="check">✓</span> Lender network</span>
-        </div>
-      </div>
-    </section>
-
-    <div class="stats-strip">
+  <div class="page">
+    <header class="site-header">
       <div class="container">
-        <div class="stats-grid reveal">
-          <div class="stat"><strong>1</strong><span>Partner intake path</span></div>
-          <div class="stat"><strong>3</strong><span>Partnership models</span></div>
-          <div class="stat"><strong>4+</strong><span>Funding categories</span></div>
-          <div class="stat"><strong>0</strong><span>Lending operation to build yourself</span></div>
-        </div>
+        <nav class="nav" aria-label="Primary navigation">
+          <a href="index.html" class="brand" aria-label="Revola home">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <defs>
+                <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#07142A"/>
+                  <stop offset=".28" stop-color="#0B5CFF"/>
+                  <stop offset="1" stop-color="#2563EB"/>
+                </linearGradient>
+                <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00BFA6"/>
+                  <stop offset="1" stop-color="#09D6BF"/>
+                </linearGradient>
+              </defs>
+              <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
+              <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
+              <path d="M43.8 26.5 28.4 31.8 42.3 36l-4.5 16c8-3.1 15.9-9.5 18.5-18.3 1.3-4.6-5.3-9.4-12.5-7.2Z" fill="#0B5CFF" opacity=".72"/>
+            </svg>
+            Revola
+          </a>
+
+          <div class="nav-links">
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#capital-passport">Capital Passport</a>
+            <a href="index.html#solutions">Solutions</a>
+            <a href="partners.html">Partners</a>
+          </div>
+
+          <div class="nav-actions">
+            <a href="mailto:partners@revola.com" class="btn btn-secondary">Contact partnerships</a>
+            <a href="#apply" class="btn btn-primary">Become a partner</a>
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer" id="drawer" aria-hidden="true">
+      <div class="drawer-scrim" data-close></div>
+      <div class="drawer-panel" role="dialog" aria-label="Mobile menu">
+        <a href="index.html">Home</a>
+        <a href="index.html#how">How it works</a>
+        <a href="index.html#capital-passport">Capital Passport</a>
+        <a href="index.html#solutions">Solutions</a>
+        <a href="#why">Why partner</a>
+        <a href="#apply">Become a partner</a>
       </div>
     </div>
 
-    <section id="models">
-      <div class="container">
-        <div class="section-head reveal">
+    <main>
+      <section class="hero">
+        <div class="container hero-grid">
           <div>
-            <div class="section-kicker">Partner models</div>
-            <h2>Three ways to partner with Revola.</h2>
-          </div>
-          <p class="section-copy">Whether you want to refer clients, embed funding into your platform, or join the capital network, Revola gives partners a professional path to support business owners.</p>
-        </div>
-
-        <div class="partner-grid">
-          <article class="partner-card reveal"><div class="icon">↗</div><h3>Referral partners</h3><p>Send clients into Revola when they need working capital, equipment financing, receivables support, or expansion funding.</p><div class="tag-row"><span class="tag">Accountants</span><span class="tag">Consultants</span><span class="tag">Agencies</span></div></article>
-          <article class="partner-card reveal"><div class="icon">▥</div><h3>Embedded funding</h3><p>Add a funding layer to your platform, marketplace, franchise system, or member community without building lender infrastructure.</p><div class="tag-row"><span class="tag">SaaS</span><span class="tag">Marketplaces</span><span class="tag">Communities</span></div></article>
-          <article class="partner-card reveal"><div class="icon">◈</div><h3>Lender network</h3><p>Receive organized business funding opportunities through a cleaner borrower profile and structured funding use case.</p><div class="tag-row"><span class="tag">Lenders</span><span class="tag">Brokers</span><span class="tag">Capital providers</span></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="how-section" id="how">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <div class="section-kicker">How it works</div>
-            <h2>A clean funding experience for your clients.</h2>
-          </div>
-          <p class="section-copy">The partner motion is simple: identify the need, route the client into Revola, track progress, and support the relationship.</p>
-        </div>
-
-        <div class="steps">
-          <article class="step reveal"><div class="step-number">01</div><h3>Identify the need</h3><p>Your client needs capital for cash flow, equipment, inventory, receivables, expansion, or consolidation.</p></article>
-          <article class="step reveal"><div class="step-number">02</div><h3>Send to Revola</h3><p>Route them through a guided Capital Passport experience that captures the right information upfront.</p></article>
-          <article class="step reveal"><div class="step-number">03</div><h3>Advisor review</h3><p>Revola organizes the profile, evaluates funding path fit, and helps prepare the next step.</p></article>
-          <article class="step reveal"><div class="step-number">04</div><h3>Track outcomes</h3><p>Partners can track referrals, qualified files, lender submissions, funded outcomes, and follow-ups.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section id="portal">
-      <div class="container">
-        <div class="portal-card reveal">
-          <div>
-            <div class="section-kicker">Partner Network</div>
-            <h2>Your partner workspace, built around visibility.</h2>
-            <p class="section-copy">Revola’s partner experience is designed to make funding referrals feel professional, trackable, and advisor-supported from intake to outcome.</p>
-            <div class="portal-list">
-              <div class="portal-item"><span class="check">✓</span> Referral attribution and intake tracking</div>
-              <div class="portal-item"><span class="check">✓</span> Capital Passport and document readiness</div>
-              <div class="portal-item"><span class="check">✓</span> Submission status, lender match, and funded outcomes</div>
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Partner with Revola</div>
+            <h1 class="hero-title">
+              <span>Send clients to better funding.</span>
+              <span class="gradient-text">Earn on every close.</span>
+            </h1>
+            <p class="hero-copy">Refer the businesses you already advise to a cleaner funding experience — and get paid when deals fund. You stay the trusted advisor; Revola handles the runaround.</p>
+            <div class="hero-actions">
+              <a href="#apply" class="btn btn-primary">Become a partner →</a>
+              <a href="#how" class="btn btn-secondary">See how it works</a>
+            </div>
+            <div class="trust-row">
+              <span><span class="check-dot">✓</span>No cost to join</span>
+              <span><span class="check-dot">✓</span>You never become the lender</span>
+              <span><span class="check-dot">✓</span>Transparent payout on funded deals</span>
             </div>
           </div>
 
-          <div class="dashboard">
-            <div class="dash-top"><div><h3>Partner Pipeline</h3><p>Growth agency · Active partner</p></div><div class="score"><span>82</span></div></div>
-            <div class="dash-grid">
-              <div class="dash-tile"><span>Referred volume</span><strong>$1.8M</strong></div>
-              <div class="dash-tile"><span>Client referrals</span><strong>42</strong></div>
-              <div class="dash-tile"><span>Advisor review</span><strong>18</strong></div>
-              <div class="dash-tile"><span>Funded outcomes</span><strong>$620K</strong></div>
+          <aside class="partner-card" aria-label="Why partners refer to Revola">
+            <div class="partner-label"><span class="eyebrow-dot"></span>Why partners refer to Revola</div>
+            <div class="partner-stat-grid">
+              <div class="partner-stat">
+                <strong>1</strong>
+                <p>profile your client builds — reused across every funding path.</p>
+              </div>
+              <div class="partner-stat">
+                <strong>$0</strong>
+                <p>cost to your client. Revola is paid by funding partners.</p>
+              </div>
+              <div class="partner-stat">
+                <strong>24h</strong>
+                <p>funding possible for eligible referred businesses.</p>
+              </div>
+              <div class="partner-stat">
+                <strong>100%</strong>
+                <p>of the client relationship stays yours.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="section benefits-section" id="why">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Why partner</div>
+            <h2 class="section-title">Add a funding answer without becoming a lender.</h2>
+            <p class="section-copy">Your clients ask about capital. Instead of turning them away or vetting lenders yourself, route them to Revola and keep being the advisor they trust.</p>
+          </div>
+
+          <div class="benefit-grid">
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">$</div>
+              <h3>Earn on closed deals</h3>
+              <p>Transparent payouts when a referred business funds — no guesswork, no clawback games. You see the terms up front.</p>
+            </article>
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">✓</div>
+              <h3>Zero lending risk</h3>
+              <p>Revola is a marketplace, not a balance sheet. You refer; partners underwrite. Your clients get options, and you carry none of the credit risk.</p>
+            </article>
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">◎</div>
+              <h3>Keep the relationship</h3>
+              <p>You stay the trusted name. Revola supports the funding conversation in the background and keeps the client experience clean.</p>
+            </article>
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">↗</div>
+              <h3>One simple handoff</h3>
+              <p>Share a link or submit a referral. Your client builds one Capital Passport — no repeat applications and no chasing paperwork.</p>
+            </article>
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">▦</div>
+              <h3>Visibility into status</h3>
+              <p>Know where your referrals stand — submitted, matched, funded — so you can follow up at the right moment.</p>
+            </article>
+            <article class="benefit-card premium-card reveal">
+              <div class="benefit-icon">⌾</div>
+              <h3>A name you can stand behind</h3>
+              <p>No surprise products, no fees to your client, and clear consent before anything moves. Refer without putting your reputation at risk.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section how-section" id="how">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>How it works</div>
+            <h2 class="section-title">From referral to payout in four steps.</h2>
+            <p class="section-copy">Lightweight to start, simple to run. Most partners are ready to refer quickly after joining.</p>
+          </div>
+
+          <div class="steps-wrap">
+            <div class="steps-grid">
+              <article class="step-card premium-card reveal">
+                <div class="step-number">01</div>
+                <h3>Join</h3>
+                <p>Apply in minutes. We confirm fit and set up your referral path and payout details.</p>
+              </article>
+              <article class="step-card premium-card reveal">
+                <div class="step-number">02</div>
+                <h3>Refer</h3>
+                <p>Share your link or submit a client. They build one Capital Passport — you stay the advisor.</p>
+              </article>
+              <article class="step-card premium-card reveal">
+                <div class="step-number">03</div>
+                <h3>We match</h3>
+                <p>Revola routes the profile to funding partners and supports the client through their options.</p>
+              </article>
+              <article class="step-card premium-card reveal">
+                <div class="step-number">04</div>
+                <h3>You earn</h3>
+                <p>When a referred business funds, you are paid on transparent, agreed terms.</p>
+              </article>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="ecosystem">
-      <div class="container">
-        <div class="section-head reveal">
+      <section class="section who-section" id="who">
+        <div class="container">
+          <div class="section-head">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Who partners with Revola</div>
+            <h2 class="section-title">Two ways to work with us.</h2>
+          </div>
+
+          <div class="who-grid">
+            <article class="who-card dark">
+              <span class="card-label">Referral partners</span>
+              <h3>Advisors, brokers, and platforms</h3>
+              <ul class="who-list">
+                <li>Accountants and bookkeepers whose clients need capital.</li>
+                <li>Business brokers and loan brokers.</li>
+                <li>Consultants, fractional CFOs, and advisors.</li>
+                <li>SaaS and fintech platforms serving SMBs.</li>
+              </ul>
+              <a href="#apply" class="btn btn-primary">Become a referral partner →</a>
+            </article>
+
+            <article class="who-card premium-card">
+              <span class="card-label">Capital partners</span>
+              <h3>Lenders and funding providers</h3>
+              <ul class="who-list">
+                <li>Get curated, profile-first deal flow.</li>
+                <li>Receive lender-ready Capital Passports, not raw leads.</li>
+                <li>Set your own criteria and funding box.</li>
+                <li>Plug into the Revola marketplace.</li>
+              </ul>
+              <a href="mailto:partners@revola.com?subject=Capital%20partner%20inquiry" class="btn btn-secondary">Talk to our team →</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section apply-section" id="apply">
+        <div class="container apply-grid">
           <div>
-            <div class="section-kicker">Who should partner</div>
-            <h2>Built for teams businesses already trust.</h2>
-          </div>
-          <p class="section-copy">Revola is a fit for advisors, platforms, communities, operators, and capital providers already serving business owners.</p>
-        </div>
-        <div class="ecosystem-grid reveal">
-          <div class="ecosystem-item">Accountants</div><div class="ecosystem-item">Bookkeepers</div><div class="ecosystem-item">Consultants</div><div class="ecosystem-item">SaaS Platforms</div><div class="ecosystem-item">Marketplaces</div>
-          <div class="ecosystem-item">Equipment Dealers</div><div class="ecosystem-item">Franchisors</div><div class="ecosystem-item">Agencies</div><div class="ecosystem-item">Associations</div><div class="ecosystem-item">Lenders</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="apply-section" id="partner-apply">
-      <div class="container">
-        <div class="apply-card reveal">
-          <div>
-            <div class="section-kicker">Become a partner</div>
-            <h2>Tell us how you want to work with Revola.</h2>
-            <p class="section-copy" style="margin-top:18px;">Submit a partner profile and we’ll review your audience, client base, referral flow, and best-fit partnership model.</p>
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Become a partner</div>
+            <h2 class="section-title">Let's get you set up.</h2>
+            <p class="section-copy">Tell us a bit about your business and how you would like to work with Revola. We will follow up within one business day.</p>
+            <ul class="apply-list">
+              <li><span class="check-dot">✓</span>No cost to join and no minimums.</li>
+              <li><span class="check-dot">✓</span>You are never the lender and carry no credit risk.</li>
+              <li><span class="check-dot">✓</span>Transparent payouts on funded referrals.</li>
+              <li><span class="check-dot">✓</span>Your clients are never charged by Revola.</li>
+            </ul>
           </div>
 
-          <form class="form-card" id="partnerForm">
-            <div class="form-grid">
-              <div class="field"><label for="name">Full name</label><input id="name" name="name" placeholder="Chris Khoury" required /></div>
-              <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@company.com" required /></div>
-              <div class="field"><label for="company">Company</label><input id="company" name="company" placeholder="Company LLC" required /></div>
-              <div class="field"><label for="website">Website</label><input id="website" name="website" type="url" placeholder="https://company.com" /></div>
-              <div class="field"><label for="partnerModel">Partner model</label><select id="partnerModel" name="partnerModel" required><option value="">Select model</option><option>Referral partnership</option><option>Embedded funding</option><option>Lender network</option><option>Strategic partnership</option><option>Not sure yet</option></select></div>
-              <div class="field"><label for="audienceSize">Audience / client base</label><select id="audienceSize" name="audienceSize"><option>Under 25 businesses</option><option>25–100 businesses</option><option>100–500 businesses</option><option>500–2,500 businesses</option><option>2,500+ businesses</option></select></div>
-              <div class="field full"><label for="notes">What should we know?</label><textarea id="notes" name="notes" placeholder="Tell us about your clients, platform, referral workflow, or capital network..."></textarea></div>
+          <div class="form-card">
+            <form id="partnerForm" novalidate>
+              <div class="two">
+                <div class="field" id="fnameField">
+                  <label for="fname">First name <span class="req">*</span></label>
+                  <input id="fname" type="text" autocomplete="given-name" />
+                  <div class="err">Please enter your first name.</div>
+                </div>
+                <div class="field" id="lnameField">
+                  <label for="lname">Last name <span class="req">*</span></label>
+                  <input id="lname" type="text" autocomplete="family-name" />
+                  <div class="err">Please enter your last name.</div>
+                </div>
+              </div>
+
+              <div class="field" id="companyField">
+                <label for="company">Company / firm <span class="req">*</span></label>
+                <input id="company" type="text" autocomplete="organization" />
+                <div class="err">Please enter your company or firm.</div>
+              </div>
+
+              <div class="two">
+                <div class="field" id="emailField">
+                  <label for="email">Work email <span class="req">*</span></label>
+                  <input id="email" type="email" autocomplete="email" />
+                  <div class="err">Please enter a valid email.</div>
+                </div>
+                <div class="field" id="phoneField">
+                  <label for="phone">Phone <span class="req">*</span></label>
+                  <input id="phone" type="tel" autocomplete="tel" />
+                  <div class="err">Please enter a valid phone number.</div>
+                </div>
+              </div>
+
+              <div class="two">
+                <div class="field" id="ptypeField">
+                  <label for="ptype">Partner type <span class="req">*</span></label>
+                  <select id="ptype">
+                    <option value="">Select one</option>
+                    <option>Accountant / bookkeeper</option>
+                    <option>Business or loan broker</option>
+                    <option>Consultant / advisor / CFO</option>
+                    <option>SaaS / fintech platform</option>
+                    <option>Lender / capital provider</option>
+                    <option>Other</option>
+                  </select>
+                  <div class="err">Please select a partner type.</div>
+                </div>
+                <div class="field">
+                  <label for="volume">Estimated referrals / month</label>
+                  <select id="volume">
+                    <option value="">Select range</option>
+                    <option>1–5</option>
+                    <option>6–20</option>
+                    <option>21–50</option>
+                    <option>50+</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="submitBtn" style="width:100%; margin-top:8px;">Submit partner application →</button>
+              <p class="form-note">By submitting, you agree to be contacted about partnering with Revola.</p>
+            </form>
+
+            <div class="form-success" id="formSuccess">
+              <div class="success-icon">✓</div>
+              <h3>Application received.</h3>
+              <p>Thanks — a member of the Revola partnerships team will reach out within one business day.</p>
             </div>
-            <div class="form-footer">
-              <p class="fine-print">By submitting, you agree to be contacted about Revola partnership opportunities. This is not a guarantee of approval or commercial terms.</p>
-              <button class="btn btn-primary" type="submit">Submit partner profile →</button>
-            </div>
-            <div class="status-message" id="statusMessage">Partner profile submitted. In production, this should route into your partner CRM and trigger follow-up.</div>
-          </form>
-        </div>
-      </div>
-    </section>
-
-    <section id="faq">
-      <div class="container faq-wrap">
-        <div class="reveal">
-          <div class="section-kicker">FAQ</div>
-          <h2>Partnerships, explained clearly.</h2>
-          <p class="section-copy" style="margin-top:18px;">Revola is designed to give partners a clean way to support client funding needs without becoming a lender themselves.</p>
-        </div>
-        <div class="faq-list reveal">
-          <details open><summary>Who can become a Revola partner?</summary><p>Accountants, consultants, agencies, equipment dealers, franchisors, platforms, associations, lenders, brokers, and other trusted businesses that serve business owners.</p></details>
-          <details><summary>Does a partner need lending experience?</summary><p>No. Many partners simply identify a client need and send the client into Revola’s intake process. Revola supports the funding profile, education, and review workflow.</p></details>
-          <details><summary>Can Revola be embedded into another platform?</summary><p>Yes. Revola can support embedded or referral-based funding experiences for software platforms, marketplaces, franchise systems, and business communities.</p></details>
-          <details><summary>How are partner economics handled?</summary><p>Economics depend on partner type, referral volume, funding product, regulatory considerations, and commercial structure. Terms should be reviewed individually.</p></details>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <div class="container">
-        <div class="cta-box reveal">
-          <h2>Turn client capital needs into a premium partnership channel.</h2>
-          <p>Give business owners a clearer way to access capital while creating a scalable partner motion for your company.</p>
-          <div class="cta-actions">
-            <a href="#partner-apply" class="btn btn-primary">Become a partner →</a>
-            <a href="application.html" class="btn btn-dark">Send a client to apply</a>
           </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a href="index.html" class="brand" style="font-size:22px;letter-spacing:-.045em;">
-        <svg viewBox="0 0 64 64" aria-hidden="true" style="width:32px;height:32px;"><path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="#2563EB"/><path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="#00BFA6"/><path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l3.6-1.1L21.6 51v10H9V49Z" fill="#0B1D3A" opacity=".9"/></svg>
-        Revola
-      </a>
-      <div>© 2026 Revola. Business funding, without the runaround.</div>
-      <div class="footer-links"><a href="index.html">Funding</a><a href="#models">Models</a><a href="#partner-apply">Apply</a><a href="application.html">Borrower app</a></div>
-    </div>
-  </footer>
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-panel">
+            <div class="cta-content">
+              <h2>Questions before you join?</h2>
+              <p>Talk to our partnerships team about referral terms, capital partner onboarding, or embedding Revola in your platform.</p>
+              <div class="cta-actions">
+                <a href="mailto:partners@revola.com" class="btn btn-primary">Contact partnerships</a>
+                <a href="#apply" class="btn btn-glass">Apply to partner</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <a href="index.html" class="brand" aria-label="Revola home">
+              <svg viewBox="0 0 64 64" aria-hidden="true">
+                <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="#2563EB"/>
+                <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="#00BFA6"/>
+              </svg>
+              Revola
+            </a>
+            <p>One profile, every funding path. Build a Capital Passport, compare best options, and move forward with confidence.</p>
+          </div>
+
+          <div class="footer-col">
+            <h4>Product</h4>
+            <a href="index.html#how">How it works</a>
+            <a href="index.html#capital-passport">Capital Passport</a>
+            <a href="index.html#solutions">Solutions</a>
+            <a href="application.html">Check eligibility</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Partners</h4>
+            <a href="#apply">Become a partner</a>
+            <a href="#who">Referral partners</a>
+            <a href="mailto:partners@revola.com">Capital partners</a>
+            <a href="mailto:partners@revola.com">Contact partnerships</a>
+          </div>
+
+          <div class="footer-col">
+            <h4>Company</h4>
+            <a href="index.html#truth">Why Revola</a>
+            <a href="index.html#industries">Industries</a>
+            <a href="mailto:hello@revola.com">Contact</a>
+            <a href="#">Privacy &amp; data</a>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          © 2026 Revola. All rights reserved. Revola is a funding marketplace, not a lender, and does not make credit decisions or guarantee funding. Revola is compensated by funding partners. Referral partner compensation, where offered, is governed by a separate written partner agreement and may be subject to applicable law and licensing requirements in your jurisdiction. Funding timing, amounts, and availability depend on eligibility and partner requirements.
+        </div>
+      </div>
+    </footer>
+  </div>
 
   <script>
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.12 });
+    (function () {
+      const drawer = document.getElementById('drawer');
+      const mobileToggle = document.getElementById('mobileToggle');
 
-    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+      function closeDrawer() {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.textContent = '☰';
+      }
 
-    const partnerFitButton = document.getElementById('partnerFitButton');
-    const partnerType = document.getElementById('partnerType');
-    const partnerModel = document.getElementById('partnerModel');
-
-    if (partnerFitButton && partnerType) {
-      partnerFitButton.addEventListener('click', () => {
-        if (partnerType.value && partnerModel) {
-          const map = {
-            accountant: 'Referral partnership',
-            consultant: 'Referral partnership',
-            platform: 'Embedded funding',
-            equipment: 'Referral partnership',
-            franchise: 'Embedded funding',
-            lender: 'Lender network',
-            agency: 'Referral partnership',
-            community: 'Strategic partnership'
-          };
-          partnerModel.value = map[partnerType.value] || '';
-        }
-        document.getElementById('partner-apply').scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-
-    const partnerForm = document.getElementById('partnerForm');
-    const statusMessage = document.getElementById('statusMessage');
-
-    if (partnerForm && statusMessage) {
-      partnerForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        statusMessage.classList.add('show');
-        const button = partnerForm.querySelector('button[type="submit"]');
-        const original = button.textContent;
-        button.textContent = 'Partner profile submitted ✓';
-        setTimeout(() => {
-          button.textContent = original;
-          partnerForm.reset();
-        }, 2600);
-      });
-    }
-
-    const mobileToggle = document.getElementById('mobileToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-
-    if (mobileToggle && mobileMenu) {
-      mobileToggle.addEventListener('click', () => {
-        const isOpen = mobileMenu.classList.toggle('open');
-        mobileToggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      mobileMenu.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-          mobileMenu.classList.remove('open');
-          mobileToggle.setAttribute('aria-expanded', 'false');
+      if (drawer && mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+          const open = !drawer.classList.contains('open');
+          drawer.classList.toggle('open', open);
+          drawer.setAttribute('aria-hidden', String(!open));
+          mobileToggle.setAttribute('aria-expanded', String(open));
+          mobileToggle.textContent = open ? '×' : '☰';
         });
-      });
-    }
+
+        drawer.querySelectorAll('[data-close], a').forEach((el) => {
+          el.addEventListener('click', closeDrawer);
+        });
+      }
+
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .15 });
+
+      document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+      const form = document.getElementById('partnerForm');
+      const success = document.getElementById('formSuccess');
+      const emailRegex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+
+      function setError(id, bad) {
+        const field = document.getElementById(id + 'Field');
+        if (field) field.classList.toggle('invalid', bad);
+      }
+
+      function getValue(id) {
+        return document.getElementById(id).value || '';
+      }
+
+      if (form) {
+        form.addEventListener('submit', (event) => {
+          event.preventDefault();
+
+          const checks = [
+            ['fname', (value) => value.trim().length > 0],
+            ['lname', (value) => value.trim().length > 0],
+            ['company', (value) => value.trim().length > 0],
+            ['email', (value) => emailRegex.test(value)],
+            ['phone', (value) => value.replace(/\D/g, '').length >= 10],
+            ['ptype', (value) => value.trim().length > 0]
+          ];
+
+          let ok = true;
+
+          checks.forEach(([id, test]) => {
+            const bad = !test(getValue(id));
+            setError(id, bad);
+            if (bad) ok = false;
+          });
+
+          if (!ok) {
+            const firstInvalid = form.querySelector('.invalid input, .invalid select');
+            if (firstInvalid) firstInvalid.focus();
+            return;
+          }
+
+          const payload = {
+            firstName: getValue('fname'),
+            lastName: getValue('lname'),
+            company: getValue('company'),
+            email: getValue('email'),
+            phone: getValue('phone'),
+            partnerType: getValue('ptype'),
+            estimatedReferrals: getValue('volume'),
+            submittedAt: new Date().toISOString()
+          };
+
+          localStorage.setItem('revola_partner_application', JSON.stringify(payload));
+          form.style.display = 'none';
+          success.style.display = 'block';
+          success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        });
+
+        form.querySelectorAll('input, select').forEach((el) => {
+          el.addEventListener('input', () => setError(el.id, false));
+          el.addEventListener('change', () => setError(el.id, false));
+        });
+      }
+    })();
   </script>
 </body>
 </html>
