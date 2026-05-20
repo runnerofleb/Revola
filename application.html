@@ -3,859 +3,624 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Revola | Funding Application</title>
-  <meta name="description" content="Apply for business funding through Revola. One premium funding profile for working capital, lines of credit, equipment financing, SBA-style options, and expansion capital." />
+  <title>Revola | Check Eligibility</title>
+  <meta name="description" content="Check business funding eligibility with Revola through one simple guided application experience." />
   <style>
     :root {
-      --navy: #0B1D3A;
-      --navy-2: #07142A;
-      --blue: #2563EB;
-      --blue-2: #0B5CFF;
-      --teal: #00BFA6;
-      --sky: #E6F2FF;
-      --sky-2: #F5FAFF;
-      --slate: #667085;
-      --slate-2: #344054;
-      --line: #E6EAF2;
-      --white: #FFFFFF;
-      --success: #009B88;
-      --warning: #B7791F;
-      --error: #D92D20;
-      --shadow: 0 24px 70px rgba(11, 29, 58, 0.11);
-      --shadow-soft: 0 14px 40px rgba(11, 29, 58, 0.07);
-      --radius: 28px;
-      --radius-lg: 38px;
-      --max: 1180px;
+      --navy:#0B1D3A;
+      --deep:#07142A;
+      --blue:#2563EB;
+      --blue2:#0B5CFF;
+      --teal:#00BFA6;
+      --mint:#75D5C2;
+      --cream:#F7F4F1;
+      --soft:#F8FBFF;
+      --sky:#E6F2FF;
+      --slate:#667085;
+      --line:#E6EAF2;
+      --white:#FFFFFF;
+      --success:#009B88;
+      --error:#D92D20;
+      --shadow:0 24px 70px rgba(11,29,58,.10);
+      --soft-shadow:0 14px 38px rgba(11,29,58,.07);
+      --max:1120px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      margin: 0;
+      margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--navy);
-      background:
-        radial-gradient(circle at 84% 0%, rgba(37, 99, 235, .13), transparent 34%),
-        radial-gradient(circle at 96% 38%, rgba(0, 191, 166, .11), transparent 31%),
-        linear-gradient(180deg, #FFFFFF 0%, #F7FBFF 58%, #FFFFFF 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
+      color:var(--navy);
+      background:linear-gradient(180deg,#FAF8F6 0%,#FFFFFF 56%,#F8FBFF 100%);
+      min-height:100vh;
+      overflow-x:hidden;
     }
 
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
+    a { color:inherit; text-decoration:none; }
+    button, input, select { font:inherit; }
 
-    .container {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-    }
+    .container { width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
 
     .nav-shell {
-      position: sticky;
-      top: 0;
-      z-index: 90;
-      backdrop-filter: blur(18px);
-      background: rgba(255,255,255,.84);
-      border-bottom: 1px solid rgba(230,234,242,.78);
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(250,248,246,.92);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(230,226,221,.92);
     }
 
     .nav {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 900;
-      letter-spacing: -0.055em;
-      font-size: 31px;
-      color: var(--navy-2);
-      white-space: nowrap;
-    }
-
-    .brand svg { width: 42px; height: 42px; display: block; }
-
-    .nav-meta {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      color: #53627C;
-      font-size: 13px;
-      font-weight: 760;
-    }
-
-    .secure-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(230, 242, 255, .86);
-      color: var(--blue);
-      border: 1px solid rgba(37,99,235,.13);
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-    }
-
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--teal);
-      box-shadow: 0 0 0 7px rgba(0,191,166,.11);
-      flex: 0 0 auto;
-    }
-
-    .hero {
-      padding: 62px 0 34px;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr .72fr;
-      gap: 42px;
-      align-items: end;
-    }
-
-    h1 {
-      margin: 18px 0 16px;
-      max-width: 780px;
-      font-size: clamp(44px, 5.6vw, 78px);
-      line-height: .95;
-      letter-spacing: -0.078em;
-      color: var(--navy-2);
-    }
-
-    .gradient-text {
-      background: linear-gradient(90deg, #00A993, #11CDB7 46%, #2563EB 125%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .hero-copy {
-      max-width: 660px;
-      color: #53627C;
-      font-size: 19px;
-      line-height: 1.65;
-      margin: 0;
-      font-weight: 540;
-    }
-
-    .summary-card {
-      border-radius: 30px;
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(230,234,242,.9);
-      box-shadow: var(--shadow-soft);
-      padding: 22px;
-      backdrop-filter: blur(18px);
-    }
-
-    .summary-card h3 {
-      margin: 0 0 14px;
-      font-size: 18px;
-      letter-spacing: -.035em;
-      color: var(--navy-2);
-    }
-
-    .summary-list {
-      display: grid;
-      gap: 10px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .summary-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: #53627C;
-      font-size: 14px;
-      font-weight: 720;
-      line-height: 1.4;
-    }
-
-    .check {
-      width: 20px;
-      height: 20px;
-      border-radius: 999px;
-      display: inline-grid;
-      place-items: center;
-      background: rgba(0,191,166,.13);
-      color: var(--success);
-      font-size: 12px;
-      font-weight: 950;
-      flex: 0 0 auto;
-    }
-
-    .application-shell {
-      padding: 26px 0 92px;
-    }
-
-    .application-card {
-      display: grid;
-      grid-template-columns: 310px minmax(0, 1fr);
-      min-height: 720px;
-      border-radius: var(--radius-lg);
-      background: #FFFFFF;
-      border: 1px solid rgba(230,234,242,.96);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .side-panel {
-      position: relative;
-      padding: 30px;
-      color: #fff;
-      background:
-        radial-gradient(circle at 82% 0%, rgba(0,191,166,.38), transparent 33%),
-        radial-gradient(circle at 0% 100%, rgba(37,99,235,.42), transparent 38%),
-        linear-gradient(145deg, #07142A 0%, #0B1D3A 58%, #0D3470 100%);
-      overflow: hidden;
-    }
-
-    .side-panel:after {
-      content: "";
-      position: absolute;
-      width: 360px;
-      height: 360px;
-      right: -190px;
-      bottom: -210px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(37,99,235,.45), rgba(0,191,166,.42));
-      opacity: .9;
-    }
-
-    .side-panel > * { position: relative; z-index: 1; }
-
-    .side-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      font-size: 12px;
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .12em;
-      color: #9BE7FF;
-      margin-bottom: 26px;
-    }
-
-    .progress-ring {
-      width: 118px;
-      height: 118px;
-      border-radius: 32px;
-      display: grid;
-      place-items: center;
-      background: conic-gradient(var(--teal) 0deg, var(--teal) var(--progress-angle), rgba(255,255,255,.16) var(--progress-angle), rgba(255,255,255,.16) 360deg);
-      box-shadow: 0 24px 48px rgba(0,0,0,.18);
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .progress-ring:after {
-      content: "";
-      width: 86px;
-      height: 86px;
-      border-radius: 24px;
-      background: rgba(7,20,42,.94);
-      position: absolute;
-    }
-
-    .progress-ring span {
-      position: relative;
-      z-index: 1;
-      color: #fff;
-      font-size: 26px;
-      font-weight: 950;
-      letter-spacing: -.04em;
-    }
-
-    .side-panel h2 {
-      margin: 0 0 10px;
-      color: #fff;
-      font-size: 30px;
-      line-height: 1.05;
-      letter-spacing: -.06em;
-    }
-
-    .side-panel p {
-      margin: 0 0 26px;
-      color: rgba(255,255,255,.72);
-      font-size: 14px;
-      line-height: 1.6;
-      font-weight: 560;
-    }
-
-    .step-list {
-      display: grid;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .step-tab {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px;
-      border-radius: 18px;
-      color: rgba(255,255,255,.68);
-      background: rgba(255,255,255,.055);
-      border: 1px solid rgba(255,255,255,.08);
-      transition: background .22s ease, color .22s ease, border-color .22s ease;
-    }
-
-    .step-tab.active {
-      color: #fff;
-      background: rgba(255,255,255,.13);
-      border-color: rgba(255,255,255,.18);
-    }
-
-    .step-tab.done {
-      color: rgba(255,255,255,.86);
-    }
-
-    .step-index {
-      width: 31px;
-      height: 31px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      background: rgba(255,255,255,.13);
-      font-size: 12px;
-      font-weight: 950;
-      flex: 0 0 auto;
-    }
-
-    .step-tab.done .step-index {
-      background: rgba(0,191,166,.28);
-      color: #A8FFF3;
-    }
-
-    .step-tab strong {
-      display: block;
-      font-size: 13px;
-      letter-spacing: -.01em;
-    }
-
-    .step-tab span:not(.step-index) {
-      display: block;
-      font-size: 11px;
-      margin-top: 2px;
-      color: rgba(255,255,255,.54);
-      font-weight: 700;
-    }
-
-    .form-panel {
-      padding: 34px;
-      display: flex;
-      flex-direction: column;
-      min-width: 0;
-    }
-
-    .form-topbar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 22px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .form-topbar h2 {
-      margin: 0 0 6px;
-      font-size: 28px;
-      letter-spacing: -.055em;
-      color: var(--navy-2);
-    }
-
-    .form-topbar p {
-      margin: 0;
-      color: #667085;
-      font-size: 14px;
-      font-weight: 630;
-      line-height: 1.5;
-    }
-
-    .save-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-radius: 999px;
-      background: var(--sky-2);
-      color: #42526D;
-      border: 1px solid var(--line);
-      font-size: 12px;
-      font-weight: 850;
-      white-space: nowrap;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .form-step {
-      display: none;
-      animation: fadeUp .28s ease both;
-    }
-
-    .form-step.active { display: block; }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .field {
-      display: grid;
-      gap: 8px;
-      min-width: 0;
-    }
-
-    .field.full { grid-column: 1 / -1; }
-
-    label {
-      color: var(--slate-2);
-      font-size: 12px;
-      font-weight: 950;
-      letter-spacing: .025em;
-    }
-
-    .hint {
-      color: #7A869A;
-      font-size: 12px;
-      line-height: 1.4;
-      font-weight: 620;
-      margin-top: -2px;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      min-height: 54px;
-      border-radius: 16px;
-      border: 1px solid #DDE4EF;
-      background: #fff;
-      color: var(--navy);
-      outline: none;
-      padding: 0 14px;
-      font-weight: 680;
-      transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
-    }
-
-    textarea {
-      padding-top: 14px;
-      min-height: 112px;
-      resize: vertical;
-      line-height: 1.55;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(37,99,235,.58);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.10);
-    }
-
-    input.invalid, select.invalid, textarea.invalid {
-      border-color: rgba(217,45,32,.72);
-      box-shadow: 0 0 0 4px rgba(217,45,32,.08);
-    }
-
-    .choice-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      grid-column: 1 / -1;
-    }
-
-    .choice {
-      position: relative;
-      display: block;
-      min-height: 94px;
-      border-radius: 20px;
-      border: 1px solid #DDE4EF;
-      background: linear-gradient(180deg, #fff, #F8FBFF);
-      padding: 16px;
-      cursor: pointer;
-      transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-    }
-
-    .choice:hover {
-      transform: translateY(-2px);
-      border-color: rgba(37,99,235,.35);
-      box-shadow: 0 12px 28px rgba(11,29,58,.06);
-    }
-
-    .choice input {
-      position: absolute;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .choice strong {
-      display: block;
-      color: var(--navy-2);
-      font-size: 14px;
-      letter-spacing: -.02em;
-      margin-bottom: 5px;
-    }
-
-    .choice span {
-      display: block;
-      color: #667085;
-      font-size: 12px;
-      line-height: 1.45;
-      font-weight: 650;
-    }
-
-    .choice:has(input:checked) {
-      border-color: rgba(37,99,235,.65);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.09);
-      background: linear-gradient(180deg, #FFFFFF, #F1F7FF);
-    }
-
-    .choice:has(input:checked)::after {
-      content: "✓";
-      position: absolute;
-      right: 14px;
-      top: 14px;
-      width: 22px;
-      height: 22px;
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      background: var(--blue);
-      color: white;
-      font-size: 12px;
-      font-weight: 950;
-    }
-
-    .upload-box {
-      grid-column: 1 / -1;
-      border: 1.5px dashed rgba(37,99,235,.28);
-      border-radius: 24px;
-      background: linear-gradient(180deg, #F8FBFF, #FFFFFF);
-      padding: 22px;
-      display: grid;
-      gap: 14px;
-    }
-
-    .upload-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .upload-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      background: var(--sky);
-      color: var(--blue);
-      flex: 0 0 auto;
-    }
-
-    .upload-header strong {
-      display: block;
-      font-size: 15px;
-      letter-spacing: -.025em;
-      margin-bottom: 4px;
-    }
-
-    .upload-header span {
-      display: block;
-      color: #667085;
-      font-size: 12px;
-      line-height: 1.45;
-      font-weight: 650;
-    }
-
-    input[type="file"] {
-      min-height: auto;
-      padding: 12px;
-      background: #fff;
-    }
-
-    .review-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .review-card {
-      padding: 18px;
-      border-radius: 22px;
-      border: 1px solid var(--line);
-      background: linear-gradient(180deg, #fff, #F8FBFF);
-      min-height: 120px;
-    }
-
-    .review-card h4 {
-      margin: 0 0 12px;
-      color: var(--navy-2);
-      font-size: 15px;
-      letter-spacing: -.025em;
-    }
-
-    .review-row {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 7px 0;
-      border-top: 1px solid rgba(230,234,242,.74);
-      color: #667085;
-      font-size: 12px;
-      font-weight: 760;
-    }
-
-    .review-row:first-of-type { border-top: 0; padding-top: 0; }
-    .review-row strong {
-      color: var(--navy);
-      text-align: right;
-      font-size: 13px;
-      font-weight: 900;
-      overflow-wrap: anywhere;
-    }
-
-    .readiness-card {
-      grid-column: 1 / -1;
-      padding: 22px;
-      border-radius: 26px;
-      border: 1px solid rgba(0,191,166,.18);
-      background:
-        radial-gradient(circle at 100% 0%, rgba(0,191,166,.16), transparent 31%),
-        linear-gradient(180deg, #FFFFFF, #F5FFFD);
-      display: grid;
-      grid-template-columns: auto 1fr;
-      gap: 18px;
-      align-items: center;
-    }
-
-    .mini-score {
-      width: 82px;
-      height: 82px;
-      border-radius: 24px;
-      display: grid;
-      place-items: center;
-      background: conic-gradient(var(--teal) 0 74%, #E6EAF2 74% 100%);
-      position: relative;
-      flex: 0 0 auto;
-    }
-
-    .mini-score:after {
-      content: "";
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      background: #fff;
-      position: absolute;
-    }
-
-    .mini-score span {
-      position: relative;
-      z-index: 1;
-      color: var(--navy);
-      font-weight: 950;
-      font-size: 20px;
-      letter-spacing: -.04em;
-    }
-
-    .readiness-card h4 {
-      margin: 0 0 6px;
-      font-size: 18px;
-      letter-spacing: -.04em;
-    }
-
-    .readiness-card p {
-      margin: 0;
-      color: #667085;
-      font-size: 13px;
-      line-height: 1.55;
-      font-weight: 630;
-    }
-
-    .consent-box {
-      grid-column: 1 / -1;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 16px;
-      border-radius: 20px;
-      background: #F8FBFF;
-      border: 1px solid var(--line);
-      color: #53627C;
-      font-size: 13px;
-      line-height: 1.5;
-      font-weight: 640;
-    }
-
-    .consent-box input {
-      width: 18px;
-      height: 18px;
-      min-height: 18px;
-      margin-top: 1px;
-      flex: 0 0 auto;
-      accent-color: var(--blue);
-    }
-
-    .form-actions {
-      margin-top: auto;
-      padding-top: 26px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      border-top: 1px solid var(--line);
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-size:31px;
+      font-weight:900;
+      letter-spacing:-.055em;
+      color:var(--deep);
+      white-space:nowrap;
+    }
+
+    .brand svg { width:42px; height:42px; }
+
+    .nav-links {
+      display:flex;
+      align-items:center;
+      gap:28px;
+      font-size:15px;
+      font-weight:850;
+      color:#1F2933;
+    }
+
+    .nav-links a:hover { color:var(--blue); }
+
+    .nav-actions {
+      display:flex;
+      align-items:center;
+      gap:22px;
+      font-size:15px;
+      font-weight:850;
+      color:#1F2933;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 0 23px;
-      border-radius: 15px;
-      border: 1px solid transparent;
-      font-weight: 900;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
-      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:50px;
+      padding:0 24px;
+      border:0;
+      border-radius:999px;
+      font-size:15px;
+      font-weight:900;
+      cursor:pointer;
+      transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+      white-space:nowrap;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), #0B5CFF);
-      box-shadow: 0 18px 38px rgba(37,99,235,.25);
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { color:#fff; background:#102424; box-shadow:0 18px 38px rgba(16,36,36,.17); }
+    .btn-primary:hover { box-shadow:0 24px 48px rgba(16,36,36,.23); }
+    .btn-blue { color:#fff; background:linear-gradient(135deg,var(--blue),var(--blue2)); box-shadow:0 18px 38px rgba(37,99,235,.23); }
+    .btn-secondary { color:var(--blue); background:#fff; border:1px solid rgba(37,99,235,.20); box-shadow:0 10px 24px rgba(11,29,58,.04); }
+    .btn-muted { color:#42526D; background:#fff; border:1px solid var(--line); }
+
+    .mobile-toggle {
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:13px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--navy);
     }
 
-    .btn-primary:hover { box-shadow: 0 24px 48px rgba(37,99,235,.32); }
-    .btn-secondary {
-      background: #fff;
-      color: var(--blue);
-      border-color: rgba(37, 99, 235, .24);
-      box-shadow: 0 10px 24px rgba(11,29,58,.04);
+    .hero {
+      position:relative;
+      min-height:calc(100vh - 78px);
+      display:grid;
+      align-items:center;
+      padding:64px 0 88px;
+      overflow:hidden;
     }
 
-    .btn-muted {
-      background: #fff;
-      color: #42526D;
-      border-color: #DDE4EF;
+    .hero:before {
+      content:"";
+      position:absolute;
+      width:780px;
+      height:780px;
+      border-radius:50%;
+      right:-360px;
+      top:80px;
+      background:radial-gradient(circle, rgba(117,213,194,.16), transparent 65%);
+      pointer-events:none;
     }
 
-    .btn[disabled] {
-      opacity: .45;
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
+    .hero:after {
+      content:"";
+      position:absolute;
+      width:680px;
+      height:680px;
+      border-radius:50%;
+      left:-360px;
+      bottom:-380px;
+      background:radial-gradient(circle, rgba(37,99,235,.10), transparent 65%);
+      pointer-events:none;
     }
 
-    .status-message {
-      display: none;
-      margin-top: 16px;
-      padding: 15px 16px;
-      border-radius: 18px;
-      background: rgba(0,191,166,.10);
-      border: 1px solid rgba(0,191,166,.22);
-      color: #007E70;
-      font-size: 13px;
-      font-weight: 800;
-      line-height: 1.5;
+    .hero-inner {
+      position:relative;
+      z-index:1;
+      text-align:center;
+      max-width:980px;
+      margin:0 auto;
     }
 
-    .status-message.show { display: block; }
+    .review-row {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      margin-bottom:32px;
+      color:#172424;
+      font-size:16px;
+      font-weight:760;
+    }
+
+    .stars {
+      display:inline-flex;
+      align-items:center;
+      gap:3px;
+    }
+
+    .star-box {
+      width:23px;
+      height:23px;
+      display:grid;
+      place-items:center;
+      border-radius:3px;
+      background:#00B67A;
+      color:#fff;
+      font-size:15px;
+      font-weight:950;
+      line-height:1;
+    }
+
+    h1 {
+      margin:0 0 22px;
+      color:#111827;
+      font-size:clamp(58px,7.6vw,112px);
+      line-height:.96;
+      letter-spacing:-.075em;
+      font-weight:540;
+      font-family: Georgia, "Times New Roman", serif;
+    }
+
+    .headline-accent {
+      color:#69BFAE;
+      font-style:italic;
+      white-space:nowrap;
+    }
+
+    .hero-subtitle {
+      margin:0 auto 44px;
+      max-width:720px;
+      color:#202124;
+      font-size:clamp(23px,2.1vw,34px);
+      line-height:1.28;
+      letter-spacing:-.025em;
+      font-weight:520;
+    }
+
+    .eligibility-card {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:12px;
+      width:min(760px,100%);
+      margin:0 auto;
+    }
+
+    .amount-select-wrap {
+      position:relative;
+      flex:1;
+      min-width:280px;
+    }
+
+    .amount-select {
+      width:100%;
+      min-height:68px;
+      padding:0 56px 0 26px;
+      border-radius:999px;
+      border:1px solid rgba(17,24,39,.13);
+      background:#fff;
+      color:#171717;
+      font-size:18px;
+      font-weight:560;
+      outline:0;
+      appearance:none;
+      box-shadow:0 12px 30px rgba(17,24,39,.045);
+    }
+
+    .select-chevron {
+      position:absolute;
+      right:24px;
+      top:50%;
+      transform:translateY(-50%);
+      color:#172424;
+      pointer-events:none;
+    }
+
+    .eligibility-card .btn { min-height:68px; padding:0 44px; font-size:18px; }
+
+    .under-form {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:14px;
+      margin-top:24px;
+      color:#4A5568;
+      font-size:14px;
+      font-weight:760;
+    }
+
+    .proof-pill {
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(230,226,221,.95);
+    }
+
+    .check {
+      width:18px;
+      height:18px;
+      display:inline-grid;
+      place-items:center;
+      border-radius:999px;
+      background:rgba(0,191,166,.13);
+      color:#009B88;
+      font-size:12px;
+      font-weight:950;
+    }
+
+    .flow-shell {
+      display:none;
+      position:relative;
+      min-height:calc(100vh - 78px);
+      padding:54px 0 82px;
+    }
+
+    .flow-shell.active { display:block; }
+
+    .progress-wrap {
+      width:min(760px,100%);
+      margin:0 auto 34px;
+    }
+
+    .progress-top {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      margin-bottom:12px;
+      color:#53627C;
+      font-size:13px;
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+    }
+
+    .progress-bar {
+      height:9px;
+      border-radius:999px;
+      background:#ECE7E2;
+      overflow:hidden;
+    }
+
+    .progress-fill {
+      height:100%;
+      width:0%;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--blue),var(--teal));
+      transition:width .3s ease;
+    }
+
+    .flow-card {
+      width:min(760px,100%);
+      margin:0 auto;
+      padding:42px;
+      border-radius:36px;
+      background:#fff;
+      border:1px solid rgba(230,234,242,.96);
+      box-shadow:var(--shadow);
+      text-align:left;
+      animation:fadeUp .28s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(10px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    .step-kicker {
+      display:inline-flex;
+      align-items:center;
+      gap:9px;
+      margin-bottom:18px;
+      color:var(--blue);
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+    }
+
+    .flow-card h2 {
+      margin:0 0 12px;
+      color:#111827;
+      font-size:clamp(34px,4.2vw,54px);
+      line-height:1.02;
+      letter-spacing:-.06em;
+    }
+
+    .step-copy {
+      margin:0 0 26px;
+      color:#53627C;
+      font-size:17px;
+      line-height:1.6;
+      font-weight:560;
+    }
+
+    .option-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:18px;
+    }
+
+    .option-card {
+      position:relative;
+      min-height:96px;
+      padding:18px;
+      border-radius:22px;
+      background:linear-gradient(180deg,#fff,#F8FBFF);
+      border:1px solid #DDE4EF;
+      cursor:pointer;
+      transition:transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+
+    .option-card:hover {
+      transform:translateY(-2px);
+      border-color:rgba(37,99,235,.38);
+      box-shadow:0 12px 28px rgba(11,29,58,.06);
+    }
+
+    .option-card input {
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+
+    .option-card strong {
+      display:block;
+      color:var(--deep);
+      font-size:16px;
+      letter-spacing:-.02em;
+      margin-bottom:5px;
+    }
+
+    .option-card span {
+      display:block;
+      color:#667085;
+      font-size:13px;
+      line-height:1.45;
+      font-weight:650;
+    }
+
+    .option-card:has(input:checked) {
+      border-color:rgba(37,99,235,.68);
+      box-shadow:0 0 0 4px rgba(37,99,235,.09);
+      background:linear-gradient(180deg,#FFFFFF,#F1F7FF);
+    }
+
+    .option-card:has(input:checked)::after {
+      content:"✓";
+      position:absolute;
+      right:15px;
+      top:15px;
+      width:24px;
+      height:24px;
+      display:grid;
+      place-items:center;
+      border-radius:999px;
+      background:var(--blue);
+      color:#fff;
+      font-size:13px;
+      font-weight:950;
+    }
+
+    .field-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+
+    .field { display:grid; gap:8px; }
+    .field.full { grid-column:1/-1; }
+
+    label.field-label {
+      color:#344054;
+      font-size:12px;
+      font-weight:950;
+      letter-spacing:.025em;
+    }
+
+    input, select {
+      width:100%;
+      min-height:56px;
+      padding:0 15px;
+      border-radius:16px;
+      border:1px solid #DDE4EF;
+      background:#fff;
+      color:var(--navy);
+      outline:0;
+      font-weight:720;
+    }
+
+    input:focus, select:focus {
+      border-color:rgba(37,99,235,.58);
+      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    }
+
+    .flow-actions {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      margin-top:30px;
+      padding-top:24px;
+      border-top:1px solid var(--line);
+    }
 
     .error-message {
-      display: none;
-      margin-top: 12px;
-      color: var(--error);
-      font-size: 13px;
-      font-weight: 800;
+      display:none;
+      margin-top:14px;
+      color:var(--error);
+      font-size:13px;
+      font-weight:850;
     }
 
-    .error-message.show { display: block; }
+    .error-message.show { display:block; }
 
-    .footer {
-      padding: 30px 0;
-      border-top: 1px solid rgba(230,234,242,.82);
-      background: #fff;
-      color: #667085;
-      font-size: 13px;
-      font-weight: 720;
+    .success-card {
+      display:none;
+      width:min(760px,100%);
+      margin:0 auto;
+      padding:46px;
+      border-radius:36px;
+      background:#fff;
+      border:1px solid rgba(230,234,242,.96);
+      box-shadow:var(--shadow);
+      text-align:center;
     }
 
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+    .success-card.active { display:block; }
+
+    .success-icon {
+      width:74px;
+      height:74px;
+      display:grid;
+      place-items:center;
+      margin:0 auto 22px;
+      border-radius:24px;
+      background:rgba(0,191,166,.13);
+      color:var(--success);
+      font-size:34px;
+      font-weight:950;
     }
 
-    @media (max-width: 980px) {
-      .container { width: min(var(--max), calc(100% - 36px)); }
-      .nav-meta span:not(.secure-pill) { display: none; }
-      .hero-grid, .application-card { grid-template-columns: 1fr; }
-      .side-panel { padding: 28px; }
-      .step-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .hero { padding-top: 48px; }
+    .success-card h2 {
+      margin:0 0 12px;
+      font-size:clamp(34px,4.2vw,54px);
+      line-height:1.02;
+      letter-spacing:-.06em;
     }
 
-    @media (max-width: 700px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      .nav { height: 72px; }
-      .brand { font-size: 26px; }
-      .brand svg { width: 38px; height: 38px; }
-      .secure-pill { display: none; }
-      h1 { font-size: clamp(42px, 13vw, 58px); }
-      .hero-copy { font-size: 16px; }
-      .application-shell { padding-top: 14px; }
-      .form-panel { padding: 22px; }
-      .form-topbar { align-items: flex-start; flex-direction: column; }
-      .grid, .choice-grid, .review-grid { grid-template-columns: 1fr; }
-      .step-list { grid-template-columns: 1fr; }
-      .readiness-card { grid-template-columns: 1fr; }
-      .form-actions { flex-direction: column-reverse; align-items: stretch; }
-      .form-actions .btn { width: 100%; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
+    .success-card p {
+      margin:0 auto 26px;
+      max-width:560px;
+      color:#53627C;
+      font-size:17px;
+      line-height:1.6;
+      font-weight:560;
+    }
+
+    .summary-grid {
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      text-align:left;
+      margin:28px 0;
+    }
+
+    .summary-tile {
+      padding:16px;
+      border-radius:20px;
+      background:linear-gradient(180deg,#fff,#F8FBFF);
+      border:1px solid var(--line);
+    }
+
+    .summary-tile span {
+      display:block;
+      color:#667085;
+      font-size:12px;
+      font-weight:850;
+      margin-bottom:7px;
+    }
+
+    .summary-tile strong {
+      display:block;
+      color:var(--deep);
+      font-size:15px;
+      letter-spacing:-.02em;
+      overflow-wrap:anywhere;
+    }
+
+    .footer-note {
+      padding:26px 0 36px;
+      color:#667085;
+      font-size:13px;
+      font-weight:680;
+      text-align:center;
+    }
+
+    @media (max-width:920px) {
+      .nav-links,.nav-actions { display:none; }
+      .mobile-toggle { display:inline-grid; place-items:center; }
+      .hero { min-height:auto; padding:62px 0 76px; }
+      .eligibility-card { flex-direction:column; }
+      .amount-select-wrap,.eligibility-card .btn { width:100%; }
+      h1 { font-size:clamp(46px,11vw,76px); }
+      .hero-subtitle { font-size:22px; }
+      .option-grid,.field-grid,.summary-grid { grid-template-columns:1fr; }
+    }
+
+    @media (max-width:560px) {
+      .container { width:min(var(--max), calc(100% - 28px)); }
+      .brand { font-size:26px; }
+      .brand svg { width:38px; height:38px; }
+      .nav { height:72px; }
+      .review-row { flex-wrap:wrap; margin-bottom:24px; }
+      .star-box { width:20px; height:20px; font-size:13px; }
+      .amount-select,.eligibility-card .btn { min-height:60px; font-size:16px; }
+      .flow-card,.success-card { padding:26px; border-radius:28px; }
+      .flow-actions { flex-direction:column-reverse; align-items:stretch; }
+      .flow-actions .btn { width:100%; }
+      .under-form { justify-content:flex-start; }
     }
   </style>
 </head>
 <body>
   <header class="nav-shell">
     <div class="container nav">
-      <a href="#" class="brand" aria-label="Revola home">
+      <a href="index.html" class="brand" aria-label="Revola home">
         <svg viewBox="0 0 64 64" aria-hidden="true">
           <defs>
-            <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#07142A"/>
-              <stop offset=".28" stop-color="#0B5CFF"/>
-              <stop offset="1" stop-color="#2563EB"/>
-            </linearGradient>
-            <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#00BFA6"/>
-              <stop offset="1" stop-color="#09D6BF"/>
-            </linearGradient>
+            <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse"><stop stop-color="#07142A"/><stop offset=".28" stop-color="#0B5CFF"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+            <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#00BFA6"/><stop offset="1" stop-color="#09D6BF"/></linearGradient>
           </defs>
           <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
           <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
@@ -863,530 +628,287 @@
         </svg>
         Revola
       </a>
-      <div class="nav-meta">
-        <span>Business funding application</span>
-        <span class="secure-pill"><span class="pulse-dot"></span> Secure profile</span>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html#solutions">Funding options</a>
+        <a href="partner.html">Embedded Financing</a>
+        <a href="partner.html#portal">Partner Network</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="index.html">Home</a>
+        <a href="partner.html">Support</a>
+        <button class="btn btn-primary" type="button" onclick="startFlow()">Apply now</button>
       </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
     </div>
   </header>
 
   <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="secure-pill"><span class="pulse-dot"></span> One application · Multiple funding paths</div>
-          <h1>Build your <span class="gradient-text">Revola Capital Passport.</span></h1>
-          <p class="hero-copy">Complete one premium funding profile so Revola can help assess your business, understand your funding need, and organize the best-fit capital paths for review.</p>
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="review-row" aria-label="Review rating">
+          <strong>Revola</strong>
+          <div class="stars" aria-hidden="true">
+            <span class="star-box">★</span><span class="star-box">★</span><span class="star-box">★</span><span class="star-box">★</span><span class="star-box">★</span>
+          </div>
+          <span>Clear funding options for growing businesses</span>
         </div>
-        <aside class="summary-card" aria-label="Application summary">
-          <h3>What this application covers</h3>
-          <ul class="summary-list">
-            <li><span class="check">✓</span> Business profile and industry</li>
-            <li><span class="check">✓</span> Funding amount, purpose, and urgency</li>
-            <li><span class="check">✓</span> Revenue, credit range, and cash-flow profile</li>
-            <li><span class="check">✓</span> Optional documents for faster review</li>
-          </ul>
-        </aside>
+
+        <h1>Get matched with capital in as little as <span class="headline-accent">24 hours.</span></h1>
+        <p class="hero-subtitle">See options from multiple funding paths. No hidden runaround. No hard credit pull to start.</p>
+
+        <div class="eligibility-card" role="group" aria-label="Check eligibility">
+          <div class="amount-select-wrap">
+            <select class="amount-select" id="heroAmount" aria-label="How much money do you need?">
+              <option value="">How much money do you need?</option>
+              <option>$10,000 – $25,000</option>
+              <option>$25,000 – $50,000</option>
+              <option>$50,000 – $100,000</option>
+              <option>$100,000 – $250,000</option>
+              <option>$250,000 – $500,000</option>
+              <option>$500,000+</option>
+            </select>
+            <svg class="select-chevron" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+          </div>
+          <button class="btn btn-primary" type="button" onclick="startFlow()">Check eligibility</button>
+        </div>
+
+        <div class="under-form">
+          <span class="proof-pill"><span class="check">✓</span> One application</span>
+          <span class="proof-pill"><span class="check">✓</span> Advisor-supported</span>
+          <span class="proof-pill"><span class="check">✓</span> Multiple funding paths</span>
+        </div>
       </div>
     </section>
 
-    <section class="application-shell">
+    <section class="flow-shell" id="flowShell">
       <div class="container">
-        <div class="application-card">
-          <aside class="side-panel">
-            <div class="side-kicker"><span class="pulse-dot"></span> Application progress</div>
-            <div class="progress-ring" id="progressRing" style="--progress-angle: 72deg;"><span id="progressPercent">20%</span></div>
-            <h2>Funding profile</h2>
-            <p>Answer the questions clearly. Strong applications include accurate revenue, a specific use of funds, and realistic timing.</p>
-
-            <div class="step-list" aria-label="Application steps">
-              <div class="step-tab active" data-tab="0"><span class="step-index">01</span><div><strong>Business</strong><span>Company profile</span></div></div>
-              <div class="step-tab" data-tab="1"><span class="step-index">02</span><div><strong>Funding</strong><span>Amount and purpose</span></div></div>
-              <div class="step-tab" data-tab="2"><span class="step-index">03</span><div><strong>Financials</strong><span>Revenue and credit</span></div></div>
-              <div class="step-tab" data-tab="3"><span class="step-index">04</span><div><strong>Documents</strong><span>Optional uploads</span></div></div>
-              <div class="step-tab" data-tab="4"><span class="step-index">05</span><div><strong>Review</strong><span>Submit profile</span></div></div>
-            </div>
-          </aside>
-
-          <section class="form-panel">
-            <div class="form-topbar">
-              <div>
-                <h2 id="stepTitle">Business information</h2>
-                <p id="stepSubtitle">Start with your company details so Revola can understand your business profile.</p>
-              </div>
-              <div class="save-pill">Autosave-ready structure</div>
-            </div>
-
-            <form id="fundingForm" novalidate>
-              <div class="form-step active" data-title="Business information" data-subtitle="Start with your company details so Revola can understand your business profile.">
-                <div class="grid">
-                  <div class="field">
-                    <label for="legalName">Legal business name *</label>
-                    <input id="legalName" name="Legal Business Name" required placeholder="Revola Growth LLC" />
-                  </div>
-                  <div class="field">
-                    <label for="dba">DBA / trade name</label>
-                    <input id="dba" name="DBA" placeholder="Optional" />
-                  </div>
-                  <div class="field">
-                    <label for="industry">Industry *</label>
-                    <select id="industry" name="Industry" required>
-                      <option value="">Select industry</option>
-                      <option>Retail</option>
-                      <option>Restaurant / Food Service</option>
-                      <option>Healthcare</option>
-                      <option>Dental Practice</option>
-                      <option>Medical Practice</option>
-                      <option>Construction</option>
-                      <option>Contracting / Trades</option>
-                      <option>Manufacturing</option>
-                      <option>Transportation / Logistics</option>
-                      <option>E-commerce</option>
-                      <option>Wholesale / Distribution</option>
-                      <option>Franchise</option>
-                      <option>Hospitality</option>
-                      <option>Automotive</option>
-                      <option>Professional Services</option>
-                      <option>Beauty / Wellness</option>
-                      <option>Real Estate Services</option>
-                      <option>Marketing / Agency</option>
-                      <option>Local Services</option>
-                      <option>Other</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="entityType">Entity type *</label>
-                    <select id="entityType" name="Entity Type" required>
-                      <option value="">Select type</option>
-                      <option>LLC</option>
-                      <option>S-Corp</option>
-                      <option>C-Corp</option>
-                      <option>Sole Proprietorship</option>
-                      <option>Partnership</option>
-                      <option>Nonprofit</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="state">Business state *</label>
-                    <input id="state" name="Business State" required placeholder="MA" maxlength="30" />
-                  </div>
-                  <div class="field">
-                    <label for="website">Website</label>
-                    <input id="website" name="Website" type="url" placeholder="https://company.com" />
-                  </div>
-                  <div class="field">
-                    <label for="ownerName">Primary contact *</label>
-                    <input id="ownerName" name="Primary Contact" required placeholder="Full name" />
-                  </div>
-                  <div class="field">
-                    <label for="role">Role / title *</label>
-                    <input id="role" name="Role" required placeholder="Owner, Founder, CFO..." />
-                  </div>
-                  <div class="field">
-                    <label for="email">Email *</label>
-                    <input id="email" name="Email" type="email" required placeholder="you@company.com" />
-                  </div>
-                  <div class="field">
-                    <label for="phone">Phone *</label>
-                    <input id="phone" name="Phone" type="tel" required placeholder="(555) 000-0000" />
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-step" data-title="Funding request" data-subtitle="Tell us how much capital you need, why you need it, and how soon you want to move.">
-                <div class="grid">
-                  <div class="field">
-                    <label for="amount">Funding amount requested *</label>
-                    <select id="amount" name="Funding Amount" required>
-                      <option value="">Select amount</option>
-                      <option>$10,000 – $25,000</option>
-                      <option>$25,000 – $50,000</option>
-                      <option>$50,000 – $100,000</option>
-                      <option>$100,000 – $250,000</option>
-                      <option>$250,000 – $500,000</option>
-                      <option>$500,000 – $1,000,000</option>
-                      <option>$1,000,000+</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="urgency">Funding timeline *</label>
-                    <select id="urgency" name="Funding Timeline" required>
-                      <option value="">Select timeline</option>
-                      <option>Same week</option>
-                      <option>1–2 weeks</option>
-                      <option>30 days</option>
-                      <option>60–90 days</option>
-                      <option>Planning ahead</option>
-                    </select>
-                  </div>
-                  <div class="field full">
-                    <label>Preferred funding path</label>
-                    <div class="choice-grid">
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="Working Capital" /><strong>Working capital</strong><span>Payroll, inventory, cash flow, general operations.</span></label>
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="Line of Credit" /><strong>Line of credit</strong><span>Flexible access for recurring needs.</span></label>
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="Equipment Financing" /><strong>Equipment financing</strong><span>Vehicles, machinery, tools, and systems.</span></label>
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="Invoice Financing" /><strong>Invoice financing</strong><span>Capital against outstanding receivables.</span></label>
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="SBA-style Option" /><strong>SBA-style path</strong><span>Longer-term, documentation-heavy options.</span></label>
-                      <label class="choice"><input type="checkbox" name="Preferred Funding" value="Not Sure" /><strong>Not sure yet</strong><span>Let Revola help identify the best fit.</span></label>
-                    </div>
-                  </div>
-                  <div class="field full">
-                    <label for="purpose">Use of funds *</label>
-                    <textarea id="purpose" name="Use of Funds" required placeholder="Example: Purchase equipment, cover payroll while waiting on receivables, fund inventory, open a second location, consolidate debt..."></textarea>
-                    <div class="hint">Be specific. The clearer the use of funds, the easier it is to assess fit.</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-step" data-title="Financial profile" data-subtitle="This helps Revola understand likely funding fit and readiness before partner review.">
-                <div class="grid">
-                  <div class="field">
-                    <label for="timeInBusiness">Time in business *</label>
-                    <select id="timeInBusiness" name="Time in Business" required>
-                      <option value="">Select range</option>
-                      <option>Less than 6 months</option>
-                      <option>6–12 months</option>
-                      <option>1–2 years</option>
-                      <option>2–5 years</option>
-                      <option>5+ years</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="monthlyRevenue">Average monthly revenue *</label>
-                    <select id="monthlyRevenue" name="Average Monthly Revenue" required>
-                      <option value="">Select revenue</option>
-                      <option>Under $10,000</option>
-                      <option>$10,000 – $25,000</option>
-                      <option>$25,000 – $50,000</option>
-                      <option>$50,000 – $100,000</option>
-                      <option>$100,000 – $250,000</option>
-                      <option>$250,000 – $500,000</option>
-                      <option>$500,000+</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="annualRevenue">Annual revenue last year</label>
-                    <input id="annualRevenue" name="Annual Revenue Last Year" placeholder="$750,000" />
-                  </div>
-                  <div class="field">
-                    <label for="avgBalance">Average business bank balance</label>
-                    <select id="avgBalance" name="Average Bank Balance">
-                      <option value="">Select balance</option>
-                      <option>Under $5,000</option>
-                      <option>$5,000 – $15,000</option>
-                      <option>$15,000 – $50,000</option>
-                      <option>$50,000 – $100,000</option>
-                      <option>$100,000+</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="creditScore">Estimated personal credit range *</label>
-                    <select id="creditScore" name="Credit Score Range" required>
-                      <option value="">Select range</option>
-                      <option>720+</option>
-                      <option>680–719</option>
-                      <option>640–679</option>
-                      <option>600–639</option>
-                      <option>550–599</option>
-                      <option>Below 550</option>
-                      <option>Not sure</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="existingDebt">Existing business debt?</label>
-                    <select id="existingDebt" name="Existing Business Debt">
-                      <option>No existing debt</option>
-                      <option>Yes — under $25,000</option>
-                      <option>Yes — $25,000 to $100,000</option>
-                      <option>Yes — $100,000 to $250,000</option>
-                      <option>Yes — $250,000+</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="profitability">Currently profitable?</label>
-                    <select id="profitability" name="Profitability">
-                      <option>Yes</option>
-                      <option>No</option>
-                      <option>Break-even</option>
-                      <option>Seasonal / varies</option>
-                    </select>
-                  </div>
-                  <div class="field">
-                    <label for="taxStatus">Tax status</label>
-                    <select id="taxStatus" name="Tax Status">
-                      <option>Filed and current</option>
-                      <option>Extension filed</option>
-                      <option>Behind on filing</option>
-                      <option>Payment plan</option>
-                      <option>Not sure</option>
-                    </select>
-                  </div>
-                  <div class="field full">
-                    <label for="notes">Anything Revola should know?</label>
-                    <textarea id="notes" name="Additional Notes" placeholder="Seasonality, recent growth, urgent projects, upcoming contracts, existing lender offers, credit context, or any special situation..."></textarea>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-step" data-title="Documents" data-subtitle="Optional documents can make the review process faster and more accurate.">
-                <div class="grid">
-                  <div class="upload-box">
-                    <div class="upload-header">
-                      <div class="upload-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"/><path d="m7 9 5-5 5 5"/><path d="M20 16.5V19a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2.5"/></svg>
-                      </div>
-                      <div><strong>Bank statements</strong><span>Last 3–6 months, if available.</span></div>
-                    </div>
-                    <input type="file" name="Bank Statements" multiple />
-                  </div>
-
-                  <div class="upload-box">
-                    <div class="upload-header">
-                      <div class="upload-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
-                      </div>
-                      <div><strong>Tax returns or P&L</strong><span>Optional, useful for larger or longer-term funding requests.</span></div>
-                    </div>
-                    <input type="file" name="Tax Returns or P&L" multiple />
-                  </div>
-
-                  <div class="upload-box">
-                    <div class="upload-header">
-                      <div class="upload-icon">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
-                      </div>
-                      <div><strong>Invoices, equipment quotes, or contracts</strong><span>Upload anything that supports the funding purpose.</span></div>
-                    </div>
-                    <input type="file" name="Supporting Documents" multiple />
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-step" data-title="Review and submit" data-subtitle="Confirm your profile before submitting it for Revola review.">
-                <div class="review-grid" id="reviewGrid"></div>
-              </div>
-
-              <div class="error-message" id="errorMessage">Please complete the required fields before continuing.</div>
-              <div class="status-message" id="statusMessage">Application profile created. In production, this should route into your CRM, lender matching tracker, and advisor notification workflow.</div>
-
-              <div class="form-actions">
-                <button class="btn btn-muted" id="prevBtn" type="button" disabled>← Back</button>
-                <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end;">
-                  <button class="btn btn-secondary" id="downloadBtn" type="button" style="display:none;">Download profile JSON</button>
-                  <button class="btn btn-primary" id="nextBtn" type="button">Continue →</button>
-                </div>
-              </div>
-            </form>
-          </section>
+        <div class="progress-wrap">
+          <div class="progress-top"><span id="stepLabel">Step 1 of 7</span><span id="progressPercent">14%</span></div>
+          <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
         </div>
-      </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2026 Revola. Business funding, without the runaround.</div>
-      <div>Technology-led. Advisor-supported.</div>
-    </div>
-  </footer>
+        <form id="revolaFlow" class="flow-card" novalidate>
+          <div class="step-kicker"><span class="dot"></span> Revola eligibility check</div>
+          <h2 id="questionTitle">How much funding do you need?</h2>
+          <p class="step-copy" id="questionCopy">Start with your target amount. This helps Revola route you toward the most relevant capital paths.</p>
+          <div id="questionBody"></div>
+          <div class="error-message" id="errorMessage">Please choose an option before continuing.</div>
+          <div class="flow-actions">
+            <button class="btn btn-muted" type="button" id="backButton">← Back</button>
+            <button class="btn btn-primary" type="button" id="nextButton">Continue →</button>
+          </div>
+        </form>
 
-  <script>
-    const form = document.getElementById('fundingForm');
-    const steps = Array.from(document.querySelectorAll('.form-step'));
-    const tabs = Array.from(document.querySelectorAll('.step-tab'));
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const downloadBtn = document.getElementById('downloadBtn');
-    const errorMessage = document.getElementById('errorMessage');
-    const statusMessage = document.getElementById('statusMessage');
-    const progressRing = document.getElementById('progressRing');
-    const progressPercent = document.getElementById('progressPercent');
-    const stepTitle = document.getElementById('stepTitle');
-    const stepSubtitle = document.getElementById('stepSubtitle');
-    const reviewGrid = document.getElementById('reviewGrid');
-
-    let currentStep = 0;
-    let submittedData = null;
-
-    const groups = [
-      { title: 'Business', fields: ['Legal Business Name', 'DBA', 'Industry', 'Entity Type', 'Business State', 'Website', 'Primary Contact', 'Role', 'Email', 'Phone'] },
-      { title: 'Funding Request', fields: ['Funding Amount', 'Funding Timeline', 'Preferred Funding', 'Use of Funds'] },
-      { title: 'Financial Profile', fields: ['Time in Business', 'Average Monthly Revenue', 'Annual Revenue Last Year', 'Average Bank Balance', 'Credit Score Range', 'Existing Business Debt', 'Profitability', 'Tax Status', 'Additional Notes'] },
-      { title: 'Documents', fields: ['Bank Statements', 'Tax Returns or P&L', 'Supporting Documents'] }
-    ];
-
-    function getFormData() {
-      const data = {};
-      const elements = Array.from(form.elements).filter(el => el.name);
-
-      elements.forEach(el => {
-        if (el.type === 'checkbox') {
-          if (!data[el.name]) data[el.name] = [];
-          if (el.checked) data[el.name].push(el.value);
-        } else if (el.type === 'file') {
-          data[el.name] = Array.from(el.files || []).map(file => file.name);
-        } else if (el.type !== 'button' && el.type !== 'submit') {
-          data[el.name] = el.value.trim();
-        }
-      });
-
-      Object.keys(data).forEach(key => {
-        if (Array.isArray(data[key])) data[key] = data[key].length ? data[key].join(', ') : 'Not provided';
-        if (!data[key]) data[key] = 'Not provided';
-      });
-
-      data['Submitted At'] = new Date().toISOString();
-      data['Application Source'] = 'Revola Funding Application';
-      return data;
-    }
-
-    function calculateReadiness(data) {
-      let score = 42;
-      const revenue = data['Average Monthly Revenue'] || '';
-      const time = data['Time in Business'] || '';
-      const credit = data['Credit Score Range'] || '';
-      const purpose = data['Use of Funds'] || '';
-      const amount = data['Funding Amount'] || '';
-
-      if (time.includes('1–2')) score += 9;
-      if (time.includes('2–5')) score += 14;
-      if (time.includes('5+')) score += 18;
-      if (revenue.includes('$25,000')) score += 8;
-      if (revenue.includes('$50,000')) score += 12;
-      if (revenue.includes('$100,000')) score += 16;
-      if (revenue.includes('$250,000') || revenue.includes('$500,000')) score += 20;
-      if (credit.includes('720')) score += 14;
-      if (credit.includes('680')) score += 11;
-      if (credit.includes('640')) score += 7;
-      if (purpose.length > 60) score += 6;
-      if (!amount.includes('Not provided')) score += 4;
-
-      return Math.max(35, Math.min(score, 96));
-    }
-
-    function readinessLabel(score) {
-      if (score >= 82) return 'Strong review profile';
-      if (score >= 68) return 'Promising review profile';
-      if (score >= 55) return 'Developing review profile';
-      return 'Early review profile';
-    }
-
-    function renderReview() {
-      const data = getFormData();
-      const score = calculateReadiness(data);
-      const cards = groups.map(group => {
-        const rows = group.fields.map(field => `<div class="review-row"><span>${field}</span><strong>${data[field] || 'Not provided'}</strong></div>`).join('');
-        return `<article class="review-card"><h4>${group.title}</h4>${rows}</article>`;
-      }).join('');
-
-      reviewGrid.innerHTML = `
-        <div class="readiness-card">
-          <div class="mini-score" style="background: conic-gradient(var(--teal) 0 ${score}%, #E6EAF2 ${score}% 100%);"><span>${score}</span></div>
-          <div>
-            <h4>${readinessLabel(score)}</h4>
-            <p>This score is an internal demo estimate based on time in business, revenue, credit range, and clarity of funding purpose. It is not an approval, quote, offer, or lending decision.</p>
+        <div class="success-card" id="successCard">
+          <div class="success-icon">✓</div>
+          <h2>Your Revola profile is ready for review.</h2>
+          <p>Based on your answers, Revola would route this into advisor review, lender matching, and next-step follow up. In production, this should connect to your CRM and confirmation page.</p>
+          <div class="summary-grid" id="summaryGrid"></div>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a class="btn btn-blue" href="application.html">Open full application</a>
+            <a class="btn btn-secondary" href="partner.html">Partner with Revola</a>
           </div>
         </div>
-        ${cards}
-        <label class="consent-box">
-          <input type="checkbox" id="consent" name="Consent" required />
-          <span>I confirm the information provided is accurate to the best of my knowledge and agree to be contacted by Revola regarding potential business funding options. I understand this is not a commitment to lend.</span>
-        </label>
-      `;
+      </div>
+    </section>
+
+    <div class="footer-note">© 2026 Revola. Business funding, without the runaround.</div>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        key:'fundingAmount',
+        title:'How much funding do you need?',
+        copy:'Start with your target amount. This helps Revola route you toward the most relevant capital paths.',
+        type:'options',
+        options:['$10,000 – $25,000','$25,000 – $50,000','$50,000 – $100,000','$100,000 – $250,000','$250,000 – $500,000','$500,000+']
+      },
+      {
+        key:'fundingPurpose',
+        title:'What do you need funding for?',
+        copy:'Choose the use of funds that best matches your current business goal.',
+        type:'options',
+        options:['Working capital','Expansion or growth','Equipment or vehicles','Inventory or purchase orders','Invoice / receivables gap','Debt consolidation']
+      },
+      {
+        key:'industry',
+        title:'What industry are you in?',
+        copy:'Funding fit can vary by industry, cash-flow pattern, and business model.',
+        type:'options',
+        options:['Retail','Restaurant / food service','Healthcare / dental','Construction / contracting','E-commerce','Professional services','Manufacturing','Transportation / logistics']
+      },
+      {
+        key:'timeInBusiness',
+        title:'How long have you been in business?',
+        copy:'Time in business is one of the core funding readiness signals.',
+        type:'options',
+        options:['Less than 6 months','6–12 months','1–2 years','2–5 years','5+ years']
+      },
+      {
+        key:'monthlyRevenue',
+        title:'What is your average monthly revenue?',
+        copy:'Use your best estimate based on recent deposits or sales.',
+        type:'options',
+        options:['Under $10,000','$10,000 – $25,000','$25,000 – $50,000','$50,000 – $100,000','$100,000 – $250,000','$250,000+']
+      },
+      {
+        key:'creditRange',
+        title:'What is your estimated credit range?',
+        copy:'This does not require a hard credit pull to start.',
+        type:'options',
+        options:['720+','680–719','640–679','600–639','550–599','Below 550','Not sure']
+      },
+      {
+        key:'contact',
+        title:'Where should Revola send your options?',
+        copy:'Enter your contact details so an advisor can review your profile and follow up.',
+        type:'contact'
+      }
+    ];
+
+    const answers = {};
+    let currentStep = 0;
+
+    const hero = document.getElementById('hero');
+    const flowShell = document.getElementById('flowShell');
+    const form = document.getElementById('revolaFlow');
+    const successCard = document.getElementById('successCard');
+    const questionTitle = document.getElementById('questionTitle');
+    const questionCopy = document.getElementById('questionCopy');
+    const questionBody = document.getElementById('questionBody');
+    const errorMessage = document.getElementById('errorMessage');
+    const backButton = document.getElementById('backButton');
+    const nextButton = document.getElementById('nextButton');
+    const progressFill = document.getElementById('progressFill');
+    const stepLabel = document.getElementById('stepLabel');
+    const progressPercent = document.getElementById('progressPercent');
+    const summaryGrid = document.getElementById('summaryGrid');
+    const heroAmount = document.getElementById('heroAmount');
+
+    function startFlow() {
+      if (heroAmount && heroAmount.value) answers.fundingAmount = heroAmount.value;
+      hero.style.display = 'none';
+      flowShell.classList.add('active');
+      currentStep = answers.fundingAmount ? 1 : 0;
+      renderStep();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function validateStep(index) {
-      const current = steps[index];
-      const required = Array.from(current.querySelectorAll('[required]'));
-      let valid = true;
-      required.forEach(input => {
-        if ((input.type === 'checkbox' && !input.checked) || (!input.value || !input.checkValidity())) {
-          input.classList.add('invalid');
-          valid = false;
-        } else {
-          input.classList.remove('invalid');
-        }
-      });
-      errorMessage.classList.toggle('show', !valid);
-      return valid;
-    }
-
-    function updateUI() {
-      steps.forEach((step, index) => step.classList.toggle('active', index === currentStep));
-      tabs.forEach((tab, index) => {
-        tab.classList.toggle('active', index === currentStep);
-        tab.classList.toggle('done', index < currentStep);
-        const idx = tab.querySelector('.step-index');
-        idx.textContent = index < currentStep ? '✓' : String(index + 1).padStart(2, '0');
-      });
-
-      const active = steps[currentStep];
-      stepTitle.textContent = active.dataset.title;
-      stepSubtitle.textContent = active.dataset.subtitle;
-
-      const percent = Math.round(((currentStep + 1) / steps.length) * 100);
+    function renderStep() {
+      const q = questions[currentStep];
+      const percent = Math.round(((currentStep + 1) / questions.length) * 100);
+      questionTitle.textContent = q.title;
+      questionCopy.textContent = q.copy;
+      stepLabel.textContent = `Step ${currentStep + 1} of ${questions.length}`;
       progressPercent.textContent = `${percent}%`;
-      progressRing.style.setProperty('--progress-angle', `${Math.round(percent * 3.6)}deg`);
-
-      prevBtn.disabled = currentStep === 0;
-      nextBtn.textContent = currentStep === steps.length - 1 ? 'Submit application →' : 'Continue →';
-      downloadBtn.style.display = submittedData ? 'inline-flex' : 'none';
+      progressFill.style.width = `${percent}%`;
+      backButton.disabled = currentStep === 0;
+      nextButton.textContent = currentStep === questions.length - 1 ? 'Submit profile →' : 'Continue →';
       errorMessage.classList.remove('show');
-      statusMessage.classList.remove('show');
 
-      if (currentStep === steps.length - 1) renderReview();
-    }
-
-    nextBtn.addEventListener('click', () => {
-      if (!validateStep(currentStep)) return;
-
-      if (currentStep < steps.length - 1) {
-        currentStep += 1;
-        updateUI();
-        return;
+      if (q.type === 'options') {
+        questionBody.innerHTML = `<div class="option-grid">${q.options.map(option => `
+          <label class="option-card">
+            <input type="radio" name="${q.key}" value="${option}" ${answers[q.key] === option ? 'checked' : ''}>
+            <strong>${option}</strong>
+            <span>${helperText(q.key, option)}</span>
+          </label>
+        `).join('')}</div>`;
       }
 
-      const consent = document.getElementById('consent');
-      if (!consent || !consent.checked) {
-        errorMessage.textContent = 'Please confirm consent before submitting.';
+      if (q.type === 'contact') {
+        questionBody.innerHTML = `
+          <div class="field-grid">
+            <div class="field"><label class="field-label" for="firstName">First name *</label><input id="firstName" required value="${answers.firstName || ''}" placeholder="Chris"></div>
+            <div class="field"><label class="field-label" for="lastName">Last name *</label><input id="lastName" required value="${answers.lastName || ''}" placeholder="Khoury"></div>
+            <div class="field"><label class="field-label" for="email">Email *</label><input id="email" type="email" required value="${answers.email || ''}" placeholder="you@company.com"></div>
+            <div class="field"><label class="field-label" for="phone">Phone *</label><input id="phone" required value="${answers.phone || ''}" placeholder="(555) 000-0000"></div>
+            <div class="field full"><label class="field-label" for="businessName">Business name *</label><input id="businessName" required value="${answers.businessName || ''}" placeholder="Company LLC"></div>
+          </div>`;
+      }
+    }
+
+    function helperText(key, option) {
+      const map = {
+        fundingAmount:'Select the closest range.',
+        fundingPurpose:'Helps match your use case.',
+        industry:'Used for routing and fit.',
+        timeInBusiness:'Affects available paths.',
+        monthlyRevenue:'Estimate from recent sales.',
+        creditRange:'No hard pull to start.'
+      };
+      return map[key] || 'Choose this option.';
+    }
+
+    function saveCurrentStep() {
+      const q = questions[currentStep];
+      if (q.type === 'options') {
+        const selected = document.querySelector(`input[name="${q.key}"]:checked`);
+        if (!selected) return false;
+        answers[q.key] = selected.value;
+        return true;
+      }
+      if (q.type === 'contact') {
+        const fields = ['firstName','lastName','email','phone','businessName'];
+        for (const id of fields) {
+          const input = document.getElementById(id);
+          if (!input || !input.value.trim() || !input.checkValidity()) return false;
+          answers[id] = input.value.trim();
+        }
+        return true;
+      }
+      return true;
+    }
+
+    function finishFlow() {
+      form.style.display = 'none';
+      document.querySelector('.progress-wrap').style.display = 'none';
+      successCard.classList.add('active');
+      const readable = {
+        'Funding amount': answers.fundingAmount,
+        'Funding purpose': answers.fundingPurpose,
+        'Industry': answers.industry,
+        'Time in business': answers.timeInBusiness,
+        'Monthly revenue': answers.monthlyRevenue,
+        'Credit range': answers.creditRange,
+        'Business': answers.businessName,
+        'Contact': `${answers.firstName} ${answers.lastName}`
+      };
+      summaryGrid.innerHTML = Object.entries(readable).map(([label,value]) => `
+        <div class="summary-tile"><span>${label}</span><strong>${value || 'Not provided'}</strong></div>
+      `).join('');
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (!saveCurrentStep()) {
         errorMessage.classList.add('show');
         return;
       }
-
-      submittedData = getFormData();
-      submittedData['Readiness Score'] = calculateReadiness(submittedData);
-      submittedData['Readiness Label'] = readinessLabel(submittedData['Readiness Score']);
-      statusMessage.classList.add('show');
-      downloadBtn.style.display = 'inline-flex';
-      nextBtn.textContent = 'Application submitted ✓';
-      nextBtn.disabled = true;
+      if (currentStep === questions.length - 1) {
+        finishFlow();
+        return;
+      }
+      currentStep += 1;
+      renderStep();
     });
 
-    prevBtn.addEventListener('click', () => {
+    backButton.addEventListener('click', () => {
       if (currentStep > 0) {
         currentStep -= 1;
-        updateUI();
+        renderStep();
       }
     });
 
-    downloadBtn.addEventListener('click', () => {
-      const data = submittedData || getFormData();
-      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.download = `revola-funding-profile-${Date.now()}.json`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-      URL.revokeObjectURL(url);
-    });
-
-    form.addEventListener('input', event => {
-      if (event.target.classList.contains('invalid')) event.target.classList.remove('invalid');
-    });
-
-    updateUI();
+    const mobileToggle = document.getElementById('mobileToggle');
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', () => startFlow());
+    }
   </script>
 </body>
 </html>
