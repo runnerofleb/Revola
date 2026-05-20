@@ -4,1024 +4,334 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Revola | Business Funding, Without the Runaround</title>
-  <meta name="description" content="Revola helps businesses across industries compare fast, flexible funding options through one simple application." />
+  <meta name="description" content="Revola helps businesses compare funding options through one simple application." />
   <style>
     :root {
-      --navy: #0B1D3A;
-      --navy-2: #07142A;
-      --blue: #2563EB;
-      --blue-2: #0B5CFF;
-      --teal: #00BFA6;
-      --sky: #E6F2FF;
-      --slate: #667085;
-      --line: #E6EAF2;
-      --white: #FFFFFF;
-      --shadow: 0 24px 70px rgba(11, 29, 58, 0.10);
-      --shadow-soft: 0 14px 40px rgba(11, 29, 58, 0.08);
-      --max: 1180px;
+      --navy:#0B1D3A;
+      --deep:#07142A;
+      --blue:#2563EB;
+      --blue2:#0B5CFF;
+      --teal:#00BFA6;
+      --sky:#E6F2FF;
+      --soft:#F7FBFF;
+      --slate:#667085;
+      --line:#E6EAF2;
+      --white:#FFFFFF;
+      --shadow:0 24px 70px rgba(11,29,58,.10);
+      --soft-shadow:0 14px 38px rgba(11,29,58,.07);
+      --max:1180px;
     }
 
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
     body {
-      margin: 0;
+      margin:0;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--navy);
-      background: #FFFFFF;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-
-    .page {
-      position: relative;
-      min-height: 100vh;
+      color:var(--navy);
       background:
-        radial-gradient(circle at 82% 8%, rgba(37,99,235,.12), transparent 34%),
-        radial-gradient(circle at 100% 34%, rgba(0,191,166,.10), transparent 30%),
-        linear-gradient(180deg, #ffffff 0%, #F8FBFF 52%, #ffffff 100%);
+        radial-gradient(circle at 80% 6%, rgba(37,99,235,.13), transparent 34%),
+        radial-gradient(circle at 100% 32%, rgba(0,191,166,.10), transparent 28%),
+        linear-gradient(180deg,#fff 0%,#F8FBFF 48%,#fff 100%);
+      overflow-x:hidden;
     }
 
-    .container {
-      width: min(var(--max), calc(100% - 48px));
-      margin: 0 auto;
-    }
+    a { color:inherit; text-decoration:none; }
+    .container { width:min(var(--max), calc(100% - 48px)); margin:0 auto; }
 
     .nav-shell {
-      position: sticky;
-      top: 0;
-      z-index: 80;
-      backdrop-filter: blur(18px);
-      background: rgba(255,255,255,.84);
-      border-bottom: 1px solid rgba(230,234,242,.74);
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.86);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(230,234,242,.82);
     }
 
     .nav {
-      height: 82px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
+      height:82px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
     }
 
     .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 850;
-      letter-spacing: -0.055em;
-      font-size: 31px;
-      color: var(--navy-2);
-      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      gap:12px;
+      font-size:31px;
+      font-weight:900;
+      letter-spacing:-.055em;
+      color:var(--deep);
+      white-space:nowrap;
     }
 
-    .brand svg { width: 42px; height: 42px; display: block; }
+    .brand svg { width:42px; height:42px; }
 
     .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-      color: #42526D;
-      font-size: 14px;
-      font-weight: 700;
+      display:flex;
+      align-items:center;
+      gap:28px;
+      color:#42526D;
+      font-size:14px;
+      font-weight:750;
     }
 
-    .nav-links a { transition: color .2s ease; }
-    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover { color:var(--blue); }
 
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
+    .nav-actions { display:flex; gap:12px; align-items:center; }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 48px;
-      padding: 0 22px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      font-weight: 850;
-      font-size: 14px;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
-      white-space: nowrap;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height:48px;
+      padding:0 22px;
+      border-radius:14px;
+      border:1px solid transparent;
+      font-size:14px;
+      font-weight:900;
+      cursor:pointer;
+      transition:.2s ease;
+      white-space:nowrap;
     }
 
-    .btn:hover { transform: translateY(-2px); }
-    .btn-primary {
-      color: #fff;
-      background: linear-gradient(135deg, var(--blue), #0B5CFF);
-      box-shadow: 0 18px 38px rgba(37,99,235,.25);
-    }
-
-    .btn-primary:hover { box-shadow: 0 24px 48px rgba(37,99,235,.32); }
-    .btn-secondary {
-      background: #fff;
-      color: var(--blue);
-      border-color: rgba(37, 99, 235, .24);
-      box-shadow: 0 10px 24px rgba(11,29,58,.04);
-    }
+    .btn:hover { transform:translateY(-2px); }
+    .btn-primary { color:#fff; background:linear-gradient(135deg,var(--blue),var(--blue2)); box-shadow:0 18px 38px rgba(37,99,235,.25); }
+    .btn-secondary { color:var(--blue); background:#fff; border-color:rgba(37,99,235,.22); box-shadow:0 10px 24px rgba(11,29,58,.04); }
+    .btn-dark { color:#fff; background:rgba(255,255,255,.12); border-color:rgba(255,255,255,.18); }
 
     .mobile-toggle {
-      display: none;
-      width: 44px;
-      height: 44px;
-      border-radius: 13px;
-      border: 1px solid var(--line);
-      background: #fff;
-      color: var(--navy);
-      cursor: pointer;
+      display:none;
+      width:44px;
+      height:44px;
+      border-radius:13px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--navy);
     }
 
-    .hero {
-      position: relative;
-      padding: 88px 0 92px;
-      overflow: hidden;
-    }
+    .mobile-menu { display:none; padding:0 0 18px; }
+    .mobile-menu.open { display:block; }
+    .mobile-menu-inner { display:grid; gap:10px; padding-top:14px; border-top:1px solid var(--line); }
+    .mobile-menu a { padding:14px 16px; border-radius:16px; background:#fff; border:1px solid var(--line); font-weight:850; }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      gap: 54px;
-      align-items: center;
-    }
+    .hero { padding:88px 0 72px; }
+    .hero-grid { display:grid; grid-template-columns:1.02fr .98fr; gap:54px; align-items:center; }
 
     .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(230, 242, 255, .84);
-      color: var(--blue);
-      border: 1px solid rgba(37,99,235,.12);
-      font-size: 12px;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: .14em;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(230,242,255,.88);
+      color:var(--blue);
+      border:1px solid rgba(37,99,235,.12);
+      font-size:12px;
+      font-weight:950;
+      text-transform:uppercase;
+      letter-spacing:.14em;
     }
 
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: var(--teal);
-      box-shadow: 0 0 0 7px rgba(0,191,166,.11);
-    }
+    .dot { width:8px; height:8px; border-radius:999px; background:var(--teal); box-shadow:0 0 0 7px rgba(0,191,166,.11); }
 
     h1 {
-      margin: 22px 0 18px;
-      max-width: 760px;
-      font-size: clamp(48px, 6.1vw, 88px);
-      line-height: .95;
-      letter-spacing: -0.078em;
-      color: var(--navy-2);
+      margin:22px 0 18px;
+      font-size:clamp(48px,6.1vw,88px);
+      line-height:.95;
+      letter-spacing:-.078em;
+      color:var(--deep);
     }
 
     .gradient-text {
-      color: var(--teal);
-      background: linear-gradient(90deg, #00A993, #11CDB7 46%, #2563EB 125%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background:linear-gradient(90deg,#00A993,#11CDB7 46%,#2563EB 125%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      -webkit-text-fill-color:transparent;
     }
 
     .hero-copy {
-      max-width: 635px;
-      color: #53627C;
-      font-size: 20px;
-      line-height: 1.65;
-      margin: 0 0 30px;
-      font-weight: 520;
+      max-width:650px;
+      margin:0 0 30px;
+      color:#53627C;
+      font-size:20px;
+      line-height:1.65;
+      font-weight:540;
     }
 
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 26px;
-    }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin-bottom:26px; }
+    .trust-row { display:flex; flex-wrap:wrap; gap:14px; color:#4C5B74; font-size:14px; font-weight:780; }
+    .trust-item { display:inline-flex; align-items:center; gap:8px; }
+    .check { width:18px; height:18px; display:inline-grid; place-items:center; border-radius:999px; background:rgba(0,191,166,.13); color:#009B88; font-size:12px; font-weight:950; }
 
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      color: #4C5B74;
-      font-size: 14px;
-      font-weight: 750;
-    }
-
-    .trust-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .check {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      display: inline-grid;
-      place-items: center;
-      background: rgba(0,191,166,.13);
-      color: #009B88;
-      font-size: 12px;
-      font-weight: 950;
-    }
-
-    .hero-card-wrap {
-      position: relative;
-      min-height: 580px;
-    }
-
-    .orb {
-      position: absolute;
-      border-radius: 999px;
-      filter: blur(.2px);
-      opacity: .9;
-      pointer-events: none;
-    }
-
-    .orb.one {
-      width: 500px;
-      height: 500px;
-      right: -130px;
-      top: -36px;
-      background: linear-gradient(145deg, rgba(37,99,235,.12), rgba(230,242,255,.92));
-    }
-
-    .orb.two {
-      width: 430px;
-      height: 430px;
-      right: 70px;
-      bottom: -96px;
-      background: linear-gradient(145deg, rgba(0,191,166,.23), rgba(230,242,255,.8));
-    }
-
-    .orb.three {
-      width: 330px;
-      height: 330px;
-      left: 20px;
-      bottom: 38px;
-      background: linear-gradient(145deg, rgba(37,99,235,.95), rgba(37,99,235,.1));
-      opacity: .22;
-    }
+    .hero-visual { position:relative; min-height:560px; }
+    .orb { position:absolute; border-radius:999px; pointer-events:none; }
+    .orb.one { width:500px; height:500px; right:-120px; top:-30px; background:linear-gradient(145deg,rgba(37,99,235,.12),rgba(230,242,255,.92)); }
+    .orb.two { width:420px; height:420px; right:80px; bottom:-80px; background:linear-gradient(145deg,rgba(0,191,166,.22),rgba(230,242,255,.8)); }
 
     .funding-card {
-      position: absolute;
-      right: 22px;
-      top: 38px;
-      width: min(470px, 100%);
-      border-radius: 34px;
-      background: rgba(255,255,255,.88);
-      border: 1px solid rgba(255,255,255,.72);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(20px);
-      padding: 24px;
-      overflow: hidden;
-    }
-
-    .funding-card:before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 80% 0%, rgba(37,99,235,.10), transparent 35%), radial-gradient(circle at 0% 100%, rgba(0,191,166,.12), transparent 34%);
-      pointer-events: none;
-    }
-
-    .card-inner { position: relative; z-index: 1; }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-
-    .card-label {
-      color: #667085;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .card-amount {
-      font-size: 42px;
-      letter-spacing: -0.06em;
-      font-weight: 900;
-      color: var(--navy-2);
-      line-height: 1;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 11px;
-      border-radius: 999px;
-      background: rgba(0,191,166,.12);
-      color: #009B88;
-      font-size: 12px;
-      font-weight: 900;
-      white-space: nowrap;
-    }
-
-    .mini-chart {
-      height: 110px;
-      border-radius: 24px;
-      background: linear-gradient(180deg, rgba(230,242,255,.78), rgba(255,255,255,.42));
-      border: 1px solid rgba(37,99,235,.10);
-      overflow: hidden;
-      margin-bottom: 18px;
-      position: relative;
-    }
-
-    .mini-chart svg { width: 100%; height: 100%; }
-
-    .offer-list {
-      display: grid;
-      gap: 12px;
-      margin-top: 16px;
-    }
-
-    .offer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.72);
-      border: 1px solid rgba(230,234,242,.86);
-    }
-
-    .offer-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      min-width: 0;
-    }
-
-    .icon-bubble {
-      width: 42px;
-      height: 42px;
-      display: grid;
-      place-items: center;
-      border-radius: 14px;
-      background: var(--sky);
-      color: var(--blue);
-      flex: 0 0 auto;
-    }
-
-    .offer h4 {
-      margin: 0 0 3px;
-      font-size: 14px;
-      letter-spacing: -.02em;
-    }
-
-    .offer p {
-      margin: 0;
-      color: #667085;
-      font-size: 12px;
-      font-weight: 700;
-    }
-
-    .offer strong {
-      color: var(--navy);
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .floating-note {
-      position: absolute;
-      left: 8px;
-      bottom: 70px;
-      width: 280px;
-      padding: 17px;
-      border-radius: 24px;
-      background: rgba(255,255,255,.9);
-      border: 1px solid rgba(230,234,242,.86);
-      box-shadow: var(--shadow-soft);
-      backdrop-filter: blur(20px);
-    }
-
-    .floating-note h4 {
-      margin: 0 0 8px;
-      font-size: 15px;
-      letter-spacing: -.025em;
-    }
-
-    .floating-note p {
-      margin: 0;
-      color: #667085;
-      font-size: 13px;
-      line-height: 1.55;
-      font-weight: 620;
-    }
-
-    .stats-band {
-      padding: 18px;
-      border: 1px solid rgba(230,234,242,.86);
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 14px 42px rgba(11,29,58,.05);
-      border-radius: 28px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin-top: -32px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .stat {
-      padding: 19px 20px;
-      border-radius: 22px;
-      background: linear-gradient(180deg, #fff, #F8FBFF);
-      border: 1px solid rgba(230,234,242,.8);
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 28px;
-      letter-spacing: -.055em;
-      margin-bottom: 5px;
-    }
-
-    .stat span {
-      color: #667085;
-      font-size: 13px;
-      font-weight: 720;
-      line-height: 1.4;
-    }
-
-    section { padding: 96px 0; }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 40px;
-      margin-bottom: 36px;
-    }
-
-    .section-kicker {
-      color: var(--blue);
-      font-size: 13px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-weight: 950;
-      margin-bottom: 13px;
-    }
-
-    h2 {
-      margin: 0;
-      font-size: clamp(36px, 4.3vw, 60px);
-      line-height: 1.02;
-      letter-spacing: -0.068em;
-      color: var(--navy-2);
-    }
-
-    .section-copy {
-      max-width: 495px;
-      margin: 0;
-      color: #60708A;
-      font-size: 17px;
-      line-height: 1.65;
-      font-weight: 560;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature-card {
-      position: relative;
-      min-height: 260px;
-      padding: 28px;
-      border-radius: 30px;
-      border: 1px solid rgba(230,234,242,.9);
-      background: rgba(255,255,255,.84);
-      box-shadow: 0 16px 38px rgba(11,29,58,.05);
-      overflow: hidden;
-      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 28px 62px rgba(11,29,58,.09);
-      border-color: rgba(37,99,235,.18);
-    }
-
-    .feature-card:after {
-      content: "";
-      position: absolute;
-      width: 180px;
-      height: 180px;
-      right: -90px;
-      top: -80px;
-      background: radial-gradient(circle, rgba(37,99,235,.13), transparent 70%);
-      pointer-events: none;
-    }
-
-    .feature-icon {
-      width: 54px;
-      height: 54px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      background: var(--sky);
-      color: var(--blue);
-      margin-bottom: 22px;
-    }
-
-    .feature-card h3 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      letter-spacing: -.04em;
-      color: var(--navy-2);
-    }
-
-    .feature-card p {
-      margin: 0 0 20px;
-      color: #667085;
-      line-height: 1.62;
-      font-weight: 540;
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: auto;
-    }
-
-    .tag {
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: #F5FAFF;
-      color: #42526D;
-      font-size: 12px;
-      font-weight: 820;
-      border: 1px solid rgba(230,234,242,.9);
-    }
-
-    .process {
-      background: linear-gradient(180deg, #F7FBFF 0%, #FFFFFF 100%);
-      border-top: 1px solid rgba(230,234,242,.72);
-      border-bottom: 1px solid rgba(230,234,242,.72);
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      counter-reset: step;
-    }
-
-    .step {
-      position: relative;
-      padding: 26px;
-      border-radius: 28px;
-      background: #fff;
-      border: 1px solid rgba(230,234,242,.9);
-      box-shadow: 0 14px 36px rgba(11,29,58,.045);
-      min-height: 245px;
-    }
-
-    .step-number {
-      display: inline-flex;
-      width: 36px;
-      height: 36px;
-      align-items: center;
-      justify-content: center;
-      border-radius: 13px;
-      background: var(--blue);
-      color: #fff;
-      font-size: 13px;
-      font-weight: 950;
-      margin-bottom: 30px;
-      box-shadow: 0 12px 24px rgba(37,99,235,.22);
-    }
-
-    .step h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
-      letter-spacing: -.04em;
-    }
-
-    .step p {
-      margin: 0;
-      color: #667085;
-      line-height: 1.6;
-      font-weight: 540;
-    }
-
-    .passport-section { padding-top: 110px; }
-
-    .passport {
-      display: grid;
-      grid-template-columns: .85fr 1.15fr;
-      gap: 38px;
-      align-items: center;
-      padding: 42px;
-      border-radius: 36px;
-      background:
-        radial-gradient(circle at 100% 0%, rgba(37,99,235,.17), transparent 36%),
-        linear-gradient(135deg, #07142A 0%, #0B1D3A 52%, #0C2A5A 100%);
-      color: #fff;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .passport:before {
-      content: "";
-      position: absolute;
-      width: 560px;
-      height: 560px;
-      border-radius: 999px;
-      right: -220px;
-      bottom: -300px;
-      background: linear-gradient(135deg, rgba(37,99,235,.42), rgba(0,191,166,.38));
-    }
-
-    .passport > * { position: relative; z-index: 1; }
-    .passport .section-kicker { color: #72D8FF; }
-    .passport h2 { color: #fff; }
-    .passport p { color: rgba(255,255,255,.76); }
-
-    .passport-list {
-      display: grid;
-      gap: 12px;
-      margin: 28px 0 0;
-    }
-
-    .passport-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 13px 14px;
-      border-radius: 16px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.10);
-      color: rgba(255,255,255,.88);
-      font-weight: 760;
-    }
-
-    .dashboard {
-      border-radius: 30px;
-      background: rgba(255,255,255,.92);
-      color: var(--navy);
-      padding: 22px;
-      box-shadow: 0 30px 70px rgba(0,0,0,.17);
-      border: 1px solid rgba(255,255,255,.18);
-    }
-
-    .dash-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 18px;
-    }
-
-    .dash-title h3 { margin: 0 0 5px; font-size: 19px; letter-spacing: -.035em; }
-    .dash-title p { margin: 0; font-size: 13px; color: #667085; font-weight: 720; }
-
-    .score {
-      width: 78px;
-      height: 78px;
-      border-radius: 24px;
-      display: grid;
-      place-items: center;
-      background: conic-gradient(var(--teal) 0 84%, #E6EAF2 84% 100%);
-      position: relative;
-    }
-
-    .score:after {
-      content: "";
-      width: 58px;
-      height: 58px;
-      border-radius: 19px;
-      background: #fff;
-      position: absolute;
-    }
-
-    .score span {
-      position: relative;
-      z-index: 1;
-      font-weight: 950;
-      letter-spacing: -.04em;
-      font-size: 20px;
-    }
-
-    .dash-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-    }
-
-    .dash-tile {
-      padding: 16px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #fff, #F8FBFF);
-      border: 1px solid var(--line);
-    }
-
-    .dash-tile span {
-      display: block;
-      font-size: 12px;
-      color: #667085;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-
-    .dash-tile strong {
-      display: block;
-      font-size: 19px;
-      letter-spacing: -.04em;
-    }
-
-    .match-card {
-      margin-top: 12px;
-      padding: 17px;
-      border-radius: 22px;
-      background: rgba(230,242,255,.68);
-      border: 1px solid rgba(37,99,235,.10);
-    }
-
-    .match-card h4 { margin: 0 0 10px; letter-spacing: -.03em; }
-    .match-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 14px;
-      font-size: 13px;
-      font-weight: 800;
-      color: #42526D;
-      margin: 8px 0;
-    }
-
-    .bar {
-      height: 8px;
-      border-radius: 999px;
-      background: #DAE8FF;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-    .bar span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--blue), var(--teal)); }
-
-    .industries {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 12px;
-    }
-
-    .industry {
-      padding: 20px 16px;
-      border-radius: 24px;
-      border: 1px solid rgba(230,234,242,.9);
-      background: #fff;
-      box-shadow: 0 12px 28px rgba(11,29,58,.04);
-      text-align: center;
-      font-weight: 850;
-      color: var(--navy);
-      min-height: 98px;
-      display: grid;
-      place-items: center;
-    }
-
-    .application { padding: 0 0 106px; }
-
-    .apply-card {
-      display: grid;
-      grid-template-columns: .82fr 1.18fr;
-      gap: 32px;
-      padding: 36px;
-      border-radius: 36px;
-      background: #fff;
-      border: 1px solid rgba(230,234,242,.96);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .apply-copy { padding: 12px 6px 12px 4px; }
-    .apply-copy h2 { margin-bottom: 18px; }
-    .apply-copy p {
-      color: #667085;
-      font-size: 17px;
-      line-height: 1.65;
-      font-weight: 540;
-      margin: 0 0 24px;
-    }
-
-    .advisor-box {
-      margin-top: 30px;
-      padding: 22px;
-      border-radius: 26px;
-      background: linear-gradient(180deg, #F5FAFF, #FFFFFF);
-      border: 1px solid var(--line);
-    }
-
-    .advisor-box strong { display: block; margin-bottom: 8px; letter-spacing: -.02em; }
-    .advisor-box span { color: #667085; font-size: 14px; line-height: 1.55; font-weight: 570; }
-
-    .form-card {
-      padding: 26px;
-      border-radius: 30px;
-      background: linear-gradient(180deg, #F8FBFF, #FFFFFF);
-      border: 1px solid rgba(230,234,242,.92);
-    }
-
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .field { display: grid; gap: 7px; }
-    .field.full { grid-column: 1 / -1; }
-    label {
-      color: #344054;
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: .025em;
-    }
-    input, select, textarea {
-      width: 100%;
-      min-height: 52px;
-      border-radius: 15px;
-      border: 1px solid #DDE4EF;
-      background: #fff;
-      color: var(--navy);
-      outline: none;
-      padding: 0 14px;
-      font-weight: 650;
-      transition: border-color .2s ease, box-shadow .2s ease;
-    }
-    textarea {
-      padding-top: 14px;
-      min-height: 94px;
-      resize: vertical;
-    }
-    input:focus, select:focus, textarea:focus {
-      border-color: rgba(37,99,235,.55);
-      box-shadow: 0 0 0 4px rgba(37,99,235,.10);
-    }
-
-    .form-footer {
-      margin-top: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 18px;
-    }
-
-    .fine-print {
-      color: #667085;
-      font-size: 12px;
-      line-height: 1.5;
-      font-weight: 600;
-      max-width: 350px;
-    }
-
-    .faq-wrap {
-      display: grid;
-      grid-template-columns: .8fr 1.2fr;
-      gap: 46px;
-      align-items: start;
-    }
-
-    .faq-list { display: grid; gap: 12px; }
-
-    details {
-      border: 1px solid rgba(230,234,242,.96);
-      border-radius: 22px;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(11,29,58,.04);
-      overflow: hidden;
-    }
-
-    summary {
-      padding: 20px 22px;
-      cursor: pointer;
-      font-weight: 900;
-      letter-spacing: -.025em;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      list-style: none;
-    }
-    summary::-webkit-details-marker { display: none; }
-    summary:after { content: "+"; color: var(--blue); font-size: 22px; }
-    details[open] summary:after { content: "–"; }
-    details p {
-      margin: 0;
-      padding: 0 22px 22px;
-      color: #667085;
-      line-height: 1.62;
-      font-weight: 540;
-    }
-
-    .final-cta { padding: 90px 0; }
-
-    .cta-box {
-      position: relative;
-      padding: 58px;
-      border-radius: 40px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 95% 15%, rgba(0,191,166,.34), transparent 32%),
-        radial-gradient(circle at 0% 100%, rgba(37,99,235,.35), transparent 34%),
-        linear-gradient(135deg, #07142A, #0B1D3A 58%, #0D3470);
-      color: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .cta-box h2 { color: #fff; max-width: 720px; margin-bottom: 16px; }
-    .cta-box p {
-      max-width: 660px;
-      color: rgba(255,255,255,.76);
-      font-size: 18px;
-      line-height: 1.65;
-      margin: 0 0 28px;
-      font-weight: 540;
-    }
-
-    .footer {
-      border-top: 1px solid rgba(230,234,242,.82);
-      padding: 34px 0;
-      background: #fff;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-      color: #667085;
-      font-size: 13px;
-      font-weight: 720;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s ease; }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 980px) {
-      .container { width: min(var(--max), calc(100% - 36px)); }
-      .nav-links, .nav-actions { display: none; }
-      .mobile-toggle { display: inline-grid; place-items: center; }
-      .hero { padding-top: 58px; }
-      .hero-grid, .passport, .apply-card, .faq-wrap { grid-template-columns: 1fr; }
-      .hero-card-wrap { min-height: 545px; }
-      .funding-card { left: 0; right: auto; width: min(520px, 100%); }
-      .floating-note { left: auto; right: 8px; bottom: 48px; }
-      .stats-band { grid-template-columns: repeat(2, 1fr); margin-top: 0; }
-      .cards-grid { grid-template-columns: 1fr 1fr; }
-      .steps { grid-template-columns: repeat(2, 1fr); }
-      .industries { grid-template-columns: repeat(3, 1fr); }
-      .section-head { align-items: start; flex-direction: column; gap: 16px; }
-    }
-
-    @media (max-width: 640px) {
-      .container { width: min(var(--max), calc(100% - 28px)); }
-      .nav { height: 72px; }
-      .brand { font-size: 26px; }
-      .brand svg { width: 38px; height: 38px; }
-      .hero { padding: 46px 0 58px; }
-      h1 { font-size: clamp(43px, 13vw, 62px); }
-      .hero-copy { font-size: 17px; }
-      .hero-actions .btn { width: 100%; }
-      .trust-row { display: grid; }
-      .hero-card-wrap { min-height: 610px; }
-      .funding-card { top: 22px; padding: 18px; border-radius: 28px; }
-      .card-amount { font-size: 34px; }
-      .floating-note { width: calc(100% - 22px); left: 11px; right: 11px; bottom: 18px; }
-      .stats-band, .cards-grid, .steps, .industries, .dash-grid, .form-grid { grid-template-columns: 1fr; }
-      section { padding: 70px 0; }
-      .passport, .apply-card, .cta-box { padding: 26px; border-radius: 30px; }
-      .form-card { padding: 18px; }
-      .form-footer { align-items: stretch; flex-direction: column; }
-      .form-footer .btn { width: 100%; }
-      .footer-inner { align-items: flex-start; flex-direction: column; }
+      position:absolute;
+      right:22px;
+      top:38px;
+      width:min(480px,100%);
+      border-radius:34px;
+      background:rgba(255,255,255,.9);
+      border:1px solid rgba(255,255,255,.76);
+      box-shadow:var(--shadow);
+      backdrop-filter:blur(20px);
+      padding:24px;
+      overflow:hidden;
+    }
+
+    .funding-card::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 85% 0%, rgba(37,99,235,.11), transparent 35%), radial-gradient(circle at 0% 100%, rgba(0,191,166,.12), transparent 34%);
+      pointer-events:none;
+    }
+
+    .card-inner { position:relative; z-index:1; }
+    .card-top { display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:22px; }
+    .card-label { color:var(--slate); font-size:13px; font-weight:850; margin-bottom:6px; }
+    .card-amount { font-size:42px; line-height:1; letter-spacing:-.06em; font-weight:950; color:var(--deep); }
+    .status-pill { display:inline-flex; align-items:center; gap:8px; padding:8px 11px; border-radius:999px; background:rgba(0,191,166,.12); color:#009B88; font-size:12px; font-weight:900; }
+
+    .mini-chart { height:112px; border-radius:24px; background:linear-gradient(180deg,rgba(230,242,255,.82),rgba(255,255,255,.42)); border:1px solid rgba(37,99,235,.10); overflow:hidden; margin-bottom:18px; }
+    .mini-chart svg { width:100%; height:100%; }
+    .offer-list { display:grid; gap:12px; }
+    .offer { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px; border-radius:18px; background:rgba(255,255,255,.76); border:1px solid rgba(230,234,242,.9); }
+    .offer-left { display:flex; gap:12px; align-items:center; min-width:0; }
+    .icon { width:42px; height:42px; display:grid; place-items:center; flex:0 0 auto; border-radius:14px; color:var(--blue); background:var(--sky); }
+    .offer h4 { margin:0 0 3px; font-size:14px; letter-spacing:-.02em; }
+    .offer p { margin:0; color:var(--slate); font-size:12px; font-weight:700; }
+    .offer strong { font-size:14px; white-space:nowrap; }
+
+    .floating-note { position:absolute; left:8px; bottom:58px; width:280px; padding:17px; border-radius:24px; background:rgba(255,255,255,.92); border:1px solid rgba(230,234,242,.9); box-shadow:var(--soft-shadow); backdrop-filter:blur(18px); }
+    .floating-note h4 { margin:0 0 8px; font-size:15px; letter-spacing:-.025em; }
+    .floating-note p { margin:0; color:var(--slate); font-size:13px; line-height:1.55; font-weight:620; }
+
+    .stats-band { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; padding:18px; margin-top:-18px; border-radius:28px; background:rgba(255,255,255,.76); border:1px solid rgba(230,234,242,.9); box-shadow:0 14px 42px rgba(11,29,58,.05); }
+    .stat { padding:19px 20px; border-radius:22px; background:linear-gradient(180deg,#fff,#F8FBFF); border:1px solid rgba(230,234,242,.86); }
+    .stat strong { display:block; font-size:28px; letter-spacing:-.055em; margin-bottom:5px; }
+    .stat span { color:var(--slate); font-size:13px; font-weight:730; line-height:1.4; }
+
+    section { padding:96px 0; }
+    .section-head { display:flex; align-items:end; justify-content:space-between; gap:40px; margin-bottom:36px; }
+    .section-kicker { color:var(--blue); font-size:13px; letter-spacing:.16em; text-transform:uppercase; font-weight:950; margin-bottom:13px; }
+    h2 { margin:0; font-size:clamp(36px,4.3vw,60px); line-height:1.02; letter-spacing:-.068em; color:var(--deep); }
+    .section-copy { max-width:520px; margin:0; color:#60708A; font-size:17px; line-height:1.65; font-weight:560; }
+
+    .cards-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+    .feature-card { position:relative; min-height:252px; padding:28px; border-radius:30px; border:1px solid rgba(230,234,242,.92); background:rgba(255,255,255,.86); box-shadow:0 16px 38px rgba(11,29,58,.05); overflow:hidden; transition:.25s ease; }
+    .feature-card:hover { transform:translateY(-6px); box-shadow:0 28px 62px rgba(11,29,58,.09); }
+    .feature-icon { width:54px; height:54px; display:grid; place-items:center; border-radius:18px; background:var(--sky); color:var(--blue); margin-bottom:22px; }
+    .feature-card h3 { margin:0 0 10px; font-size:22px; letter-spacing:-.04em; color:var(--deep); }
+    .feature-card p { margin:0 0 20px; color:var(--slate); line-height:1.62; font-weight:540; }
+    .tag-row { display:flex; flex-wrap:wrap; gap:8px; }
+    .tag { padding:7px 10px; border-radius:999px; background:#F5FAFF; color:#42526D; border:1px solid rgba(230,234,242,.9); font-size:12px; font-weight:820; }
+
+    .process { background:linear-gradient(180deg,#F7FBFF 0%,#FFFFFF 100%); border-top:1px solid rgba(230,234,242,.72); border-bottom:1px solid rgba(230,234,242,.72); }
+    .steps { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+    .step { padding:26px; min-height:245px; border-radius:28px; background:#fff; border:1px solid rgba(230,234,242,.92); box-shadow:0 14px 36px rgba(11,29,58,.045); }
+    .step-number { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:13px; background:var(--blue); color:#fff; font-size:13px; font-weight:950; margin-bottom:30px; box-shadow:0 12px 24px rgba(37,99,235,.22); }
+    .step h3 { margin:0 0 10px; font-size:21px; letter-spacing:-.04em; }
+    .step p { margin:0; color:var(--slate); line-height:1.6; font-weight:540; }
+
+    .passport { display:grid; grid-template-columns:.85fr 1.15fr; gap:38px; align-items:center; padding:42px; border-radius:38px; background:radial-gradient(circle at 100% 0%, rgba(37,99,235,.17), transparent 36%), linear-gradient(135deg,#07142A 0%,#0B1D3A 52%,#0C2A5A 100%); color:#fff; box-shadow:var(--shadow); overflow:hidden; }
+    .passport .section-kicker { color:#72D8FF; }
+    .passport h2 { color:#fff; }
+    .passport p { color:rgba(255,255,255,.76); }
+    .passport-list { display:grid; gap:12px; margin-top:28px; }
+    .passport-item { display:flex; align-items:center; gap:12px; padding:13px 14px; border-radius:16px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.10); color:rgba(255,255,255,.88); font-weight:760; }
+
+    .dashboard { border-radius:30px; background:rgba(255,255,255,.94); color:var(--navy); padding:22px; box-shadow:0 30px 70px rgba(0,0,0,.17); }
+    .dash-top { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-bottom:18px; border-bottom:1px solid var(--line); margin-bottom:18px; }
+    .dash-title h3 { margin:0 0 5px; font-size:19px; letter-spacing:-.035em; }
+    .dash-title p { margin:0; color:var(--slate); font-size:13px; font-weight:720; }
+    .score { width:78px; height:78px; border-radius:24px; display:grid; place-items:center; background:conic-gradient(var(--teal) 0 84%, #E6EAF2 84% 100%); position:relative; }
+    .score::after { content:""; position:absolute; width:58px; height:58px; border-radius:19px; background:#fff; }
+    .score span { position:relative; z-index:1; font-size:20px; font-weight:950; letter-spacing:-.04em; }
+    .dash-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+    .dash-tile { padding:16px; border-radius:20px; background:linear-gradient(180deg,#fff,#F8FBFF); border:1px solid var(--line); }
+    .dash-tile span { display:block; color:var(--slate); font-size:12px; font-weight:800; margin-bottom:8px; }
+    .dash-tile strong { display:block; font-size:19px; letter-spacing:-.04em; }
+    .match-card { margin-top:12px; padding:17px; border-radius:22px; background:rgba(230,242,255,.68); border:1px solid rgba(37,99,235,.10); }
+    .match-card h4 { margin:0 0 10px; letter-spacing:-.03em; }
+    .match-row { display:flex; justify-content:space-between; gap:14px; color:#42526D; font-size:13px; font-weight:800; margin:8px 0; }
+    .bar { height:8px; border-radius:999px; background:#DAE8FF; overflow:hidden; margin-bottom:10px; }
+    .bar span { display:block; height:100%; border-radius:999px; background:linear-gradient(90deg,var(--blue),var(--teal)); }
+
+    .industries { display:grid; grid-template-columns:repeat(5,1fr); gap:12px; }
+    .industry { min-height:98px; display:grid; place-items:center; padding:20px 16px; border-radius:24px; border:1px solid rgba(230,234,242,.92); background:#fff; box-shadow:0 12px 28px rgba(11,29,58,.04); text-align:center; font-weight:850; }
+
+    .apply-card { display:grid; grid-template-columns:.82fr 1.18fr; gap:32px; padding:36px; border-radius:38px; background:#fff; border:1px solid rgba(230,234,242,.96); box-shadow:var(--shadow); }
+    .apply-copy p { color:var(--slate); font-size:17px; line-height:1.65; font-weight:540; }
+    .advisor-box { margin-top:30px; padding:22px; border-radius:26px; background:linear-gradient(180deg,#F5FAFF,#fff); border:1px solid var(--line); }
+    .advisor-box strong { display:block; margin-bottom:8px; }
+    .advisor-box span { color:var(--slate); font-size:14px; line-height:1.55; font-weight:570; }
+    .action-card { display:grid; gap:14px; padding:26px; border-radius:30px; background:linear-gradient(180deg,#F8FBFF,#fff); border:1px solid rgba(230,234,242,.92); }
+    .route-card { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:18px; border-radius:22px; background:#fff; border:1px solid var(--line); }
+    .route-card h3 { margin:0 0 5px; font-size:18px; letter-spacing:-.035em; color:var(--deep); }
+    .route-card p { margin:0; color:var(--slate); font-size:13px; line-height:1.5; font-weight:620; }
+
+    .faq-wrap { display:grid; grid-template-columns:.8fr 1.2fr; gap:46px; align-items:start; }
+    .faq-list { display:grid; gap:12px; }
+    details { border:1px solid rgba(230,234,242,.96); border-radius:22px; background:#fff; box-shadow:0 10px 26px rgba(11,29,58,.04); overflow:hidden; }
+    summary { padding:20px 22px; cursor:pointer; font-weight:900; letter-spacing:-.025em; display:flex; align-items:center; justify-content:space-between; gap:20px; list-style:none; }
+    summary::-webkit-details-marker { display:none; }
+    summary::after { content:"+"; color:var(--blue); font-size:22px; }
+    details[open] summary::after { content:"–"; }
+    details p { margin:0; padding:0 22px 22px; color:var(--slate); line-height:1.62; font-weight:540; }
+
+    .cta-box { padding:58px; border-radius:40px; background:radial-gradient(circle at 95% 15%, rgba(0,191,166,.34), transparent 32%), radial-gradient(circle at 0% 100%, rgba(37,99,235,.35), transparent 34%), linear-gradient(135deg,#07142A,#0B1D3A 58%,#0D3470); color:#fff; box-shadow:var(--shadow); }
+    .cta-box h2 { color:#fff; max-width:740px; margin-bottom:16px; }
+    .cta-box p { max-width:680px; color:rgba(255,255,255,.76); font-size:18px; line-height:1.65; margin:0 0 28px; font-weight:540; }
+
+    .footer { border-top:1px solid rgba(230,234,242,.82); padding:34px 0; background:#fff; }
+    .footer-inner { display:flex; align-items:center; justify-content:space-between; gap:24px; color:var(--slate); font-size:13px; font-weight:720; }
+    .footer-links { display:flex; flex-wrap:wrap; gap:20px; }
+
+    .reveal { opacity:0; transform:translateY(18px); transition:opacity .65s ease, transform .65s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    @media (max-width:980px) {
+      .container { width:min(var(--max), calc(100% - 36px)); }
+      .nav-links,.nav-actions { display:none; }
+      .mobile-toggle { display:inline-grid; place-items:center; }
+      .hero-grid,.passport,.apply-card,.faq-wrap { grid-template-columns:1fr; }
+      .hero-visual { min-height:545px; }
+      .funding-card { left:0; right:auto; width:min(540px,100%); }
+      .floating-note { left:auto; right:8px; bottom:48px; }
+      .stats-band,.steps { grid-template-columns:repeat(2,1fr); }
+      .cards-grid { grid-template-columns:1fr 1fr; }
+      .industries { grid-template-columns:repeat(3,1fr); }
+      .section-head { align-items:start; flex-direction:column; gap:16px; }
+    }
+
+    @media (max-width:640px) {
+      .container { width:min(var(--max), calc(100% - 28px)); }
+      .nav { height:72px; }
+      .brand { font-size:26px; }
+      .brand svg { width:38px; height:38px; }
+      .hero { padding:46px 0 58px; }
+      h1 { font-size:clamp(43px,13vw,62px); }
+      .hero-copy { font-size:17px; }
+      .hero-actions .btn { width:100%; }
+      .trust-row { display:grid; }
+      .hero-visual { min-height:610px; }
+      .funding-card { top:22px; padding:18px; border-radius:28px; }
+      .card-amount { font-size:34px; }
+      .floating-note { width:calc(100% - 22px); left:11px; right:11px; bottom:18px; }
+      .stats-band,.cards-grid,.steps,.industries,.dash-grid { grid-template-columns:1fr; }
+      section { padding:70px 0; }
+      .passport,.apply-card,.cta-box { padding:26px; border-radius:30px; }
+      .action-card { padding:18px; }
+      .route-card { align-items:flex-start; flex-direction:column; }
+      .route-card .btn { width:100%; }
+      .footer-inner { align-items:flex-start; flex-direction:column; }
     }
   </style>
 </head>
@@ -1029,18 +339,11 @@
   <div class="page">
     <header class="nav-shell">
       <div class="container nav">
-        <a href="#top" class="brand" aria-label="Revola home">
+        <a href="index.html" class="brand" aria-label="Revola home">
           <svg viewBox="0 0 64 64" aria-hidden="true">
             <defs>
-              <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#07142A"/>
-                <stop offset=".28" stop-color="#0B5CFF"/>
-                <stop offset="1" stop-color="#2563EB"/>
-              </linearGradient>
-              <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00BFA6"/>
-                <stop offset="1" stop-color="#09D6BF"/>
-              </linearGradient>
+              <linearGradient id="rBlue" x1="10" y1="58" x2="54" y2="6" gradientUnits="userSpaceOnUse"><stop stop-color="#07142A"/><stop offset=".28" stop-color="#0B5CFF"/><stop offset="1" stop-color="#2563EB"/></linearGradient>
+              <linearGradient id="rTeal" x1="30" y1="38" x2="58" y2="62" gradientUnits="userSpaceOnUse"><stop stop-color="#00BFA6"/><stop offset="1" stop-color="#09D6BF"/></linearGradient>
             </defs>
             <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="url(#rBlue)"/>
             <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="url(#rTeal)"/>
@@ -1053,43 +356,52 @@
           <a href="#solutions">Solutions</a>
           <a href="#how">How it works</a>
           <a href="#passport">Capital Passport</a>
+          <a href="partner.html">Partners</a>
           <a href="#faq">FAQ</a>
         </nav>
 
         <div class="nav-actions">
-          <a href="#apply" class="btn btn-secondary">Talk to advisor</a>
-          <a href="#apply" class="btn btn-primary">Find funding options</a>
+          <a href="partner.html" class="btn btn-secondary">Partner with us</a>
+          <a href="application.html" class="btn btn-primary">Find funding options</a>
         </div>
 
-        <button class="mobile-toggle" aria-label="Open navigation">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Open navigation" aria-expanded="false">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
+      </div>
+
+      <div class="container mobile-menu" id="mobileMenu">
+        <div class="mobile-menu-inner">
+          <a href="#solutions">Solutions</a>
+          <a href="#how">How it works</a>
+          <a href="#passport">Capital Passport</a>
+          <a href="partner.html">Partners</a>
+          <a href="application.html">Apply for funding</a>
+        </div>
       </div>
     </header>
 
     <main id="top">
       <section class="hero">
         <div class="container hero-grid">
-          <div class="hero-copy-block reveal">
-            <div class="eyebrow"><span class="pulse-dot"></span> Built for growing businesses across industries</div>
+          <div class="reveal">
+            <div class="eyebrow"><span class="dot"></span> Built for growing businesses across industries</div>
             <h1>Business funding, <span class="gradient-text">without the runaround.</span></h1>
             <p class="hero-copy">Revola helps businesses compare working capital, lines of credit, equipment financing, invoice financing, SBA-style paths, and expansion funding through one simple application.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#apply">Find my funding options <span>→</span></a>
-              <a class="btn btn-secondary" href="#how">See how it works</a>
+              <a class="btn btn-primary" href="application.html">Start funding application <span>→</span></a>
+              <a class="btn btn-secondary" href="partner.html">Partner with Revola</a>
             </div>
-            <div class="trust-row" aria-label="Trust points">
+            <div class="trust-row">
               <span class="trust-item"><span class="check">✓</span> One application</span>
               <span class="trust-item"><span class="check">✓</span> Clear comparisons</span>
               <span class="trust-item"><span class="check">✓</span> Advisor-supported</span>
             </div>
           </div>
 
-          <div class="hero-card-wrap reveal" aria-hidden="true">
+          <div class="hero-visual reveal" aria-hidden="true">
             <div class="orb one"></div>
             <div class="orb two"></div>
-            <div class="orb three"></div>
-
             <div class="funding-card">
               <div class="card-inner">
                 <div class="card-top">
@@ -1097,50 +409,21 @@
                     <div class="card-label">Funding overview</div>
                     <div class="card-amount">$250,000</div>
                   </div>
-                  <div class="status-pill"><span class="pulse-dot"></span> Matched</div>
+                  <div class="status-pill"><span class="dot"></span> Matched</div>
                 </div>
 
                 <div class="mini-chart">
                   <svg viewBox="0 0 420 110" preserveAspectRatio="none">
-                    <defs>
-                      <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0" stop-color="#2563EB" stop-opacity=".22"/>
-                        <stop offset="1" stop-color="#2563EB" stop-opacity="0"/>
-                      </linearGradient>
-                    </defs>
+                    <defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2563EB" stop-opacity=".22"/><stop offset="1" stop-color="#2563EB" stop-opacity="0"/></linearGradient></defs>
                     <path d="M0 82 C38 78 43 66 75 70 C109 75 112 47 149 54 C187 61 188 80 225 70 C263 59 264 42 302 48 C344 54 342 24 420 34 L420 110 L0 110 Z" fill="url(#chartFill)"/>
                     <path d="M0 82 C38 78 43 66 75 70 C109 75 112 47 149 54 C187 61 188 80 225 70 C263 59 264 42 302 48 C344 54 342 24 420 34" fill="none" stroke="#2563EB" stroke-width="4" stroke-linecap="round"/>
                   </svg>
                 </div>
 
                 <div class="offer-list">
-                  <div class="offer">
-                    <div class="offer-left">
-                      <div class="icon-bubble">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M14 7h7v7"/></svg>
-                      </div>
-                      <div><h4>Working capital</h4><p>Fastest path</p></div>
-                    </div>
-                    <strong>24–48 hrs</strong>
-                  </div>
-                  <div class="offer">
-                    <div class="offer-left">
-                      <div class="icon-bubble">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M13 16V8"/><path d="M18 16v-3"/></svg>
-                      </div>
-                      <div><h4>Line of credit</h4><p>Flexible access</p></div>
-                    </div>
-                    <strong>Best fit</strong>
-                  </div>
-                  <div class="offer">
-                    <div class="offer-left">
-                      <div class="icon-bubble">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
-                      </div>
-                      <div><h4>Invoice financing</h4><p>Cash timing</p></div>
-                    </div>
-                    <strong>Matched</strong>
-                  </div>
+                  <div class="offer"><div class="offer-left"><div class="icon">↗</div><div><h4>Working capital</h4><p>Fastest path</p></div></div><strong>24–48 hrs</strong></div>
+                  <div class="offer"><div class="offer-left"><div class="icon">▥</div><div><h4>Line of credit</h4><p>Flexible access</p></div></div><strong>Best fit</strong></div>
+                  <div class="offer"><div class="offer-left"><div class="icon">◈</div><div><h4>Equipment financing</h4><p>Vehicles & tools</p></div></div><strong>Matched</strong></div>
                 </div>
               </div>
             </div>
@@ -1156,7 +439,7 @@
       <div class="container">
         <div class="stats-band reveal">
           <div class="stat"><strong>1</strong><span>Simple application to start the process</span></div>
-          <div class="stat"><strong>6+</strong><span>Funding paths matched to your business</span></div>
+          <div class="stat"><strong>4+</strong><span>Funding paths matched to your business</span></div>
           <div class="stat"><strong>24–48h</strong><span>Potential review window for qualified files</span></div>
           <div class="stat"><strong>0</strong><span>Runaround, confusion, or lender chasing</span></div>
         </div>
@@ -1173,47 +456,12 @@
           </div>
 
           <div class="cards-grid">
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-              <h3>Working capital</h3>
-              <p>Cover payroll, inventory, rent, marketing, materials, and operating expenses when timing gets tight.</p>
-              <div class="tag-row"><span class="tag">Cash flow</span><span class="tag">Fast review</span></div>
-            </article>
-
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M8 16v-5"/><path d="M13 16V8"/><path d="M18 16v-3"/></svg></div>
-              <h3>Business line of credit</h3>
-              <p>Access flexible capital for recurring needs, seasonal demand, and growth opportunities.</p>
-              <div class="tag-row"><span class="tag">Flexible</span><span class="tag">Reusable</span></div>
-            </article>
-
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h18"/><path d="M5 17l2-8h10l2 8"/><path d="M7 17v3"/><path d="M17 17v3"/><circle cx="8" cy="20" r="1"/><circle cx="16" cy="20" r="1"/></svg></div>
-              <h3>Equipment financing</h3>
-              <p>Finance vehicles, machines, technology, equipment, and tools without draining working capital.</p>
-              <div class="tag-row"><span class="tag">Equipment</span><span class="tag">Growth assets</span></div>
-            </article>
-
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg></div>
-              <h3>Invoice financing</h3>
-              <p>Unlock capital from unpaid invoices so receivables do not slow the business down.</p>
-              <div class="tag-row"><span class="tag">Receivables</span><span class="tag">Cash timing</span></div>
-            </article>
-
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M6 21V7l6-4 6 4v14"/><path d="M9 21v-8h6v8"/></svg></div>
-              <h3>Expansion funding</h3>
-              <p>Open a new location, hire staff, take on larger contracts, purchase inventory, or invest in growth.</p>
-              <div class="tag-row"><span class="tag">Growth</span><span class="tag">Expansion</span></div>
-            </article>
-
-            <article class="feature-card reveal">
-              <div class="feature-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h10"/><path d="M18 17l3 3"/><path d="M21 17l-3 3"/></svg></div>
-              <h3>Debt consolidation</h3>
-              <p>Review options that may help simplify payments and replace expensive short-term obligations.</p>
-              <div class="tag-row"><span class="tag">Refinance</span><span class="tag">Clarity</span></div>
-            </article>
+            <article class="feature-card reveal"><div class="feature-icon">$</div><h3>Working capital</h3><p>Cover payroll, materials, inventory, marketing, and operating expenses when timing gets tight.</p><div class="tag-row"><span class="tag">Cash flow</span><span class="tag">Fast review</span></div></article>
+            <article class="feature-card reveal"><div class="feature-icon">▥</div><h3>Business line of credit</h3><p>Access flexible capital for recurring needs, seasonal demand, and day-to-day growth expenses.</p><div class="tag-row"><span class="tag">Flexible</span><span class="tag">Reusable</span></div></article>
+            <article class="feature-card reveal"><div class="feature-icon">◈</div><h3>Equipment financing</h3><p>Finance trucks, machines, tools, systems, and business-critical equipment without draining working capital.</p><div class="tag-row"><span class="tag">Vehicles</span><span class="tag">Tools</span></div></article>
+            <article class="feature-card reveal"><div class="feature-icon">□</div><h3>Invoice financing</h3><p>Unlock capital from unpaid invoices so outstanding receivables do not slow the business down.</p><div class="tag-row"><span class="tag">Receivables</span><span class="tag">Cash timing</span></div></article>
+            <article class="feature-card reveal"><div class="feature-icon">↗</div><h3>Expansion funding</h3><p>Open a new location, hire a team, buy inventory, take on larger contracts, or invest in growth.</p><div class="tag-row"><span class="tag">Growth</span><span class="tag">Expansion</span></div></article>
+            <article class="feature-card reveal"><div class="feature-icon">⇄</div><h3>Debt consolidation</h3><p>Review options that may help simplify payments and replace expensive short-term obligations.</p><div class="tag-row"><span class="tag">Refinance</span><span class="tag">Clarity</span></div></article>
           </div>
         </div>
       </section>
@@ -1237,7 +485,7 @@
         </div>
       </section>
 
-      <section class="passport-section" id="passport">
+      <section id="passport">
         <div class="container">
           <div class="passport reveal">
             <div>
@@ -1252,13 +500,7 @@
             </div>
 
             <div class="dashboard">
-              <div class="dash-top">
-                <div class="dash-title">
-                  <h3>Revola Capital Passport</h3>
-                  <p>Business profile · Funding-ready</p>
-                </div>
-                <div class="score"><span>84</span></div>
-              </div>
+              <div class="dash-top"><div class="dash-title"><h3>Revola Capital Passport</h3><p>Business profile · Funding-ready</p></div><div class="score"><span>84</span></div></div>
               <div class="dash-grid">
                 <div class="dash-tile"><span>Requested capital</span><strong>$150K–$250K</strong></div>
                 <div class="dash-tile"><span>Best-fit product</span><strong>Line of credit</strong></div>
@@ -1267,120 +509,68 @@
               </div>
               <div class="match-card">
                 <h4>Match strength</h4>
-                <div class="match-row"><span>Working capital</span><span>92%</span></div>
-                <div class="bar"><span style="width:92%"></span></div>
-                <div class="match-row"><span>Line of credit</span><span>86%</span></div>
-                <div class="bar"><span style="width:86%"></span></div>
-                <div class="match-row"><span>SBA path</span><span>61%</span></div>
-                <div class="bar"><span style="width:61%"></span></div>
+                <div class="match-row"><span>Working capital</span><span>92%</span></div><div class="bar"><span style="width:92%"></span></div>
+                <div class="match-row"><span>Equipment financing</span><span>86%</span></div><div class="bar"><span style="width:86%"></span></div>
+                <div class="match-row"><span>SBA-style path</span><span>61%</span></div><div class="bar"><span style="width:61%"></span></div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section>
+      <section id="industries">
         <div class="container">
           <div class="section-head reveal">
-            <div>
-              <div class="section-kicker">Who we help</div>
-              <h2>Funding support for every major industry.</h2>
-            </div>
+            <div><div class="section-kicker">Who we help</div><h2>Funding support for every major industry.</h2></div>
             <p class="section-copy">Revola is built for real businesses with real capital needs — from Main Street operators to B2B firms, healthcare practices, franchises, e-commerce brands, and professional service companies.</p>
           </div>
           <div class="industries reveal">
-            <div class="industry">Retail</div>
-            <div class="industry">Restaurants</div>
-            <div class="industry">Healthcare</div>
-            <div class="industry">Dental Practices</div>
-            <div class="industry">Medical Practices</div>
-            <div class="industry">Construction</div>
-            <div class="industry">Contractors</div>
-            <div class="industry">Manufacturing</div>
-            <div class="industry">Transportation</div>
-            <div class="industry">Logistics</div>
-            <div class="industry">E-commerce</div>
-            <div class="industry">Wholesale</div>
-            <div class="industry">Franchises</div>
-            <div class="industry">Hospitality</div>
-            <div class="industry">Automotive</div>
-            <div class="industry">Professional Services</div>
-            <div class="industry">Beauty & Wellness</div>
-            <div class="industry">Real Estate Services</div>
-            <div class="industry">Agencies</div>
-            <div class="industry">Local Services</div>
+            <div class="industry">Retail</div><div class="industry">Restaurants</div><div class="industry">Healthcare</div><div class="industry">Dental Practices</div><div class="industry">Medical Practices</div>
+            <div class="industry">Construction</div><div class="industry">Contractors</div><div class="industry">Manufacturing</div><div class="industry">Transportation</div><div class="industry">Logistics</div>
+            <div class="industry">E-commerce</div><div class="industry">Wholesale</div><div class="industry">Franchises</div><div class="industry">Hospitality</div><div class="industry">Automotive</div>
+            <div class="industry">Professional Services</div><div class="industry">Beauty & Wellness</div><div class="industry">Real Estate Services</div><div class="industry">Agencies</div><div class="industry">Local Services</div>
           </div>
         </div>
       </section>
 
-      <section class="application" id="apply">
+      <section id="apply">
         <div class="container">
           <div class="apply-card reveal">
             <div class="apply-copy">
               <div class="section-kicker">Start here</div>
-              <h2>See what funding path may fit your business.</h2>
-              <p>Submit a quick profile and a Revola advisor will review your situation, map the likely options, and help you understand the next step.</p>
-              <div class="advisor-box">
-                <strong>No pressure. No lender chasing.</strong>
-                <span>Submit your profile once. Revola helps organize your funding need, identify likely paths, and guide the next step with clarity.</span>
-              </div>
+              <h2>Choose your Revola path.</h2>
+              <p>Whether you are looking for business funding or want to become a referral, lender, or embedded platform partner, Revola now has a dedicated page for each path.</p>
+              <div class="advisor-box"><strong>Clean structure. Better conversion.</strong><span>The homepage sells the vision. The application page captures borrowers. The partner page captures referral, embedded, and lender opportunities.</span></div>
             </div>
-
-            <form class="form-card" onsubmit="handleSubmit(event)">
-              <div class="form-grid">
-                <div class="field"><label for="name">Full name</label><input id="name" name="name" placeholder="Chris Khoury" required /></div>
-                <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" placeholder="you@company.com" required /></div>
-                <div class="field"><label for="business">Business name</label><input id="business" name="business" placeholder="Company LLC" required /></div>
-                <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" placeholder="(555) 000-0000" /></div>
-                <div class="field"><label for="industry">Industry</label><select id="industry" name="industry"><option>Retail</option><option>Restaurant / Food Service</option><option>Healthcare</option><option>Dental Practice</option><option>Medical Practice</option><option>Construction</option><option>Contracting / Trades</option><option>Manufacturing</option><option>Transportation / Logistics</option><option>E-commerce</option><option>Wholesale / Distribution</option><option>Franchise</option><option>Hospitality</option><option>Automotive</option><option>Professional Services</option><option>Beauty / Wellness</option><option>Real Estate Services</option><option>Marketing / Agency</option><option>Local Services</option><option>Other</option></select></div>
-                <div class="field"><label for="amount">Funding amount</label><select id="amount" name="amount"><option>$25,000 – $50,000</option><option>$50,000 – $100,000</option><option>$100,000 – $250,000</option><option>$250,000 – $500,000</option><option>$500,000+</option></select></div>
-                <div class="field"><label for="revenue">Monthly revenue</label><select id="revenue" name="revenue"><option>Under $15,000</option><option>$15,000 – $50,000</option><option>$50,000 – $100,000</option><option>$100,000 – $250,000</option><option>$250,000+</option></select></div>
-                <div class="field"><label for="time">Time in business</label><select id="time" name="time"><option>Less than 6 months</option><option>6–12 months</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option></select></div>
-                <div class="field full"><label for="purpose">What do you need funding for?</label><textarea id="purpose" name="purpose" placeholder="Cash flow, payroll, inventory, equipment, expansion, invoices, marketing, debt consolidation..."></textarea></div>
-              </div>
-              <div class="form-footer">
-                <p class="fine-print">By submitting, you agree to be contacted about Revola funding options. Revola helps facilitate funding conversations and is not a commitment to lend.</p>
-                <button class="btn btn-primary" type="submit">Submit funding profile →</button>
-              </div>
-            </form>
+            <div class="action-card">
+              <div class="route-card"><div><h3>Apply for business funding</h3><p>Create your Capital Passport and submit your funding profile for review.</p></div><a class="btn btn-primary" href="application.html">Start application →</a></div>
+              <div class="route-card"><div><h3>Become a Revola partner</h3><p>Refer clients, explore embedded funding, or join the lender network.</p></div><a class="btn btn-secondary" href="partner.html">Partner with us →</a></div>
+            </div>
           </div>
         </div>
       </section>
 
       <section id="faq">
         <div class="container faq-wrap">
-          <div class="reveal">
-            <div class="section-kicker">FAQ</div>
-            <h2>Funding, explained clearly.</h2>
-            <p class="section-copy" style="margin-top:18px;">The goal is simple: help business owners understand their options without confusion, pressure, or wasted time.</p>
-          </div>
+          <div class="reveal"><div class="section-kicker">FAQ</div><h2>Funding, explained clearly.</h2><p class="section-copy" style="margin-top:18px;">The goal is simple: help business owners understand their options without confusion, pressure, or wasted time.</p></div>
           <div class="faq-list reveal">
-            <details open>
-              <summary>Is Revola a direct lender?</summary>
-              <p>Revola is designed as a funding marketplace and advisory layer. We help businesses understand possible funding paths and connect with appropriate lending partners.</p>
-            </details>
-            <details>
-              <summary>What types of funding can Revola help compare?</summary>
-              <p>Working capital, business lines of credit, equipment financing, invoice financing, expansion capital, SBA-style paths, purchase-order financing, franchise funding, and debt consolidation options.</p>
-            </details>
-            <details>
-              <summary>How fast can a business see options?</summary>
-              <p>Some qualified files may be reviewed quickly, often within 24–48 hours. More document-heavy products, such as SBA-style financing, may take longer.</p>
-            </details>
-            <details>
-              <summary>Who is the best fit?</summary>
-              <p>Revola is built for businesses across industries that have revenue, a clear use of funds, and a need to compare financing options without chasing multiple lenders.</p>
-            </details>
+            <details open><summary>Is Revola a direct lender?</summary><p>Revola is designed as a funding marketplace and advisory layer. We help businesses understand possible funding paths and connect with appropriate lending partners.</p></details>
+            <details><summary>What types of funding can Revola help compare?</summary><p>Working capital, business lines of credit, equipment financing, invoice financing, expansion capital, SBA-style paths, purchase-order financing, franchise funding, and debt consolidation options.</p></details>
+            <details><summary>How fast can a business see options?</summary><p>Some qualified files may be reviewed quickly, often within 24–48 hours. More document-heavy products, such as SBA-style financing, may take longer.</p></details>
+            <details><summary>Who is the best fit?</summary><p>Revola is built for businesses across industries that have revenue, a clear use of funds, and a need to compare financing options without chasing multiple lenders.</p></details>
           </div>
         </div>
       </section>
 
-      <section class="final-cta">
+      <section>
         <div class="container">
           <div class="cta-box reveal">
             <h2>Give your business a clearer path to capital.</h2>
-            <p>Start with one simple profile. We’ll help identify the funding paths that match your industry, business stage, urgency, and growth goals.</p>
-            <a href="#apply" class="btn btn-primary">Find my funding options →</a>
+            <p>Start with one simple profile. We’ll help identify the funding paths that match your business stage, urgency, and growth goals.</p>
+            <div class="hero-actions" style="margin-bottom:0;">
+              <a href="application.html" class="btn btn-primary">Find my funding options →</a>
+              <a href="partner.html" class="btn btn-dark">Become a partner</a>
+            </div>
           </div>
         </div>
       </section>
@@ -1388,16 +578,12 @@
 
     <footer class="footer">
       <div class="container footer-inner">
-        <a href="#top" class="brand" style="font-size:22px; letter-spacing:-.045em;">
-          <svg viewBox="0 0 64 64" aria-hidden="true" style="width:32px;height:32px;">
-            <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="#2563EB"/>
-            <path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="#00BFA6"/>
-            <path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l3.6-1.1L21.6 51v10H9V49Z" fill="#0B1D3A" opacity=".9"/>
-          </svg>
+        <a href="index.html" class="brand" style="font-size:22px;letter-spacing:-.045em;">
+          <svg viewBox="0 0 64 64" aria-hidden="true" style="width:32px;height:32px;"><path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l16.5-5.2-10.2-4.1H9L4 12h40.9C56.2 12 62 19.3 58.8 30.2c-2.9 9.9-12.2 15.6-22.4 17.7L21.6 51v10H9V49Z" fill="#2563EB"/><path d="M37.8 35.7 61 61H43.6c-4.2 0-7.5-1.5-10.5-4.5L21.7 45.1l16.1-9.4Z" fill="#00BFA6"/><path d="M9 49c0-9.2 5.4-14.7 14.6-17.6l3.6-1.1L21.6 51v10H9V49Z" fill="#0B1D3A" opacity=".9"/></svg>
           Revola
         </a>
         <div>© 2026 Revola. Business funding, without the runaround.</div>
-        <div class="footer-links"><a href="#solutions">Solutions</a><a href="#how">How it works</a><a href="#apply">Apply</a></div>
+        <div class="footer-links"><a href="#solutions">Solutions</a><a href="#how">How it works</a><a href="application.html">Apply</a><a href="partner.html">Partners</a></div>
       </div>
     </footer>
   </div>
@@ -1408,21 +594,21 @@
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.12 });
-
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
 
-    function handleSubmit(event) {
-      event.preventDefault();
-      const form = event.currentTarget;
-      const button = form.querySelector('button[type="submit"]');
-      const original = button.innerHTML;
-      button.innerHTML = 'Profile submitted ✓';
-      button.style.background = 'linear-gradient(135deg, #00BFA6, #2563EB)';
-      setTimeout(() => {
-        button.innerHTML = original;
-        button.style.background = '';
-        form.reset();
-      }, 2600);
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileToggle && mobileMenu) {
+      mobileToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      });
+      mobileMenu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          mobileToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
     }
   </script>
 </body>
