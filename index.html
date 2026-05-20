@@ -11,6 +11,7 @@
       --deep-navy: #07162E;
       --midnight: #06142B;
       --blue: #2563EB;
+      --blue2: #0B5CFF;
       --bright-blue: #3B82F6;
       --teal: #00BFA6;
       --cyan: #38BDF8;
@@ -115,8 +116,8 @@
     }
 
     .btn:hover { transform: translateY(-2px); }
-    .btn-primary { color: #fff; background: linear-gradient(135deg, var(--blue), var(--blue2, #0B5CFF)); box-shadow: 0 18px 38px rgba(37, 99, 235, .28); }
-    .btn-primary:hover { box-shadow: 0 24px 52px rgba(37, 99, 235, .34); }
+    .btn-primary { color: #fff; background: var(--gradient-primary); box-shadow: 0 18px 40px rgba(37, 99, 235, .25); }
+    .btn-primary:hover { box-shadow: 0 26px 58px rgba(37, 99, 235, .34); }
     .btn-dark { color: #fff; background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.18); }
     .btn-light { color: var(--blue); background: #fff; border-color: rgba(37,99,235,.20); box-shadow: 0 10px 26px rgba(11,29,58,.05); }
 
@@ -216,6 +217,28 @@
       font-weight: 640;
     }
 
+    .hero-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin: -12px 0 22px;
+      color: #52657E;
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .hero-note span {
+      width: 18px;
+      height: 18px;
+      display: grid;
+      place-items: center;
+      border-radius: 999px;
+      background: rgba(0,191,166,.12);
+      color: #008B7B;
+      font-size: 11px;
+      font-weight: 950;
+    }
+
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 22px; }
 
     .eligibility-box {
@@ -282,10 +305,13 @@
       z-index: 2;
       padding: 12px;
       border-radius: 38px;
-      background: rgba(255,255,255,.46);
-      border: 1px solid rgba(255,255,255,.9);
-      box-shadow: var(--shadow);
+      background: rgba(255,255,255,.52);
+      border: 1px solid rgba(255,255,255,.96);
+      box-shadow: 0 42px 110px rgba(11,29,58,.18), 0 0 0 1px rgba(37,99,235,.05);
       backdrop-filter: blur(22px);
+      transform: perspective(1100px) rotateY(-4deg) rotateX(2deg);
+      transform-origin: center;
+      animation: dashboardFloat 7s ease-in-out infinite;
     }
 
     .dashboard {
@@ -312,7 +338,7 @@
 
     .window-dots { display: flex; gap: 7px; }
     .window-dots span { width: 9px; height: 9px; border-radius: 999px; background: rgba(255,255,255,.32); }
-    .dash-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 999px; background: rgba(0,191,166,.13); color: #7DF3E5; font-size: 11px; font-weight: 950; }
+    .dash-badge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 10px; border-radius: 999px; background: rgba(0,191,166,.13); color: #7DF3E5; font-size: 11px; font-weight: 950; box-shadow: 0 0 0 7px rgba(0,191,166,.06); }
 
     .dash-body { display: grid; grid-template-columns: 138px 1fr; min-height: 546px; }
     .dash-sidebar { background: #F8FBFF; border-right: 1px solid var(--line); padding: 20px 14px; }
@@ -342,6 +368,7 @@
 
     .offer-list { display: grid; gap: 12px; }
     .offer-card { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; padding: 14px; border-radius: 18px; background: #fff; border: 1px solid var(--line); box-shadow: 0 10px 22px rgba(11,29,58,.04); }
+    .offer-card:first-child { border-color: rgba(37,99,235,.24); box-shadow: 0 18px 34px rgba(37,99,235,.08); }
     .offer-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 14px; background: var(--sky); color: var(--blue); font-weight: 950; }
     .offer-card h3 { margin: 0 0 3px; color: var(--deep-navy); font-size: 14px; letter-spacing: -.02em; }
     .offer-card p { margin: 0; color: var(--slate); font-size: 11px; font-weight: 700; }
@@ -488,6 +515,11 @@
     .reveal { opacity: 0; transform: translateY(16px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    @keyframes dashboardFloat {
+      0%, 100% { transform: perspective(1100px) rotateY(-4deg) rotateX(2deg) translateY(0); }
+      50% { transform: perspective(1100px) rotateY(-4deg) rotateX(2deg) translateY(-10px); }
+    }
+
     @media (max-width: 1080px) {
       .hero-grid { grid-template-columns: 1fr; gap: 44px; }
       .hero-copy { text-align: center; margin: 0 auto; }
@@ -524,7 +556,7 @@
       .eligibility-box .btn { width: 100%; }
       .hero-actions .btn { width: 100%; }
       .trust-metrics, .score-row, .offer-details, .solutions-grid, .passport-flow, .audience-grid, .industries-grid, .logo-row, .security-grid, .timeline, .footer-grid { grid-template-columns: 1fr; }
-      .dashboard-frame { padding: 8px; border-radius: 28px; }
+      .dashboard-frame { padding: 8px; border-radius: 28px; transform: none; animation: none; }
       .dashboard { border-radius: 22px; }
       .dash-main { padding: 18px; }
       .offer-card { grid-template-columns: auto 1fr; }
@@ -570,7 +602,8 @@
         <div class="hero-copy reveal">
           <div class="eyebrow"><span class="eyebrow-dot"></span>Capital marketplace infrastructure for modern businesses</div>
           <h1>Business funding, <span class="accent">without the runaround.</span></h1>
-          <p class="hero-subtitle">Create one secure funding profile, compare trusted capital options, and move forward with advisor-supported clarity.</p>
+          <p class="hero-subtitle">One secure funding profile. Smarter capital options. Faster decisions — with advisor-supported clarity from the first step.</p>
+          <div class="hero-note"><span>✓</span> No hard credit pull to start · Secure profile · Advisor-reviewed path</div>
           <div class="hero-actions">
             <a href="application.html" class="btn btn-primary">Check eligibility →</a>
             <a href="partner.html" class="btn btn-light">Talk to a funding expert</a>
@@ -602,9 +635,9 @@
 
     <section id="why"><div class="container"><div class="section-head reveal"><div><div class="kicker">Why Revola</div><h2 class="section-title">The old way of getting funding is broken.</h2></div><p class="section-copy">Business owners should not have to repeat applications, guess lender fit, and chase unclear requirements just to understand their options.</p></div><div class="comparison-grid reveal"><div class="comparison-card old"><h3>Traditional funding process</h3><div class="comparison-list"><div class="comparison-item"><span class="xmark">×</span>Repeating the same application across lenders.</div><div class="comparison-item"><span class="xmark">×</span>Unclear lender fit and hidden requirements.</div><div class="comparison-item"><span class="xmark">×</span>Slow back-and-forth before knowing the path.</div><div class="comparison-item"><span class="xmark">×</span>Confusing terms without enough context.</div></div></div><div class="comparison-card new"><h3>The Revola process</h3><div class="comparison-list"><div class="comparison-item"><span class="checkmark">✓</span>One secure profile built once.</div><div class="comparison-item"><span class="checkmark">✓</span>Smart matching by product, speed, and fit.</div><div class="comparison-item"><span class="checkmark">✓</span>Advisor-supported review before moving forward.</div><div class="comparison-item"><span class="checkmark">✓</span>Clearer options across multiple capital paths.</div></div></div></div></div></section>
 
-    <section class="passport-section" id="profile"><div class="container"><div class="section-head reveal"><div><div class="kicker">Capital Passport™</div><h2 class="section-title">Your business funding profile — built once, used everywhere.</h2></div><p class="section-copy">Capital Passport™ organizes your business information, funding goals, documents, and eligibility signals into one secure profile.</p></div><div class="passport-wrap"><div class="passport-preview reveal"><div class="passport-card-ui"><div class="passport-top"><div><h3>Revola Capital Passport™</h3><p>Lender-ready funding profile</p></div><div class="verified">● Verified</div></div><div class="passport-data"><div class="data-tile"><span>Funding goal</span><strong>$250,000</strong></div><div class="data-tile"><span>Monthly revenue</span><strong>$85K–$120K</strong></div><div class="data-tile"><span>Best path</span><strong>Line of credit</strong></div><div class="data-tile"><span>Documents</span><strong>3 ready</strong></div></div><div class="passport-ready"><div class="passport-ready-top"><strong>Lender-ready status</strong><span>92%</span></div><div class="readiness-bar"><span></span></div></div></div></div><div class="passport-flow reveal"><div class="flow-card"><div class="flow-icon">01</div><h3>Profile</h3><p>Business details, revenue, industry, funding goal, and operating context.</p></div><div class="flow-card"><div class="flow-icon">02</div><h3>Match</h3><p>Relevant lenders, products, terms, speed, documents, and fit signals.</p></div><div class="flow-card"><div class="flow-icon">03</div><h3>Move</h3><p>Compare options, submit documents, review with an advisor, and get funded.</p></div></div></div></div></section>
+    <section class="passport-section" id="profile"><div class="container"><div class="section-head reveal"><div><div class="kicker">Capital Passport™</div><h2 class="section-title">The signature funding profile that makes Revola feel different.</h2></div><p class="section-copy">Capital Passport™ turns your business identity, revenue signals, documents, funding goal, and readiness score into one lender-ready profile.</p></div><div class="passport-wrap"><div class="passport-preview reveal"><div class="passport-card-ui"><div class="passport-top"><div><h3>Revola Capital Passport™</h3><p>Lender-ready funding profile</p></div><div class="verified">● Verified</div></div><div class="passport-data"><div class="data-tile"><span>Business</span><strong>Verified</strong></div><div class="data-tile"><span>Revenue</span><strong>Connected</strong></div><div class="data-tile"><span>Funding goal</span><strong>$250,000</strong></div><div class="data-tile"><span>Documents</span><strong>Ready</strong></div><div class="data-tile"><span>Match score</span><strong>90%</strong></div><div class="data-tile"><span>Status</span><strong>Active</strong></div></div><div class="passport-ready"><div class="passport-ready-top"><strong>Lender-ready status</strong><span>92%</span></div><div class="readiness-bar"><span></span></div></div></div></div><div class="passport-flow reveal"><div class="flow-card"><div class="flow-icon">01</div><h3>Profile</h3><p>Business details, revenue, industry, funding goal, and operating context.</p></div><div class="flow-card"><div class="flow-icon">02</div><h3>Match</h3><p>Relevant lenders, products, terms, speed, documents, and fit signals.</p></div><div class="flow-card"><div class="flow-icon">03</div><h3>Move</h3><p>Compare options, submit documents, review with an advisor, and get funded.</p></div></div></div></div></section>
 
-    <section id="solutions"><div class="container"><div class="section-head reveal"><div><div class="kicker">Solutions</div><h2 class="section-title">Funding solutions for every stage.</h2></div><a class="section-link" href="solutions.html">Explore all solutions →</a></div><div class="solutions-grid"><article class="solution-card reveal"><div><div class="icon">▥</div><h3>Line of Credit</h3><p>Flexible capital for inventory, payroll, cash flow, and growth opportunities.</p><div class="best-for"><span>Best for:</span> ongoing access to working capital.</div></div><a class="card-link" href="solutions.html#line-of-credit">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">▤</div><h3>Term Loans</h3><p>Structured funding for expansion, hiring, marketing, or major investments.</p><div class="best-for"><span>Best for:</span> predictable capital with fixed repayment.</div></div><a class="card-link" href="solutions.html#working-capital">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">◈</div><h3>Equipment Financing</h3><p>Finance vehicles, machinery, tools, or operational equipment.</p><div class="best-for"><span>Best for:</span> asset-backed growth.</div></div><a class="card-link" href="solutions.html#equipment-financing">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">□</div><h3>Invoice Financing</h3><p>Unlock cash tied up in unpaid invoices and receivables.</p><div class="best-for"><span>Best for:</span> B2B companies with receivables.</div></div><a class="card-link" href="solutions.html#invoice-financing">Learn more →</a></article></div></div></section>
+    <section id="solutions"><div class="container"><div class="section-head reveal"><div><div class="kicker">Solutions</div><h2 class="section-title">Funding solutions for every stage.</h2></div><a class="section-link" href="solutions.html">Explore all solutions →</a></div><div class="solutions-grid"><article class="solution-card reveal"><div><div class="icon">▥</div><h3>Line of Credit</h3><p>Flexible capital for inventory, payroll, cash flow, and growth opportunities.</p><div class="best-for"><span>Best for:</span> inventory, payroll, and cash flow.<br><span>Speed:</span> fast access.</div></div><a class="card-link" href="solutions.html#line-of-credit">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">▤</div><h3>Term Loans</h3><p>Structured funding for expansion, hiring, marketing, or major investments.</p><div class="best-for"><span>Best for:</span> hiring, marketing, and expansion.<br><span>Structure:</span> predictable repayment.</div></div><a class="card-link" href="solutions.html#working-capital">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">◈</div><h3>Equipment Financing</h3><p>Finance vehicles, machinery, tools, or operational equipment.</p><div class="best-for"><span>Best for:</span> vehicles, machinery, and tools.<br><span>Benefit:</span> preserve cash.</div></div><a class="card-link" href="solutions.html#equipment-financing">Learn more →</a></article><article class="solution-card reveal"><div><div class="icon">□</div><h3>Invoice Financing</h3><p>Unlock cash tied up in unpaid invoices and receivables.</p><div class="best-for"><span>Best for:</span> B2B companies with receivables.<br><span>Benefit:</span> improve cash flow.</div></div><a class="card-link" href="solutions.html#invoice-financing">Learn more →</a></article></div></div></section>
 
     <section class="section-alt" id="audience"><div class="container"><div class="section-head reveal"><div><div class="kicker">Who it is for</div><h2 class="section-title">Built for the way modern businesses access capital.</h2></div><p class="section-copy">Revola supports the companies and partners that need a cleaner way to understand and route funding demand.</p></div><div class="audience-grid reveal"><div class="audience-card"><div class="icon">↗</div><h3>Growing businesses</h3><p>Compare capital options without repeating the same application process across every lender.</p><a class="card-link" href="application.html">Check eligibility →</a></div><div class="audience-card"><div class="icon">◎</div><h3>Established operators</h3><p>Access funding paths for expansion, equipment, working capital, receivables, or consolidation.</p><a class="card-link" href="solutions.html">Explore solutions →</a></div><div class="audience-card"><div class="icon">◇</div><h3>Partners</h3><p>Route qualified businesses into a modern funding experience without becoming the lender.</p><a class="card-link" href="partner.html">Partner with Revola →</a></div></div></div></section>
 
